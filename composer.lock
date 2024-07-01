@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b63abfff3975e7552b6f4ed503f97798",
+    "content-hash": "963467134ccaa6a30387e4fd643dde3b",
     "packages": [
         {
             "name": "archtechx/laravel-seo",
@@ -66,16 +66,16 @@
         },
         {
             "name": "benbjurstrom/prezet",
-            "version": "v0.2.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/benbjurstrom/prezet.git",
-                "reference": "adb129320797803c083f21d754025f5303ef2584"
+                "reference": "65c857c7aa134a989d2b1259220cdaebd445a8ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/benbjurstrom/prezet/zipball/adb129320797803c083f21d754025f5303ef2584",
-                "reference": "adb129320797803c083f21d754025f5303ef2584",
+                "url": "https://api.github.com/repos/benbjurstrom/prezet/zipball/65c857c7aa134a989d2b1259220cdaebd445a8ac",
+                "reference": "65c857c7aa134a989d2b1259220cdaebd445a8ac",
                 "shasum": ""
             },
             "require": {
@@ -90,7 +90,7 @@
             },
             "require-dev": {
                 "larastan/larastan": "^2.9",
-                "laravel/pint": "^1.14",
+                "laravel/pint": "^1.16",
                 "nunomaduro/collision": "^8.1.1||^7.10.0",
                 "orchestra/testbench": "^9.0.0||^8.22.0",
                 "pestphp/pest": "^2.34",
@@ -136,7 +136,7 @@
             ],
             "support": {
                 "issues": "https://github.com/benbjurstrom/prezet/issues",
-                "source": "https://github.com/benbjurstrom/prezet/tree/v0.2.0"
+                "source": "https://github.com/benbjurstrom/prezet/tree/v0.4.0"
             },
             "funding": [
                 {
@@ -144,7 +144,88 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-14T18:03:57+00:00"
+            "time": "2024-07-01T21:50:16+00:00"
+        },
+        {
+            "name": "blade-ui-kit/blade-icons",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/blade-ui-kit/blade-icons.git",
+                "reference": "89660d93f9897d231e9113ba203cd17f4c5efade"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/blade-ui-kit/blade-icons/zipball/89660d93f9897d231e9113ba203cd17f4c5efade",
+                "reference": "89660d93f9897d231e9113ba203cd17f4c5efade",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0|^10.0|^11.0",
+                "illuminate/filesystem": "^8.0|^9.0|^10.0|^11.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+                "illuminate/view": "^8.0|^9.0|^10.0|^11.0",
+                "php": "^7.4|^8.0",
+                "symfony/console": "^5.3|^6.0|^7.0",
+                "symfony/finder": "^5.3|^6.0|^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.5.1",
+                "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0",
+                "phpunit/phpunit": "^9.0|^10.5|^11.0"
+            },
+            "bin": [
+                "bin/blade-icons-generate"
+            ],
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BladeUI\\Icons\\BladeIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "BladeUI\\Icons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dries Vints",
+                    "homepage": "https://driesvints.com"
+                }
+            ],
+            "description": "A package to easily make use of icons in your Laravel Blade views.",
+            "homepage": "https://github.com/blade-ui-kit/blade-icons",
+            "keywords": [
+                "blade",
+                "icons",
+                "laravel",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/blade-ui-kit/blade-icons/issues",
+                "source": "https://github.com/blade-ui-kit/blade-icons"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/driesvints",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.paypal.com/paypalme/driesvints",
+                    "type": "paypal"
+                }
+            ],
+            "time": "2024-02-07T16:09:20+00:00"
         },
         {
             "name": "brick/math",
@@ -1971,6 +2052,66 @@
                 }
             ],
             "time": "2024-01-28T23:22:08+00:00"
+        },
+        {
+            "name": "mallardduck/blade-lucide-icons",
+            "version": "1.21.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mallardduck/blade-lucide-icons.git",
+                "reference": "c5b19544016464c4d67440ce82011f35b8a8d48c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mallardduck/blade-lucide-icons/zipball/c5b19544016464c4d67440ce82011f35b8a8d48c",
+                "reference": "c5b19544016464c4d67440ce82011f35b8a8d48c",
+                "shasum": ""
+            },
+            "require": {
+                "blade-ui-kit/blade-icons": "^1.6",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "ext-dom": "*",
+                "ext-fileinfo": "*",
+                "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0",
+                "phpunit/phpunit": "^9.0|^10.5|^11.0",
+                "spatie/phpunit-snapshot-assertions": "^4.2.14"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MallardDuck\\LucideIcons\\BladeLucideIconsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MallardDuck\\LucideIcons\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dan Pock"
+                }
+            ],
+            "description": "A package to easily make use of Lucide icons in your Laravel Blade views.",
+            "homepage": "https://github.com/mallardduck/blade-lucide-icons",
+            "keywords": [
+                "LucideIcons",
+                "blade",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/mallardduck/blade-lucide-icons/issues",
+                "source": "https://github.com/mallardduck/blade-lucide-icons/tree/1.21.0"
+            },
+            "time": "2024-04-17T15:27:31+00:00"
         },
         {
             "name": "monolog/monolog",
