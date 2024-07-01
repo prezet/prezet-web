@@ -1,9 +1,15 @@
-## 🚀 Features
+## 🎉 Getting Started
+- [Installation](content/installation)
+- [Configuration](content/configuration)
 
--  [Markdown Powered](content/markdown)
--  [Blade Components](content/blade)
--  [Optimized Images](content/images)
--  [SEO](content/seo)
+## 😎 Features
+
+-  [Markdown Powered](content/features/markdown)
+-  [Blade Components](content/features/blade)
+-  [Optimized Images](content/features/images)
+-  [Typed Frontmatter](content/features/frontmatter)
+-  [SEO Tags](content/features/seo)
+-  [Ogimage Generation](content/features/ogimage)
 
 ## 🎨 Customize
 
