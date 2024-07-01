@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "benbjurstrom/prezet": "^0.4.0",
+        "benbjurstrom/prezet": "^0.4.1",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "mallardduck/blade-lucide-icons": "^1.21"
