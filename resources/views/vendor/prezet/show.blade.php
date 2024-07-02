@@ -45,18 +45,19 @@
         }"
     >
         {{-- Left Sidebar --}}
-        <div class="hidden lg:relative lg:block lg:flex-none">
+
+
+
+        <div
+            x-bind:class="{
+            'hidden': ! showSidebar,
+            'absolute left-0 bg-stone-50 lg:relative lg:block flex-none': true
+        }">
             <div class="absolute inset-y-0 right-0 w-[50vw] bg-stone-50"></div>
             <div
-                class="absolute bottom-0 right-0 top-16 hidden h-12 w-px bg-gradient-to-t from-stone-800"
-            ></div>
-            <div
-                class="absolute bottom-0 right-0 top-28 hidden w-px bg-stone-800"
-            ></div>
-            <div
-                class="sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-y-auto overflow-x-hidden py-16 pl-0.5 pr-8 xl:w-72 xl:pr-16"
+                class="fixed lg:sticky top-[4.75rem] -ml-0.5 h-[calc(100vh-4.75rem)] w-64 overflow-y-auto overflow-x-hidden py-16 pl-0.5 pr-8 xl:w-72 xl:pr-16 bg-stone-50"
             >
-                <nav class="text-base lg:text-sm">
+                <nav class="text-base lg:text-sm pl-12 lg:pl-0">
                     <ul role="list" class="space-y-9">
                         @foreach ($nav as $section)
                             <li>
