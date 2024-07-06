@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <style type="text/css">
             /* inter-latin-400-normal */
             @font-face {
