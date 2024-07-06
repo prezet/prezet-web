@@ -8,6 +8,7 @@
     <div class="relative flex flex-grow basis-0 items-center">
         @if(route('prezet.index') !== url()->current())
         <button
+            aria-label="Menu"
             class="mr-4 rounded-lg p-1.5 hover:bg-stone-100 active:bg-stone-200 lg:hidden"
             x-on:click="showSidebar = ! showSidebar"
         >
@@ -28,7 +29,7 @@
         </button>
         @endif
 
-        <a href="{{ route('prezet.index') }}">
+        <a aria-label="Home" href="{{ route('prezet.index') }}">
             <svg
                 class="h-9 w-auto"
                 fill="none"
