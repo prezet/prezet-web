@@ -9,14 +9,6 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-Route::get('prezet/img/{path}', ImageController::class)
-    ->name('prezet.image')
-    ->where('path', '.*');
-
-Route::get('/prezet/ogimage/{slug}', OgimageController::class)
-    ->name('prezet.ogimage')
-    ->where('slug', '.*');
-
 Route::middleware('cache.headers:public;max_age=7200;etag')
     // Cloudflare free plan: Minimum Edge Cache TTL 2 hours
     ->withoutMiddleware([
@@ -25,6 +17,15 @@ Route::middleware('cache.headers:public;max_age=7200;etag')
         ValidateCsrfToken::class,
     ])
     ->group(function () {
+        Route::get('prezet/img/{path}', ImageController::class)
+            ->name('prezet.image')
+            ->where('path', '.*');
+
+        Route::get('/prezet/ogimage/{slug}', OgimageController::class)
+            ->name('prezet.ogimage')
+            ->where('slug', '.*');
+
+
         Route::get('/', IndexController::class)
             ->name('prezet.index');
 
