@@ -1,14 +1,13 @@
 <div class="aspect-video" {{ $attributes }}>
-    <iframe
-        class="h-full w-full"
-        src="https://www.youtube-nocookie.com/embed/{{ $attributes['videoid'] }}"
-        width="100%"
+    <lite-youtube
+        videoid="{{ $attributes['videoid'] }}"
+        style="background-image: url('https://i.ytimg.com/vi/{{ $attributes['videoid'] }}/hqdefault.jpg');"
         title="{{ $attributes['title'] }}"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-    ></iframe>
+    >
+        <a href="https://youtube.com/watch?v={{ $attributes['videoid'] }}" class="lty-playbtn" title="Play Video">
+            <span class="lyt-visually-hidden">Play Video: {{ $attributes['title'] }}</span>
+        </a>
+    </lite-youtube>
 
     <script
         type="application/ld+json"

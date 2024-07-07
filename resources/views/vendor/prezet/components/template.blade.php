@@ -66,6 +66,15 @@
         <!-- Scripts -->
         <script
             defer
+            src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.2/src/lite-yt-embed.min.js"
+        ></script>
+        <link
+            defer
+            href="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.2/src/lite-yt-embed.min.css"
+            rel="stylesheet"
+        />
+        <script
+            defer
             src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.14.1/dist/cdn.min.js"
         ></script>
         <script
