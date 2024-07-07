@@ -3,7 +3,12 @@
 @endphp
 
 <x-prezet::template>
-    @seo(['title' => 'Prezet: Markdown Blogging for Laravel', 'description' => 'Transform your markdown files into SEO-friendly blogs, articles, and documentation!'])
+    @seo([
+        'title' => 'Prezet: Markdown Blogging for Laravel',
+        'description' =>
+            'Transform your markdown files into SEO-friendly blogs, articles, and documentation!',
+        'url' => route('prezet.index'),
+    ])
 
     <x-slot:hero>
         <div

@@ -16,10 +16,11 @@ Route::get('/prezet/ogimage/{slug}', OgimageController::class)
 
 Route::get('/', IndexController::class)
     ->name('prezet.index')
-    ->middleware('cache.headers:public;max_age=300;etag');
+    ->middleware('cache.headers:public;max_age=7200;etag');
 
 Route::get('{slug}', ShowController::class)
     ->name('prezet.show')
     ->where('slug', '.*')
-    ->middleware('cache.headers:public;max_age=300;etag');
-// https://laravel.com/docs/11.x/routing#parameters-encoded-forward-slashes
+    // https://laravel.com/docs/11.x/routing#parameters-encoded-forward-slashes
+    ->middleware('cache.headers:public;max_age=7200;etag');
+    // Cloudflare free plan: Minimum Edge Cache TTL 2 hours
