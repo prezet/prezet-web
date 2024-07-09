@@ -8,6 +8,7 @@
         'description' =>
             'Transform your markdown files into SEO-friendly blogs, articles, and documentation!',
         'url' => route('prezet.index'),
+        'image' => 'ogimage.png',
     ])
 
     <x-slot:hero>
@@ -315,6 +316,12 @@ This is a blog post written in markdown...
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center mt-12">
+            <div class="w-[600px]">
+                <x-prezet::youtube videoid="CkfCnjflA3Q" title="Prezet: Markdown Blogging for Laravel" date="2024-07-09" description="Here's a quick demo showing how easy it is to get a markdown blog up and running with Prezet." />
             </div>
         </div>
 
