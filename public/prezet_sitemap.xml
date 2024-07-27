@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+    <url>
+        <loc>http://prezet-web.test/features/sitemap</loc>
+        <lastmod>2024-07-27T17:41:23+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/installation</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/configuration</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/index</loc>
+        <lastmod>2024-07-27T17:38:03+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/customize/blade-views</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/customize/controllers</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/customize/frontmatter</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/customize/routes</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/features/markdown</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/features/blade</loc>
+        <lastmod>2024-07-07T20:34:49+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/features/frontmatter</loc>
+        <lastmod>2024-07-27T17:58:06+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/features/images</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/features/ogimage</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+    <url>
+        <loc>http://prezet-web.test/features/seo</loc>
+        <lastmod>2024-07-03T00:05:32+00:00</lastmod>
+
+            </url>
+</urlset>
