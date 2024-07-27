@@ -34,17 +34,17 @@ To ensure the integrity and consistency of your content, Prezet employs the `Fro
 
 You can find the default `FrontmatterData` class here: [frontmatterData.php](https://github.com/benbjurstrom/prezet/blob/main/src/Data/frontmatterData.php)
 
-If the front matter does not pass validation, Prezet will throw an error and prevent the post from being rendered.
+If the front matter is missing or does not pass validation, Prezet will throw an error and prevent the post from being rendered.
 
-## Validation Command
+## Bulk Front Matter Validation
 
-Prezet also provides a convenient command to validate the front matter for all of your posts at once:
+Prezet also provides a convenient way to validate the front matter for all of your posts at once. Anytime you update the prezet index sqlite file prezet also scans all your markdown files and checks that the front matter can be rendered into a valid DTO.
 
 ```bash
-php artisan prezet:validate-front matter
+php artisan prezet:index
 ```
 
-This command scans all your markdown files and checks that the front matter can be rendered into a valid DTO. If any files contain invalid front matter, the command will output detailed error messages along with the file paths, allowing you to quickly identify and correct any issues.
+If any files contain invalid front matter, the command will output detailed error messages along with the file paths, allowing you to quickly identify and correct any issues.
 
 ## Customizing Front Matter
 

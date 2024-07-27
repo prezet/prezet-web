@@ -1,6 +1,7 @@
 ## 🎉 Getting Started
 - [Installation](content/installation)
 - [Configuration](content/configuration)
+- [Sqlite Index](content/index)
 
 ## 😎 Features
 
@@ -10,6 +11,7 @@
 -  [Typed Frontmatter](content/features/frontmatter)
 -  [SEO Tags](content/features/seo)
 -  [Ogimage Generation](content/features/ogimage)
+-  [Sitemap Generation](content/features/sitemap)
 
 ## 🎨 Customize
 
