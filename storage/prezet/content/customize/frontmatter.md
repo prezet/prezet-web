@@ -2,17 +2,16 @@
 title: Customizing Prezet Frontmatter
 date: 2024-05-09
 category: Customization
-excerpt: 'This post explains how to customize the frontmatter prezet.'
+excerpt: 'This post explains how to customize the frontmatter in Prezet.'
 ---
 
-Prezet makes it easy to customize the frontmatter of your markdown files. To learn more about how Prezet uses frontmatter data see this article: [Frontmatter Data](content/frontmatter).
+Prezet makes it easy to customize the frontmatter of your markdown files. To learn more about how Prezet uses frontmatter data, see this article: [Frontmatter Data](content/frontmatter).
 
 This guide will walk you through the process of extending the package's default `FrontmatterData` class and updating `config/prezet.php` to use your custom class.
 
 ## The Default FrontmatterData Class
 
-Out of the box, Prezet uses the bundled `FrontmatterData` class to define and validate the structure of your frontmatter. For typesafety this class makes use of the [laravel-validated-dto](https://wendell-adriel.gitbook.io/laravel-validated-dto) package. You can find the contents of the default class here: [FrontmatterData.php](https://github.com/benbjurstrom/prezet/blob/main/src/Data/FrontmatterData.php) 
-
+Out of the box, Prezet uses the bundled `FrontmatterData` class to define and validate the structure of your frontmatter. For type safety, this class makes use of the [laravel-validated-dto](https://wendell-adriel.gitbook.io/laravel-validated-dto) package. You can find the contents of the default class here: [FrontmatterData.php](https://github.com/benbjurstrom/prezet/blob/main/src/Data/FrontmatterData.php)
 
 ## Create a Custom FrontmatterData Class
 
@@ -31,22 +30,12 @@ class CustomFrontmatterData extends FrontmatterData
     // Add new properties
     #[Rules(['required', 'string'])]
     public string $author;
-
-    #[Rules(['nullable', 'array'])]
-    public ?array $tags;
-
-    // Override existing properties
-    #[Rules(['nullable', 'string'])]
-    public ?string $excerpt;
-
-    // Remove properties by not declaring them
-    // For example, $ogimage is not included here
 }
 ```
 
-In this example, we've added `author` and `tags` fields, made `excerpt` optional, and removed the `ogimage` field.
+In this example, we've added an `author` field
 
-## Step 2: Update the Prezet Configuration file
+## Step 2: Update the Prezet Configuration File
 
 Update the `data.frontmatter` key within the `config/prezet.php` file to use your custom class:
 
@@ -69,16 +58,18 @@ Now that you've customized the frontmatter, you can use the new structure in you
 ```markdown
 ---
 title: My Custom Post
+slug: my-custom-post
 date: 2024-05-10
 author: Jane Doe
 category: Technology
 tags: [php, laravel, prezet]
 excerpt: This is an optional excerpt for my custom post.
+draft: false
 ---
 
 Your markdown content goes here...
 ```
 
-_⚠️ NOTE: if you've modified any of the default properties make sure you update the vendor privded blade files or seo tags that depend on the default properties_
+_⚠️ NOTE: If you've modified any of the default properties, make sure you update the vendor-provided blade files or SEO tags that depend on the default properties._
 
-To learn more about using frontmatter properties within your blade files or seo tags see this page: [Blade Views](content/customize/blade-views).
+To learn more about using frontmatter properties within your blade files or SEO tags, see this page: [Blade Views](/customize/blade-views).
