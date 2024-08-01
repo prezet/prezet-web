@@ -3,6 +3,9 @@
 - [Configuration](content/configuration)
 - [Sqlite Index](content/index)
 
+## 🚀 Deployment
+- [Cloudflare Cache](deployment/cloudflare)
+
 ## 😎 Features
 
 -  [Markdown Powered](content/features/markdown)

@@ -53,6 +53,15 @@ After starting your server, you can verify the installation by visiting:
 
 You should now see your new markdown blog powered by Prezet!
 
+## Step 4: Generate the SQLite Index
+After installing Prezet and setting up your initial content, it's important to generate the SQLite index. Run the following Artisan command to create and populate the index:
+
+```bash
+php artisan prezet:index
+```
+
+For more information about the SQLite index and its purposes, refer to the [Prezet SQLite Index](/index) documentation.
+
 ## Next Steps
 
 With Prezet installed, you're ready to start creating content and customizing your blog. Check out the other documentation pages to learn more about:
