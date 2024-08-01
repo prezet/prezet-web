@@ -1,0 +1,156 @@
+{
+  "main": {
+    "id": "8817c49981eebc2c",
+    "type": "split",
+    "children": [
+      {
+        "id": "0db6e05d26015775",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c94c462f1e9ec259",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/deployment/cloudflare.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ae4b6c79c7836d66",
+    "type": "split",
+    "children": [
+      {
+        "id": "242f90b58418f095",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3b5b046d183f09a1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c7ae33cafd7b92ed",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "de4f4206c3c8e3f0",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "61980d795ee2f40e",
+    "type": "split",
+    "children": [
+      {
+        "id": "826313ad7a1194f3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "844aa15ac373a412",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "content/deployment/cloudflare.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "fbdf965a7866e843",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "content/deployment/cloudflare.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "fabbd98c54c90e75",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "82d851980136cdde",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "content/deployment/cloudflare.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "janitor:Janitor: scan vault": false
+    }
+  },
+  "active": "c94c462f1e9ec259",
+  "lastOpenFiles": [
+    "SUMMARY.md",
+    "content/deployment/cloudflare.md",
+    "images/cloudflare-20240731172637050.webp"
+  ]
+}
