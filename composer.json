@@ -4,11 +4,18 @@
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/benbjurstrom/torchlight-commonmark-php"
+        }
+    ],
     "require": {
         "php": "^8.2",
-        "benbjurstrom/prezet": "^0.8.0",
+        "benbjurstrom/prezet": "^0.8.6",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
+        "torchlight/torchlight-commonmark": "dev-main",
         "mallardduck/blade-lucide-icons": "^1.21"
     },
     "require-dev": {

@@ -25,8 +25,13 @@
         class="sticky top-[4.75rem] -ml-0.5 flex h-[calc(100vh-4.75rem)] w-64 flex-col justify-between overflow-y-auto overflow-x-hidden pb-4 pl-0.5 pr-8 pt-16 xl:w-72 xl:pr-16"
     >
         <x-prezet::nav :nav="$nav" />
-        <div class="text-xs text-stone-400">
-            <a target="_blank" href="https://prezet.com">Powered by Prezet</a>
+        <div>
+            <div class="text-xs text-stone-400">
+                <a target="_blank" href="https://prezet.com">Powered by Prezet</a>
+            </div>
+            <p class="mt-2 text-xs text-stone-400">
+                Code highlighting by <a href="https://torchlight.dev">Torchlight</a>
+            </p>
         </div>
     </div>
 </div>

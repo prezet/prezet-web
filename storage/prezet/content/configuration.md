@@ -18,6 +18,10 @@ After installation the configuration file will look like this:
 <?php
 
 return [
+    'filesystem' => [
+        'disk' => env('PREZET_FILESYSTEM_DISK', 'prezet'),
+    ],
+
     'data' => [
         'frontmatter' => BenBjurstrom\Prezet\Data\FrontmatterData::class,
     ],
@@ -57,6 +61,10 @@ return [
     ],
 ];
 ```
+
+## Filesystem Configuration
+
+The `filesystem.disk` key allows you to specify the disk where your markdown files are stored. By default, Prezet uses the `prezet` disk. You can change this by updating the `PREZET_FILESYSTEM_DISK` environment variable in your `.env` file.
 
 ## Data Classes
 

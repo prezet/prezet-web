@@ -4,6 +4,7 @@
 - [Sqlite Index](content/index)
 
 ## 🚀 Deployment
+- [Serverless with Bref](deployment/bref)
 - [Cloudflare Cache](deployment/cloudflare)
 
 ## 😎 Features

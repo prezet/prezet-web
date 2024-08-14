@@ -3,6 +3,21 @@
 return [
     /*
     |--------------------------------------------------------------------------
+    | Filesystem Configuration
+    |--------------------------------------------------------------------------
+    |
+    | This setting determines the filesystem disk used by Prezet to store and
+    | retrieve markdown files and images. By default, it uses the 'prezet' disk.
+    |
+    |
+    */
+
+    'filesystem' => [
+        'disk' => env('PREZET_FILESYSTEM_DISK', 'prezet'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Data Classes
     |--------------------------------------------------------------------------
     |
@@ -36,6 +51,7 @@ return [
             League\CommonMark\Extension\FrontMatter\FrontMatterExtension::class,
             BenBjurstrom\Prezet\Extensions\MarkdownBladeExtension::class,
             BenBjurstrom\Prezet\Extensions\MarkdownImageExtension::class,
+            Torchlight\Commonmark\V2\TorchlightExtension::class,
         ],
 
         'config' => [

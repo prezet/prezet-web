@@ -62,7 +62,7 @@ This command will clear your entire Cloudflare cache for the specified zone. To 
 
 2. Add these environment variables to your `.env` file:
 
-```
+```bash
 CLOUDFLARE_TOKEN=your_cloudflare_api_token
 CLOUDFLARE_ZONE_ID=your_cloudflare_zone_id
 ```

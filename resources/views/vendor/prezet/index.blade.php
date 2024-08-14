@@ -46,9 +46,6 @@
                                     View on GitHub
                                 </a>
                             </div>
-                            <div class="flex mt-6">
-                                <a href="https://www.producthunt.com/products/prezet?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-prezet" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=475024&theme=dark" alt="Prezet - Markdown&#0032;Blogging&#0032;for&#0032;the&#0032;Laravel&#0032;PHP&#0032;Framework | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-                            </div>
                         </div>
                     </div>
                     <div class="relative lg:static xl:pl-10">
