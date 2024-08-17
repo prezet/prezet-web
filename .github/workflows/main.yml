@@ -34,6 +34,9 @@ jobs:
         with:
           composer-options: "--prefer-dist --optimize-autoloader --no-dev"
 
+      - name: Update the prezet index and sitemap
+        run: php artisan prezet:index
+
       # This step installs the Serverless Framework globally.
       - name: Install Serverless Framework
         run: npm install -g serverless
