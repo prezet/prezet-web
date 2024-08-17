@@ -8,6 +8,8 @@ provider:
     binaryMediaTypes:
       - 'image/webp'
   environment:
+    APP_KEY: ${ssm:/prezet-com/APP_KEY}
+    TORCHLIGHT_TOKEN: ${ssm:/prezet-com/TORCHLIGHT_TOKEN}
     APP_ENV: production
     APP_NAME: prezet-com
     APP_URL: https://prezet.com

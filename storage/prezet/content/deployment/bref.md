@@ -4,7 +4,7 @@ excerpt: Learn how to deploy a Laravel application with Prezet on AWS Lambda usi
 slug: bref
 date: 2024-08-12
 category: Deployment
-image: /prezet/img/ogimages/deployment-bref.webp
+image: /prezet/img/ogimages/deployment-bref2.webp
 ---
 
 Prezet integrates seamlessly with traditional server-based Laravel deployments, such as those managed through Laravel Forge. In fact, the whole point of Prezet is to consolidate your content and application into a single deployment.
@@ -109,3 +109,5 @@ The final step is to update your DNS records to point your domain to the CNAME r
 
 ## Troubleshooting
 If you experience a ERR_TOO_MANY_REDIRECTS error when using cloudflare make sure that your SSL/TLS encryption on Cloudflare is set to Full.
+
+After initial setup it's highly recommended to run your deployments in a github action or other CI/CD pipeline to ensure no locally cached views, routes, resouces etc are pushed to production.

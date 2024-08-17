@@ -17,10 +17,10 @@ jobs:
       # This step sets up Node.js environment.
       - name: Setup Node.js
         uses: actions/setup-node@v4
-
-      # This step installs the Serverless Framework globally.
-      - name: Install Serverless Framework
-        run: npm install -g serverless
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm install
 
       # This step sets up PHP environment with the specified version.
       - name: Setup PHP
@@ -34,6 +34,10 @@ jobs:
         with:
           composer-options: "--prefer-dist --optimize-autoloader --no-dev"
 
+      # This step installs the Serverless Framework globally.
+      - name: Install Serverless Framework
+        run: npm install -g serverless
+
       # This step deploys your application to AWS Lambda using the Serverless Framework.
       - name: Deploy to AWS Lambda
         uses: serverless/github-action@v3
@@ -42,6 +46,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
 
       # This step purges the cloudflare cache.
       - name: Purge cache
