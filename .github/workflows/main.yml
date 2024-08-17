@@ -12,7 +12,7 @@ jobs:
     steps:
       # This step checks out a copy of your repository.
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # This step sets up Node.js environment.
       - name: Setup Node.js
