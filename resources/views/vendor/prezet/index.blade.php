@@ -21,14 +21,14 @@
                 >
                     <div class="relative z-10 md:text-center lg:text-left">
                         <div class="relative">
-                            <p
+                            <h1
                                 class="font-display inline bg-gradient-to-r from-red-200 via-orange-400 to-red-200 bg-clip-text text-5xl tracking-tight text-transparent"
                             >
                                 Markdown Blogging for Laravel
-                            </p>
-                            <p class="mt-3 text-2xl tracking-tight text-stone-400">
+                            </h1>
+                            <h2 class="mt-3 text-2xl tracking-tight text-stone-400">
                                 Transform your markdown files into SEO-friendly blogs, articles, and documentation!
-                            </p>
+                            </h2>
                             <div
                                 class="mt-8 flex gap-4 md:justify-center lg:justify-start"
                             >

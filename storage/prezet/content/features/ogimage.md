@@ -1,17 +1,16 @@
 ---
-title: Ogimage Generation
+title: Automating OG Images with Prezet
 date: 2024-05-07
 category: Features
-excerpt: 'Prezet automates the creation of Open Graph images for your blog posts.'
+excerpt: Prezet automates the creation of Open Graph images for your blog posts.
+image: /prezet/img/ogimages/features-ogimage.webp
 ---
 
-An Open Graph (OG) image, or ogimage, is a visual representation of your web page that appears when your content is shared on social media platforms. These images can increase engagement and click-through rates by providing an eye-catching preview of your content.
+Open Graph (OG) images are visual previews of your web pages that appear when content is shared on social media platforms. These images can significantly boost engagement and click-through rates.
 
 ## Adding OG Images Manually
 
-Prezet makes it easy to specify an ogimage for any blog post by adding the image key to your frontmatter.
-
-For example:
+You can easily specify an OG image for any blog post by adding the `image` key to your frontmatter:
 
 ```yaml
 ---
@@ -19,44 +18,56 @@ title: My Amazing Blog Post
 date: 2024-05-07
 category: Blog
 excerpt: 'This is an excerpt of my amazing blog post.'
-image: '/prezet/img/custom-ogimage.png'
+image: '/prezet/img/ogimages/custom-ogimage.png'
 ---
 ```
 
-The `image` field should contain the URL path to your image, relative to the public directory of your Laravel application.
-
-For more details on working with frontmatter in Prezet, including all available fields and their usage, please refer to the [frontmatter documentation](/features/frontmatter).
+The `image` field should contain the URL path to your image. For more details on using frontmatter in Prezet refer to the [frontmatter documentation](/features/frontmatter).
 
 ## Automatic OG Image Generation
 
-While manually specifying ogimages gives you full control, Prezet also offers automatic ogimage generation to save you time and ensure consistency across your blog. The rest of this document will explain how this automatic generation works and how you can customize it.
+```html +parse
+<x-prezet::alert
+    type="info"
+    title="Browsershot Requirement"
+    body="OG image generation requires Browsershot to be properly set up in your Laravel environment."
+/>
+```
 
-### Artisan Command
+While manually specifying ogimages gives you full control, Prezet's automatic OG image generation saves time and ensures consistency across your blog. Here's how it works:
 
-The `OgimageCommand` is an artisan command that you can run to generate ogimages for your blog posts. You can use it in two ways:
+### The OgimageCommand
 
-1. Generate an ogimage for a specific markdown file:
+This Artisan command generates OG images for your blog posts. You can use it in two ways:
+
+1. For a specific markdown file:
    ```
    php artisan prezet:ogimage
    ```
-   This will prompt you to enter the name of the markdown file you want to generate an ogimage for.
+   This will prompts you to enter the name of the markdown file.
 
-2. Generate ogimages for all markdown files:
+2. For all markdown files:
    ```
    php artisan prezet:ogimage --all
    ```
-   This will generate ogimages for all markdown files in your `content` directory.
+   This generates OG images for all markdown files in your `content` directory.
 
-Regardless of the method you choose, the ogimage command will automatically update the frontmatter of your markdown files with the URL of the generated ogimage.
+Regardless of the method you choose, the command automatically updates the frontmatter of your markdown files with the URL of the generated OG image.
 
-Note the ogimage generation process requires Browsershot to be properly set up in your Laravel environment. Browsershot is a PHP library that provides an easy way to take screenshots of web pages using headless Chrome.
+```html +parse
+<x-prezet::alert
+    type="warning"
+    title="Troubleshooting Tip"
+    body="If you're generating OG Images in a local environment, make sure to set the `APP_URL` in your `.env` file to your local development URL."
+/>
+```
 
-## Customizing the Ogimage Template
+## Customizing the OG Image Template
 
-Prezet allows you to customize the appearance of your ogimages. Here's how you can modify the ogimage template:
+Prezet allows you to customize the appearance of your OG images by simply editing a package provided Blade template.
 
 ### Preview the Template
-You can preview the ogimage template by navigating to the ogimage route in your browser. The route follows this pattern:
+You can preview the template by navigating to the ogimage route in your browser. The route follows this pattern:
 
    ```
    /prezet/ogimage/{slug}

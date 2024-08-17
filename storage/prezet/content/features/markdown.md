@@ -3,6 +3,7 @@ title: Markdown Powered Blogging
 date: 2024-05-08
 category: Features
 excerpt: Prezet is a markdown powered blogging platform that is easy to use and customize.
+image: /prezet/img/ogimages/features-markdown.webp
 ---
 
 This blog is generated entirely from markdown files. When you ran the `prezet::install` command markdown files were loaded into your laravel application's `./storage/prezet/` directory. Here is the structure of those files:

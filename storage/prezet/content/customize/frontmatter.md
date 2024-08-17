@@ -2,7 +2,8 @@
 title: Customizing Prezet Frontmatter
 date: 2024-05-09
 category: Customization
-excerpt: 'This post explains how to customize the frontmatter in Prezet.'
+excerpt: This post explains how to customize the frontmatter in Prezet.
+image: /prezet/img/ogimages/customize-frontmatter.webp
 ---
 
 Prezet makes it easy to customize the frontmatter of your markdown files. To learn more about how Prezet uses frontmatter data, see this article: [Frontmatter Data](content/frontmatter).

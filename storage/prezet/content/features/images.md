@@ -2,7 +2,8 @@
 title: Automatic Image Optimization
 date: 2024-05-06
 category: Features
-excerpt: 'Prezet automatically optimizes images for the web.'
+excerpt: Prezet automatically optimizes images for the web.
+image: /prezet/img/ogimages/features-images.webp
 ---
 
 Prezet offers image optimization capabilities out of the box, enhancing your markdown-based blog with responsive, efficiently-loaded images like the one below.

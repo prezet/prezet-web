@@ -4,6 +4,7 @@ excerpt: Learn how to deploy a Laravel application with Prezet on AWS Lambda usi
 slug: bref
 date: 2024-08-12
 category: Deployment
+image: /prezet/img/ogimages/deployment-bref.webp
 ---
 
 Prezet integrates seamlessly with traditional server-based Laravel deployments, such as those managed through Laravel Forge. In fact, the whole point of Prezet is to consolidate your content and application into a single deployment.
@@ -51,7 +52,12 @@ npm install serverless-lift serverless-s3-sync
 
 Before deploying your application, you need to set up an HTTPS certificate for your domain. This can be done in the ACM (AWS Certificate Manager) by following [this link](https://us-east-1.console.aws.amazon.com/acm/home?region=us-east-1#/certificates/request). 
 
-**Note that CloudFront requires certificates from us-east-1.** 
+```html +parse
+<x-prezet::alert
+    type="info"
+    body="Note that CloudFront requires certificates from us-east-1"
+/>
+```
 
 Once the certificate has been issued you should Copy the certificate ARN into your serverless.yml file.
 
@@ -78,7 +84,12 @@ With the Serverless CLI installed and your AWS credentials configured, you can d
 serverless deploy
 ```
 
-**Note that the first deployment will take 5-10 minutes due to CloudFront propagation.** Just let the command run until it's finished. Future deployments that do not modify CloudFront's configuration will take less then a minute.
+```html +parse
+<x-prezet::alert
+    type="info"
+    body="Note that the first deployment will take 5-10 minutes due to CloudFront propagation. Let the command run until it's finished. Future deployments that do not modify CloudFront's configuration will take less then a minute."
+/>
+```
 
 ### 5. Update DNS Records
 
@@ -94,3 +105,7 @@ website:
 ```
 
 The final step is to update your DNS records to point your domain to the CNAME record for the CloudFront distribution. You can do this by creating a CNAME record in your DNS provider.
+
+
+## Troubleshooting
+If you experience a ERR_TOO_MANY_REDIRECTS error when using cloudflare make sure that your SSL/TLS encryption on Cloudflare is set to Full.

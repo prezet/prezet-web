@@ -23,3 +23,4 @@
 -   [Front Matter](content/customize/frontmatter)
 -   [Blade Views](content/customize/blade-views)
 -   [Controllers](content/customize/controllers)
+-   [Syntax Highlighting](content/customize/syntax-highlighting)

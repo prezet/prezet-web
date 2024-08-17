@@ -1,9 +1,10 @@
 ---
-title: Installation Guide
+title: Prezet Installation Guide
 excerpt: Learn how to install and set up Prezet, a powerful markdown blogging package for Laravel.
 slug: installation
 date: 2024-06-28
 category: Getting Started
+image: /prezet/img/ogimages/installation.webp
 ---
 
 This guide will walk you through the process of installing Prezet, a powerful markdown blogging package for Laravel. Follow these steps to set up your project and start creating SEO-friendly blogs, articles, and documentation.
@@ -18,11 +19,17 @@ composer require benbjurstrom/prezet
 
 ## Step 2: Run the Package Installer
 
-Before running the installer, please note:
+```html +parse
+<x-prezet::alert
+    type="warning"
+    title="Existing Applications"
+    body="The installation process configures your application with Tailwind CSS, which may overwrite any existing Tailwind configuration. It is recommended to switch to a clean branch first."
+/>
+```
 
-**⚠️ If you're installing Prezet on an existing application, it's recommended to switch to a clean branch first. The installation process configures your application with Tailwind CSS, which may overwrite any existing Tailwind configuration.**
 
 To run the Prezet installer, execute the following Artisan command:
+
 
 ```bash
 php artisan prezet:install
@@ -44,8 +51,6 @@ Once the installation is complete, you can start your Laravel development server
 ```bash
 php artisan serve
 ```
-
-## Verify the Installation
 
 After starting your server, you can verify the installation by visiting:
 

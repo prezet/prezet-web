@@ -12,11 +12,16 @@
     ],
     "require": {
         "php": "^8.2",
-        "benbjurstrom/prezet": "^0.8.6",
+        "benbjurstrom/prezet": "^0.8.7",
+        "bref/bref": "^2.3",
+        "bref/extra-php-extensions": "^1.4",
+        "bref/laravel-bridge": "^2.4",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
-        "torchlight/torchlight-commonmark": "dev-main",
-        "mallardduck/blade-lucide-icons": "^1.21"
+        "league/flysystem-aws-s3-v3": "^3.28",
+        "league/flysystem-read-only": "^3.28",
+        "mallardduck/blade-lucide-icons": "^1.21",
+        "torchlight/torchlight-commonmark": "dev-main"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

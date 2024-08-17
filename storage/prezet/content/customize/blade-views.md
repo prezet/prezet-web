@@ -3,6 +3,7 @@ title: Customizing Blade Views in Prezet
 date: 2024-05-09
 category: Customization
 excerpt: This guide explains how to customize the blade views in Prezet to tailor your blog's appearance and functionality.
+image: /prezet/img/ogimages/customize-blade-views.webp
 ---
 
 Prezet uses Laravel's blade templating engine to render your blog's pages. When you installed the Prezet package, the blade view were published to your application's `resources/views/vendor/prezet` directory. This allows you to easily customize the appearance and functionality of your Prezet-powered blog.

@@ -2,7 +2,8 @@
 title: Customize the prezet controllers
 date: 2024-05-09
 category: Customization
-excerpt: 'This post explains how to customize the default Prezet controllers.'
+excerpt: This post explains how to customize the default Prezet controllers.
+image: /prezet/img/ogimages/customize-controllers.webp
 ---
 
 Prezet provides default controllers that handle the core functionality of the blogging engine. However, you may want to customize these controllers to add your own logic or modify the existing behavior.

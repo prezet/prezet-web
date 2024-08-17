@@ -1,8 +1,9 @@
 ---
-title: "Draft Post"
+title: Draft Post
 date: 2024-07-03
-excerpt: "This post is still in draft mode"
+excerpt: This post is still in draft mode
 draft: true
+image: /prezet/img/ogimages/draft.webp
 ---
 
 ## This post is still in draft mode
