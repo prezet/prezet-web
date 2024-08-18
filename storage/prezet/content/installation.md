@@ -23,7 +23,7 @@ composer require benbjurstrom/prezet
 <x-prezet::alert
     type="warning"
     title="Existing Applications"
-    body="The installation process configures your application with Tailwind CSS, which may overwrite any existing Tailwind configuration. It is recommended to switch to a clean branch first."
+    body="The installation command will overwrite your existing Tailwind configuration. Be sure it's backed up before proceeding."
 />
 ```
 

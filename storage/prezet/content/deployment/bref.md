@@ -80,6 +80,13 @@ If this is your first time using the Serverless Framework you need to install th
 
 With the Serverless CLI installed and your AWS credentials configured, you can deploy your application with the following command:
 
+```html +parse
+<x-prezet::alert
+    type="warning"
+    body="Remember to run artisan cache:clear before each deployment"
+/>
+```
+
 ```bash
 serverless deploy
 ```
@@ -106,8 +113,25 @@ website:
 
 The final step is to update your DNS records to point your domain to the CNAME record for the CloudFront distribution. You can do this by creating a CNAME record in your DNS provider.
 
+## Automated Deployments
+
+After your initial setup and getting everything in place, it's highly recommended to run your deployments in a GitHub Action or other CI/CD pipeline. This ensures that no locally cached views, routes, resources, etc., are pushed to production.
+
+### Example GitHub Action
+
+For reference take a look at the GitHub Action that's used to deploy this documentation on prezet.com: [github.com/.../.github/workflows/main.yml](https://github.com/prezet/prezet-web/blob/main/.github/workflows/main.yml)
+
+### Required Secrets
+To use this GitHub Action, you'll need to add the following secrets to your GitHub repository's environment:
+
+- `AWS_ACCESS_KEY_ID`: Your AWS access key ID
+- `AWS_SECRET_ACCESS_KEY`: Your AWS secret access key
+- `CLOUDFLARE_ZONE`: Your Cloudflare zone ID
+- `CLOUDFLARE_TOKEN`: Your Cloudflare API token
+
+Make sure to set these secrets in your GitHub repository settings before running the action.
 
 ## Troubleshooting
 If you experience a ERR_TOO_MANY_REDIRECTS error when using cloudflare make sure that your SSL/TLS encryption on Cloudflare is set to Full.
 
-After initial setup it's highly recommended to run your deployments in a github action or other CI/CD pipeline to ensure no locally cached views, routes, resouces etc are pushed to production.
+
