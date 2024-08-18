@@ -9,6 +9,8 @@ jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
+    env:
+      APP_URL: https://prezet.com
     steps:
       # This step checks out a copy of your repository.
       - name: Checkout code
