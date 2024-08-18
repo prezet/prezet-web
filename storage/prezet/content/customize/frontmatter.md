@@ -1,5 +1,5 @@
 ---
-title: Customizing Prezet Frontmatter
+title: Customizing Prezet Front Matter
 date: 2024-05-09
 category: Customization
 excerpt: This post explains how to customize the frontmatter in Prezet.

@@ -1,5 +1,5 @@
 ---
-title: Sitemap Generation
+title: Automated Sitemap Generation
 date: 2024-07-22
 category: Features
 excerpt: Automatically generate sitemaps for your Prezet-powered blog.

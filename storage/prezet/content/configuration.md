@@ -1,5 +1,5 @@
 ---
-title: Configuration File
+title: Understanding Prezet's Configuration File
 excerpt: Learn how to install the package's configration file
 slug: configuration
 date: 2024-06-27

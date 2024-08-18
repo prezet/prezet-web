@@ -4,7 +4,7 @@ excerpt: Learn how to deploy a Laravel application with Prezet on AWS Lambda usi
 slug: bref
 date: 2024-08-12
 category: Deployment
-image: /prezet/img/ogimages/deployment-bref2.webp
+image: /prezet/img/ogimages/deployment-bref.webp
 ---
 
 Prezet integrates seamlessly with traditional server-based Laravel deployments, such as those managed through Laravel Forge. In fact, the whole point of Prezet is to consolidate your content and application into a single deployment.

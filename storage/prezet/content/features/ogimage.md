@@ -3,10 +3,19 @@ title: Automating OG Images with Prezet
 date: 2024-05-07
 category: Features
 excerpt: Prezet automates the creation of Open Graph images for your blog posts.
-image: /prezet/img/ogimages/features-ogimage2.webp
+image: /prezet/img/ogimages/features-ogimage.webp
 ---
 
 Open Graph (OG) images are visual previews of your web pages that appear when content is shared on social media platforms. These images can significantly boost engagement and click-through rates.
+
+Here's how this page appears when posted on Threads:
+
+```html +parse
+<x-prezet::threads
+    id="C-yDq7mS5II"
+    username="benbjurstrom"
+/>
+```
 
 ## Adding OG Images Manually
 
