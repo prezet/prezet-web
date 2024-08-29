@@ -23,7 +23,7 @@ composer require benbjurstrom/prezet
 <x-prezet::alert
     type="warning"
     title="Existing Applications"
-    body="The installation command will overwrite your existing Tailwind configuration. Be sure it's backed up before proceeding."
+    body="The installation command will overwrite existing vite.config.js and postcss.config.js files. Be sure they're backed up before proceeding."
 />
 ```
 

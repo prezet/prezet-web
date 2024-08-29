@@ -9,18 +9,13 @@ image: /prezet/img/ogimages/deployment-cloudflare.webp
 
 Prezet integrates seamlessly with services like Cloudflare to provide powerful caching capabilities, allowing you to achieve static-site-like performance with the flexibility of a dynamic Laravel application. This guide will walk you through setting up and optimizing Cloudflare caching for your Prezet-powered site.
 
-## Cache Control Middleware
+## Client-Side Caching Issues
 
-If you look at the [routes/prezet.php](https://github.com/benbjurstrom/prezet/blob/main/routes/prezet.php) file, you'll notice that we're adding the following cache control middleware to every request.
+Previously, we recommended adding cache control middleware to your routes to signal to cloudflare which routes in your application should be cached. 
 
-```php
-Route::middleware('cache.headers:public;max_age=7200;etag')
-    // ... other route configurations
-```
+However, this approach enables client-side caching which can lead to unexpected issues. For example, a page that's cached in the user's browser might reference a css file that no longer exists. Since there's no way to invalidate the browser's cache on demand the only option would be to change the page's url or wait until the cache expires.
 
-This middleware sets the `Cache-Control` header to `public` with a max age of 7200 seconds (2 hours). You can read more about the Cache Control Middleware in the [Laravel documentation](https://laravel.com/docs/responses#cache-control-middleware).
-
-Note that the two-hour TTL is specifically chosen because it's the minimum Edge Cache TTL for Cloudflare's free plan. Of course you can modify this value to suit your needs, see the documentation on [Customizing Prezet's Routes](/customize/routes) routes for more information.
+To prevent this, we'll forgo the cache control middleware and rely on Cloudflare's Edge TTL only, giving us total control over cache invalidation.
 
 ## Setting Up Cloudflare for Caching
 
@@ -29,14 +24,17 @@ To configure Cloudflare to cache your Prezet site's content:
 1. Log into your Cloudflare dashboard and select your domain.
 2. Navigate to "Caching" > "Cache Rules" and click "Create cache rule".
 3. Configure the rule with these settings:
-    - Rule name: "Cache Everything With Headers"
-    - If: "All incoming requests"
-    - Then:
-        - Cache eligibility: "Eligible for cache"
-        - Edge TTL: "Use cache-control header if present, bypass cache if not"
+    - **Rule name:** 
+      - "Cache Prezet Content"
+    - **When incoming requests match…**
+      - Choose either "All incoming requests" if your entire site is semi-static or "Custom filter expression" if you're serving dynamic content alongside Prezet. If you choose the latter, you can specify a path or URL pattern to match the Prezet content.
+    - **Cache eligibility:**
+      - "Eligible for cache"
+    - **Edge TTL:**
+      - "Ignore cache-control header and use this TTL". Feel free to set the TTL to a longer duration since you can always manually purge the cache when needed.
 4. Click "Save" to activate the rule.
-![](cloudflare-20240731172637050.webp)
-Remember that Prezet sets appropriate cache headers (public, max-age=7200, etag) for its routes. With these settings only you Prezet content will be cached but the rest of your Laravel application (which doesn't use these cache headers) will not.
+
+With these settings, Cloudflare will cache your Prezet content for the specified duration. You can always purge the cache manually from the Cloudflare dashboard or use the built-in Prezet command to invalidate the cache when you make updates.
 
 ## Purging the Cache
 
