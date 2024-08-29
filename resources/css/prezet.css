@@ -62,3 +62,5 @@ pre code.torchlight .line-number,
 pre code.torchlight .summary-caret {
     @apply mr-4;
 }
+
+@config "./../../tailwind.prezet.config.js";
