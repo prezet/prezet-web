@@ -30,7 +30,7 @@
                 <a target="_blank" href="https://prezet.com">Powered by Prezet</a>
             </div>
             <p class="mt-2 text-xs text-stone-400">
-                Code highlighting by <a href="https://torchlight.dev">Torchlight</a>
+                Code highlighting by <a rel="nofollow noopener noreferrer" target="_blank" href="https://torchlight.dev">Torchlight</a>
             </p>
         </div>
     </div>

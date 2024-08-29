@@ -76,6 +76,4 @@ private function getFeaturedArticle()
 }
 ```
 
-## Important Notes
-
-- If you're only changing how things are displayed, consider customizing the Blade views instead. See the article on [customizing Blade templates](link-to-blade-customization-article) for more information.
+Note: If you're only changing how things are displayed, consider customizing the Blade views instead. See the article on [customizing Blade templates](/customize/blade-views) for more information.

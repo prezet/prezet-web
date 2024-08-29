@@ -64,4 +64,9 @@ Route::get('{slug}', ShowController::class)
 
 You can also customize the image and OG image routes if needed. Just make sure to update the paths consistently across all routes.
 
-Note that Prezet uses named routes for some internal functionality so be sure to leave the route names unchanged.
+```html +parse
+<x-prezet::alert
+    type="warning"
+    body="Note that Prezet uses named routes for some internal functionality so be sure to leave the route names unchanged."
+/>
+```

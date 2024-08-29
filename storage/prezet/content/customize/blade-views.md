@@ -8,9 +8,15 @@ image: /prezet/img/ogimages/customize-blade-views.webp
 
 Prezet uses Laravel's blade templating engine to render your blog's pages. When you installed the Prezet package, the blade view were published to your application's `resources/views/vendor/prezet` directory. This allows you to easily customize the appearance and functionality of your Prezet-powered blog.
 
+Should you ever need to re-publish the blade views, you can do so by running the following command:
+
+```bash
+php artisan vendor:publish --tag=prezet-views
+```
+
 ## Blade View File Structure
 
-The blade views are organized within the `resources/views/vendor/prezet` directory as follows:
+The published blade views are organized within the `resources/views/vendor/prezet` directory as follows:
 
 ```plaintext
 resources/
@@ -21,11 +27,11 @@ resources/
             ├── ogimage.blade.php
             ├── show.blade.php
             └── components/
-                ├── template.blade.php
+                ├── alert.blade.php
                 ├── meta.blade.php
+                ├── template.blade.php
                 └── youtube.blade.php
 ```
-
 
 ## Customizing Blade Views
 
@@ -37,7 +43,13 @@ To tailor the views to your aesthetic, you can modify these files directly. Here
 
 This is the main layout template used by both index.blade.php and show.blade.php. This file contains the overall structure of your blog pages. 
 
-**Important:** This should be one of the first files you customize. By default, it includes Prezet branding, which you'll want to replace with your own.
+
+```html +parse
+<x-prezet::alert
+    type="info"
+    body="This should be one of the first files you customize. By default, it includes Prezet branding, which you'll want to replace with your own."
+/>
+```
 
 ### Routable Views
 
@@ -56,14 +68,14 @@ These views are used to render the main blog pages:
 3. `ogimage.blade.php`:
     - Default Route: `GET /prezet/ogimage/{slug}`
     - Controller: `OgimageController`
-    - Purpose: This file is used to generate Open Graph images for your posts.
+    - Purpose: This file is used to generate Open Graph images for your posts. See the [OG Image](/features/ogimage) documentation for more information.
 
 ### Component Files
 
-These files are example blade components that can be inlined in your markdown files. See the [Blade Components](features/blade) documentation for more details:
+These files are example blade components that can be inlined in your markdown files. See the [Blade Components](/features/blade) documentation for more details:
 
-1. `components/meta.blade.php`:
-    - Purpose: This component handles the display of meta information for your posts. 
+1. `components/alert.blade.php`:
+    - Purpose: This component is used to display alert style callouts on your blog. Modify this file to change the appearance of alerts or add additional functionality.
 
 2. `components/youtube.blade.php`:
     - Purpose: This component is used to embed YouTube videos in your posts. Modify this if you want to change how videos are displayed or add additional functionality.
