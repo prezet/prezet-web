@@ -11,7 +11,7 @@ Prezet integrates seamlessly with services like Cloudflare to provide powerful c
 
 ## Client-Side Caching Issues
 
-Previously, we recommended adding cache control middleware to your routes to signal to cloudflare which routes in your application should be cached. 
+Previously, we recommended adding cache control middleware to your routes to signal to Cloudflare which routes in your application should be cached. 
 
 However, this approach enables client-side caching which can lead to unexpected issues. For example, a page that's cached in the user's browser might reference a css file that no longer exists. Since there's no way to invalidate the browser's cache on demand the only option would be to change the page's url or wait until the cache expires.
 
@@ -38,7 +38,7 @@ With these settings, Cloudflare will cache your Prezet content for the specified
 
 ## Purging the Cache
 
-When you deploy new content or make significant changes to your site, you'll want to purge the Cloudflare cache to ensure visitors can see the latest version. Prezet provides a built-in command for this purpose. You can integrate this into your deployment process to ensure the cache is purged whenever you push new content. 
+When you deploy new content or make significant changes to your site, you'll want to purge the Cloudflare cache to ensure visitors can see the latest version. Prezet provides a built-in command for this purpose. You can integrate this into your deployment process to ensure the cache is purged whenever you push new content.
 
 Note that you can also manually purge the cache through the Cloudflare dashboard.
 
@@ -87,48 +87,14 @@ To use the Prezet purge command, you need to create a Cloudflare API token with 
 
 This token should be used as the `CLOUDFLARE_TOKEN` in your `.env` file.
 
+### Automated Purging
+With the `prezet:purge` command configured you can automate cache purging by integrating the command into your deployment process. This ensures the cache is purged whenever you push new content. 
 
-## Purging the Cache
+Alternatively, if you're using GitHub actions you can make use of this pre-made action to achieve the same result [jakejarvis/cloudflare-purge-action](https://github.com/jakejarvis/cloudflare-purge-action). 
 
-When you deploy new content or make significant changes to your site, you'll want to purge the Cloudflare cache to ensure visitors can see the latest version. You can do this manually through the Cloudflare dashboard or automate it as part of your deployment process.
+We're using that action as part of the deployment pipeline for this documentation. You can check out our full GitHub action: [here](https://github.com/prezet/prezet-web/blob/main/.github/workflows/main.yml#L57). 
 
-To automate cache purging, you can use Cloudflare's API. Here's an example of how you might implement this in a Laravel command:
-
-```php
-use Illuminate\Support\Facades\Http;
-
-public function handle()
-{
-    $response = Http::withHeaders([
-        'Authorization' => 'Bearer ' . config('services.cloudflare.api_token'),
-        'Content-Type' => 'application/json',
-    ])->post("https://api.cloudflare.com/client/v4/zones/" . config('services.cloudflare.zone_id') . "/purge_cache", [
-        'purge_everything' => true
-    ]);
-
-    if ($response->successful()) {
-        $this->info('Cloudflare cache purged successfully.');
-    } else {
-        $this->error('Failed to purge Cloudflare cache.');
-    }
-}
-```
-
-You can then call this command as part of your deployment process, ensuring that the cache is purged whenever you push new content.
-
-## Benefits of Cloudflare Caching with Prezet
-
-By combining Prezet with Cloudflare caching, you can achieve several benefits:
-
-1. **Improved Performance**: Cached pages are served directly from Cloudflare's edge network, resulting in faster load times for your visitors.
-
-2. **Reduced Server Load**: With most requests served from cache, your server experiences less load, potentially reducing hosting costs.
-
-3. **Global Content Delivery**: Cloudflare's global network ensures your content is served quickly to visitors around the world.
-
-4. **DDoS Protection**: Cloudflare provides protection against DDoS attacks, adding an extra layer of security to your site.
-
-5. **Flexibility**: Unlike static site generators, you retain the full power of Laravel and can still handle dynamic content when needed.
+To learn more about deploying Prezet powered sites check out our [deployment guide](/deployment/bref).
 
 ## Attribution
 The idea for this feature came from the video below by Aaron Francis. Be sure to check out that video for more information on how to use Cloudflare to serve static content with Laravel.
