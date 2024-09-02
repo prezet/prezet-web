@@ -46,6 +46,7 @@ functions:
   web:
     handler: public/index.php
     runtime: php-83-fpm
+    reservedConcurrency: 10
     timeout: 28
     layers:
       - ${bref-extra:gd-php-83}
@@ -55,6 +56,7 @@ functions:
   artisan:
     handler: artisan
     runtime: php-83-console
+    reservedConcurrency: 5
     timeout: 720
 
 plugins:
@@ -62,6 +64,7 @@ plugins:
   - ./vendor/bref/extra-php-extensions
   - serverless-lift
   - serverless-s3-sync
+  - serverless-api-gateway-throttling
 
 constructs:
   website:
@@ -77,6 +80,9 @@ constructs:
       '/prezet_sitemap.xml': public/prezet_sitemap.xml
 
 custom:
+  apiGatewayThrottling:
+    maxRequestsPerSecond: 20
+    maxConcurrentRequests: 10
   s3Sync:
     - bucketName: prezet-com-prezet-storage
       localDir: storage/prezet

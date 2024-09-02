@@ -45,7 +45,7 @@ This command performs the following actions:
 
 3. Installs the necessary Node.js dependencies:
 ```bash
-npm install serverless-lift serverless-s3-sync
+npm install serverless-lift serverless-s3-sync serverless-api-gateway-throttling
 ```
 
 ### 2. Issue an HTTPS certificate in ACM
