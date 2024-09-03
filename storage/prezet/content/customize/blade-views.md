@@ -27,8 +27,9 @@ resources/
             ├── ogimage.blade.php
             ├── show.blade.php
             └── components/
+                ├── ...
                 ├── alert.blade.php
-                ├── meta.blade.php
+                ├── logo.blade.php
                 ├── template.blade.php
                 └── youtube.blade.php
 ```
@@ -39,17 +40,15 @@ To tailor the views to your aesthetic, you can modify these files directly. Here
 
 ### Main Template
 
-1. `components/template.blade.php`
+`components/template.blade.php`
 
-This is the main layout template used by both index.blade.php and show.blade.php. This file contains the overall structure of your blog pages. 
+This is the main layout template used by both index.blade.php and show.blade.php. This file contains the overall structure of your blog pages.
 
+### Logo Template
 
-```html +parse
-<x-prezet::alert
-    type="info"
-    body="This should be one of the first files you customize. By default, it includes Prezet branding, which you'll want to replace with your own."
-/>
-```
+`components/logo.blade.php`
+
+This file is used to display your blog's logo. Customize this file to change the appearance of your logo.
 
 ### Routable Views
 

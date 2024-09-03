@@ -14,34 +14,26 @@ Prezet uses the front matter of your markdown files as the source for key SEO el
 
 1. `title`: Used for the page title and og:title tags
 2. `excerpt`: Used for the meta description and og:description tags
-3. `ogimage`: Used for the og:image tag
+3. `image`: Used for the og:image tag
 
 For more information on how Prezet uses front matter, please refer to the [Front Matter](frontmatter) documentation.
 
 ## How it works
 
-Under the hood, Prezet utilizes the [archtechx/laravel-seo](https://github.com/archtechx/laravel-seo) package to generate and manage SEO tags. The `SetSeo` action (located in `Actions/SetSeo.php`) is responsible for passing the front matter data to the SEO package:
+Under the hood, Prezet uses the [archtechx/laravel-seo](https://github.com/archtechx/laravel-seo) package to generate and manage SEO tags. When rendering your markdown articles, the front matter data is passed to the SEO package at the top of the `show.blade.php` file. This template is published to your project, giving you the flexibility to customize the SEO tags as needed:
 
 ```php
-<?php
+// resources/views/vendor/prezet/show.blade.php
 
-namespace BenBjurstrom\Prezet\Actions;
-
-use BenBjurstrom\Prezet\Data\FrontmatterData;
-
-class SetSeo
-{
-    public static function handle(FrontmatterData $fm): void
-    {
-        seo()
-            ->title($fm->title)
-            ->description($fm->excerpt)
-            ->image($fm->ogimage);
-    }
-}
+@seo([
+    'title' => $frontmatter->title,
+    'description' => $frontmatter->excerpt,
+    'url' => route('prezet.show', ['slug' => $frontmatter->slug]),
+    'image' => $frontmatter->image,
+])
 ```
 
-This action is called automatically when rendering your pages, ensuring that the appropriate SEO tags are always included.
+For advanced customization, you can create your own FrontmatterData class to include additional article-specific information. See the [Customizing Front Matter](/customize/frontmatter) guide for more infomration. Data added to your custom class can then be easily passed to the SEO package via the blade template.
 
 ## Open Graph Images
 
