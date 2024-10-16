@@ -11,7 +11,7 @@ export default {
         './resources/views/**/*.blade.php',
         './vendor/benbjurstrom/prezet/resources/views/**/*.blade.php',
     ],
-    safelist: ['mr-2', 'scroll-mt-12'],
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {

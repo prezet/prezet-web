@@ -7,6 +7,11 @@ a.external-link::after {
     margin-left: 1px;
 }
 
+a.prezet-heading {
+    margin-right: 8px;
+    scroll-margin-top: 112px;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Torchlight Styles
