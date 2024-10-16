@@ -1,16 +1,11 @@
 {
-  "resources/css/app.css": {
-    "file": "assets/app-DJc-stxN.css",
-    "src": "resources/css/app.css",
-    "isEntry": true
-  },
   "resources/css/prezet.css": {
-    "file": "assets/prezet-CBriI_ph.css",
+    "file": "assets/prezet-JzusaN0M.css",
     "src": "resources/css/prezet.css",
     "isEntry": true
   },
   "resources/js/app.js": {
-    "file": "assets/app-DkDdL2UM.js",
+    "file": "assets/app-CEsE5a7F.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true

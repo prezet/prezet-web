@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e1c3bcdf4df2eeb83773e38376e64a6",
+    "content-hash": "db32730bb14c64546409545ed07f43f0",
     "packages": [
         {
             "name": "archtechx/laravel-seo",
-            "version": "v0.10.1",
+            "version": "dev-with-app-url",
             "source": {
                 "type": "git",
-                "url": "https://github.com/archtechx/laravel-seo.git",
-                "reference": "76d0f9efac160e499daae2d1a79e2d09ca0daaae"
+                "url": "https://github.com/benbjurstrom/laravel-seo.git",
+                "reference": "3d959c72ae6bbf79eefff99ebf96b417aea866d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/archtechx/laravel-seo/zipball/76d0f9efac160e499daae2d1a79e2d09ca0daaae",
-                "reference": "76d0f9efac160e499daae2d1a79e2d09ca0daaae",
+                "url": "https://api.github.com/repos/benbjurstrom/laravel-seo/zipball/3d959c72ae6bbf79eefff99ebf96b417aea866d7",
+                "reference": "3d959c72ae6bbf79eefff99ebf96b417aea866d7",
                 "shasum": ""
             },
             "require": {
@@ -48,7 +48,11 @@
                     "ArchTech\\SEO\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "ArchTech\\SEO\\Tests\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -59,10 +63,9 @@
                 }
             ],
             "support": {
-                "issues": "https://github.com/archtechx/laravel-seo/issues",
-                "source": "https://github.com/archtechx/laravel-seo/tree/v0.10.1"
+                "source": "https://github.com/benbjurstrom/laravel-seo/tree/with-app-url"
             },
-            "time": "2024-05-03T22:09:30+00:00"
+            "time": "2024-09-02T20:34:20+00:00"
         },
         {
             "name": "aws/aws-crt-php",
@@ -218,16 +221,16 @@
         },
         {
             "name": "benbjurstrom/prezet",
-            "version": "v0.9.0",
+            "version": "v0.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/benbjurstrom/prezet.git",
-                "reference": "013d2fba4a2b5a7a9f8312df9f8300d54f6b5e93"
+                "reference": "fa464a8fac539aad3b77679164f9db89ad782e22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/benbjurstrom/prezet/zipball/013d2fba4a2b5a7a9f8312df9f8300d54f6b5e93",
-                "reference": "013d2fba4a2b5a7a9f8312df9f8300d54f6b5e93",
+                "url": "https://api.github.com/repos/benbjurstrom/prezet/zipball/fa464a8fac539aad3b77679164f9db89ad782e22",
+                "reference": "fa464a8fac539aad3b77679164f9db89ad782e22",
                 "shasum": ""
             },
             "require": {
@@ -243,14 +246,15 @@
                 "wendelladriel/laravel-validated-dto": "^3.5"
             },
             "require-dev": {
-                "larastan/larastan": "^2.9",
+                "larastan/larastan": "2.9.8",
                 "laravel/pint": "^1.16",
                 "nunomaduro/collision": "^8.1.1||^7.10.0",
                 "orchestra/testbench": "^9.0.0||^8.22.0",
                 "pestphp/pest": "^2.34",
                 "pestphp/pest-plugin-arch": "^2.7",
                 "pestphp/pest-plugin-laravel": "^2.3",
-                "phpstan/extension-installer": "^1.3",
+                "phpstan/extension-installer": "^1.4.3",
+                "phpstan/phpstan": "1.12.2",
                 "phpstan/phpstan-deprecation-rules": "^1.1",
                 "phpstan/phpstan-phpunit": "^1.3",
                 "spatie/browsershot": "^4.0"
@@ -290,7 +294,7 @@
             ],
             "support": {
                 "issues": "https://github.com/benbjurstrom/prezet/issues",
-                "source": "https://github.com/benbjurstrom/prezet/tree/v0.9.0"
+                "source": "https://github.com/benbjurstrom/prezet/tree/v0.16.0"
             },
             "funding": [
                 {
@@ -298,7 +302,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-29T05:59:59+00:00"
+            "time": "2024-10-16T17:42:26+00:00"
         },
         {
             "name": "blade-ui-kit/blade-icons",
@@ -10266,10 +10270,18 @@
             "time": "2024-03-03T12:36:25+00:00"
         }
     ],
-    "aliases": [],
+    "aliases": [
+        {
+            "package": "archtechx/laravel-seo",
+            "version": "dev-with-app-url",
+            "alias": "v0.10.1",
+            "alias_normalized": "0.10.1.0"
+        }
+    ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "torchlight/torchlight-commonmark": 20
+        "torchlight/torchlight-commonmark": 20,
+        "archtechx/laravel-seo": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

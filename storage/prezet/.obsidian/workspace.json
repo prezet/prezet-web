@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/deployment/cloudflare.md",
+                "file": "content/features/sitemap.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "content/deployment/cloudflare.md",
+                "file": "content/features/sitemap.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "content/deployment/cloudflare.md",
+                "file": "content/features/sitemap.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/deployment/cloudflare.md"
+                "file": "content/features/sitemap.md"
               }
             }
           }
@@ -138,19 +138,33 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "janitor:Janitor: scan vault": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "janitor:Janitor: scan vault": false
+      "command-palette:Open command palette": false
     }
   },
   "active": "c94c462f1e9ec259",
   "lastOpenFiles": [
-    "SUMMARY.md",
+    "content/features/seo.md",
+    "content/features/ogimage.md",
+    "content/features/markdown.md",
+    "content/features/images.md",
+    "content/features/frontmatter.md",
+    "content/features/blade.md",
+    "content/deployment/bref.md",
     "content/deployment/cloudflare.md",
+    "content/deployment/analytics.md",
+    "content/customize/syntax-highlighting.md",
+    "content/customize/routes.md",
+    "content/customize/frontmatter.md",
+    "content/customize/controllers.md",
+    "content/customize/blade-views.md",
+    "images/analytics-20240830104656710.webp",
+    "SUMMARY.md",
     "images/cloudflare-20240731172637050.webp"
   ]
 }

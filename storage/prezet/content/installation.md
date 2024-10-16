@@ -39,7 +39,7 @@ This command will:
 
 - Copy the package configuration file to `config/prezet.php`
 - Add the Prezet storage disk to your `config/filesystems.php`
-- Copy content stubs to your project's storage directory
+- Copy content stubs to your project's root directory
 - Publish the vendor blade files
 - Copy Tailwind configuration files
 - Install necessary Node.js dependencies
