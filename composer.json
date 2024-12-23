@@ -8,11 +8,15 @@
         {
             "type": "vcs",
             "url": "https://github.com/benbjurstrom/torchlight-commonmark-php"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/benbjurstrom/laravel-seo"
         }
     ],
     "require": {
         "php": "^8.2",
-        "benbjurstrom/prezet": "^0.16.0",
+        "benbjurstrom/prezet": "^0.20.1",
         "bref/bref": "^2.3",
         "bref/extra-php-extensions": "^1.4",
         "bref/laravel-bridge": "^2.4",
@@ -21,7 +25,8 @@
         "league/flysystem-aws-s3-v3": "^3.28",
         "league/flysystem-read-only": "^3.28",
         "mallardduck/blade-lucide-icons": "^1.21",
-        "torchlight/torchlight-commonmark": "dev-main"
+        "torchlight/torchlight-commonmark": "dev-main",
+        "archtechx/laravel-seo": "dev-with-app-url as v0.10.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

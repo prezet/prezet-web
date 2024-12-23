@@ -10,6 +10,12 @@ Prezet offers image optimization capabilities out of the box, enhancing your mar
 
 ![](images-20240509210223449.webp)
 
+```html +parse
+<x-alert type="info">
+    Prezet also includes zoomable images powered by <a href="https://github.com/benbjurstrom/alpinejs-zoomable" target="_blank" class="font-semibold">alpinejs-zoomable</a>. Try clicking on the image above to see it in action.
+</x-alert>
+```
+
 ## How It Works
 
 When you include a locally referenced image in your markdown file, Prezet's custom CommonMark extension, `MarkdownImageExtension`, transforms the standard image tag into a responsive, optimized version.

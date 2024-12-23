@@ -25,6 +25,16 @@ You should run this command whenever you:
 
 Note that changes to the main content of your markdown files don't require updating the index, as this content is read directly from the file when displaying a single post.
 
+### Automatically Updating the Index
+
+You can also use [Vite](https://vite.dev/) to watch for changes to your markdown files and automatically update the index. To start the watcher, run:
+
+```bash
+npm run dev
+```
+
+Note that if you change the folder name or location, make sure to update the relevant paths in your vite.config.js file so that Vite continues to monitor your files properly.
+
 ## Sitemap Generation
 As part of the index update process, Prezet automatically generates a sitemap for your website. This feature ensures that your sitemap always reflects the most current state of your content.
 
