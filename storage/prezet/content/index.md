@@ -25,6 +25,16 @@ You should run this command whenever you:
 
 Note that changes to the main content of your markdown files don't require updating the index, as this content is read directly from the file when displaying a single post.
 
+```bash
+php artisan prezet:index --fresh
+```
+
+Prezet index also has a `--fresh` option that will create a new sqlite database and run the prezet migrations before inserting your markdown data. You should run this command whenever you:
+
+1. Update to a new version of Prezet
+2. Are creating an index in a CI/CD pipeline
+3. Deploy your application to an environment where the index sqlite file is not already present
+
 ### Automatically Updating the Index
 
 You can also use [Vite](https://vite.dev/) to watch for changes to your markdown files and automatically update the index. To start the watcher, run:
