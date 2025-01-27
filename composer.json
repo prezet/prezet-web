@@ -16,7 +16,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "benbjurstrom/prezet": "^0.20.1",
+        "benbjurstrom/prezet": "1.0.0-rc1",
         "bref/bref": "^2.3",
         "bref/extra-php-extensions": "^1.4",
         "bref/laravel-bridge": "^2.4",
@@ -26,7 +26,7 @@
         "league/flysystem-read-only": "^3.28",
         "mallardduck/blade-lucide-icons": "^1.21",
         "torchlight/torchlight-commonmark": "dev-main",
-        "archtechx/laravel-seo": "dev-with-app-url as v0.10.1"
+        "archtechx/laravel-seo": "dev-with-url-origin as v0.10.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

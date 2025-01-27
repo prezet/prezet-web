@@ -19,6 +19,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        seo()
+            ->site('Prezet')
+            ->title(
+                default: 'Prezet: Markdown Blogging for Laravel',
+            )
+            ->withUrl('https://prezet.com')
+            ->description(default: 'Transform your markdown files into SEO-friendly blogs, articles, and documentation!')
+            ->image(default: fn () => asset('ogimage.png'));
     }
 }

@@ -1,4 +1,11 @@
 <x-prezet::template>
+    @seo([
+        'title' => $document->frontmatter->title,
+        'description' => $document->frontmatter->excerpt,
+        'url' => 'https://prezet.com' . route('prezet.show', ['slug' => $document->slug], false),
+        'image' => 'https://prezet.com' . $document->frontmatter->image,
+    ])
+
     {{-- Right Sidebar --}}
     <x-slot name="left">
         <x-prezet::sidebar :nav="$nav" />
@@ -8,12 +15,12 @@
     <article>
         <header class="mb-9 space-y-1">
             <p class="font-display text-sm font-medium text-primary-500">
-                {{ $frontmatter->category }}
+                {{ $document->category }}
             </p>
             <h1
                 class="font-display text-4xl font-medium tracking-tight text-stone-900"
             >
-                {{ $frontmatter->title }}
+                {{ $document->title }}
             </h1>
         </header>
         <div

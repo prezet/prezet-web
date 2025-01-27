@@ -9,7 +9,6 @@ return [
     | This setting determines the filesystem disk used by Prezet to store and
     | retrieve markdown files and images. By default, it uses the 'prezet' disk.
     |
-    |
     */
 
     'filesystem' => [
@@ -28,6 +27,7 @@ return [
     */
 
     'data' => [
+        'document' => BenBjurstrom\Prezet\Data\DocumentData::class,
         'frontmatter' => BenBjurstrom\Prezet\Data\FrontmatterData::class,
     ],
 
@@ -115,4 +115,30 @@ return [
         'origin' => 'https://prezet.com',
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Metadata
+    |--------------------------------------------------------------------------
+    |
+    |
+    */
+
+    // https://schema.org/author
+    'authors' => [
+        'prezet' => [
+            '@type' => 'Person',
+            'name' => 'Prezet Author',
+            'url' => 'https://prezet.com',
+            'image' => 'https://prezet.com/favicon.svg',
+        ],
+    ],
+
+    // https://schema.org/publisher
+    'publisher' => [
+        '@type' => 'Organization',
+        'name' => 'Prezet',
+        'url' => 'https://prezet.com',
+        'logo' => 'https://prezet.com/favicon.svg',
+        'image' => 'https://prezet.com/ogimage.png',
+    ],
 ];

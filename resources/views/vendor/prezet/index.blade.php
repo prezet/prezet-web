@@ -3,14 +3,6 @@
 @endphp
 
 <x-prezet::template>
-    @seo([
-        'title' => 'Prezet: Markdown Blogging for Laravel',
-        'description' =>
-            'Transform your markdown files into SEO-friendly blogs, articles, and documentation!',
-        'url' => route('prezet.index'),
-        'image' => 'ogimage.png',
-    ])
-
     <x-slot:hero>
         <div
             class="overflow-hidden bg-stone-900"
