@@ -127,9 +127,9 @@ return [
     'authors' => [
         'prezet' => [
             '@type' => 'Person',
-            'name' => 'Prezet Author',
-            'url' => 'https://prezet.com',
-            'image' => 'https://prezet.com/favicon.svg',
+            'name' => 'Ben Bjurstrom',
+            'url' => 'https://benbjurstrom.com',
+            'image' => 'https://prezet.com/img/benbjurstrom128x.webp',
         ],
     ],
 
@@ -138,7 +138,7 @@ return [
         '@type' => 'Organization',
         'name' => 'Prezet',
         'url' => 'https://prezet.com',
-        'logo' => 'https://prezet.com/favicon.svg',
+        'logo' => 'https://prezet.com/img/logo.png',
         'image' => 'https://prezet.com/ogimage.png',
     ],
 ];
