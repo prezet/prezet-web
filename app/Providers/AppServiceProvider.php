@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Actions\CustomGetSummary;
+use BenBjurstrom\Prezet\Actions\GetSummary;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(GetSummary::class, CustomGetSummary::class);
     }
 
     /**

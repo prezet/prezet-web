@@ -1,10 +1,12 @@
 <x-prezet::template>
-    @seo([
-        'title' => $document->frontmatter->title,
-        'description' => $document->frontmatter->excerpt,
-        'url' => 'https://prezet.com' . route('prezet.show', ['slug' => $document->slug], false),
-        'image' => 'https://prezet.com' . $document->frontmatter->image,
-    ])
+    @php
+        seo()
+        ->title($document->frontmatter->title)
+        ->description($document->frontmatter->excerpt)
+        ->url('https://prezet.com' . route('prezet.show', ['slug' => $document->slug], false))
+        ->image('https://prezet.com' . $document->frontmatter->image)
+        ->tag('robots', str_contains(request()->path(), 'v0.x') ? 'none' : 'all');
+    @endphp
 
     {{-- Right Sidebar --}}
     <x-slot name="left">

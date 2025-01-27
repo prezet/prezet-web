@@ -1,4 +1,3 @@
-```md
 ---
 title: Understanding Prezet's Configuration File
 excerpt: Learn how to install and customize the configuration file that powers Prezet's markdown blogging capabilities.
