@@ -20,7 +20,7 @@
             <h1
                 class="font-display text-4xl font-medium tracking-tight text-stone-900"
             >
-                {{ $document->title }}
+                {{ $document->frontmatter->title }}
             </h1>
         </header>
         <div
