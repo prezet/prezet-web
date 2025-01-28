@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 use App\Actions\CustomGetSummary;
+use App\Actions\CustomUpdateIndex;
+use App\Data\CustomFrontmatterData;
 use BenBjurstrom\Prezet\Actions\GetSummary;
+use BenBjurstrom\Prezet\Actions\UpdateIndex;
+use BenBjurstrom\Prezet\Data\FrontmatterData;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind(FrontmatterData::class, CustomFrontmatterData::class);
         $this->app->bind(GetSummary::class, CustomGetSummary::class);
+        $this->app->bind(UpdateIndex::class, CustomUpdateIndex::class);
     }
 
     /**
