@@ -4,7 +4,7 @@
         switchVersion(isLegacy) {
             let currentPath = window.location.pathname;
             let newPath;
-            
+
             if (isLegacy) {
                 // If switching to v0.x, add it to the path if not already present
                 if (!currentPath.includes('/v0.x/')) {
@@ -14,14 +14,14 @@
                 // If switching to v1.0, remove v0.x from the path
                 newPath = currentPath.replace('/v0.x', '');
             }
-            
+
             if (newPath) {
                 window.location.href = newPath;
             }
         }
     }"
     x-menu
-    class="relative"
+    class="relative hidden sm:block"
 >
     <!-- Menu Button -->
     <button x-menu:button class="relative flex items-center whitespace-nowrap justify-center gap-2 py-2 rounded-lg shadow-sm bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 hover:border-gray-200 px-4 text-sm">
