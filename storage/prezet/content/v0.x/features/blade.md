@@ -4,6 +4,7 @@ date: 2024-05-07
 category: Features
 excerpt: Learn how to enhance your Markdown content with dynamic Blade components in Prezet.
 image: /prezet/img/ogimages/features-blade.webp
+legacy: true
 ---
 
 Prezet allows you to seamlessly integrate Blade components into your Markdown files, enabling you to create dynamic, interactive elements within your static content. 

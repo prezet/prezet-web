@@ -5,6 +5,7 @@ slug: bref
 date: 2024-08-12
 category: Deployment
 image: /prezet/img/ogimages/deployment-bref.webp
+legacy: true
 ---
 
 Prezet integrates seamlessly with traditional server-based Laravel deployments, such as those managed through Laravel Forge. In fact, the whole point of Prezet is to consolidate your content and application into a single deployment.

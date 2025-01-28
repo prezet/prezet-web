@@ -4,6 +4,7 @@ date: 2024-05-05
 category: Features
 excerpt: Prezet automatically generates meta tags for your pages based on the front matter of your markdown files.
 image: /prezet/img/ogimages/features-seo.webp
+legacy: true
 ---
 
 Prezet comes with built-in Search Engine Optimization (SEO) features, automatically generating meta tags for your pages based on the front matter of your markdown files. This ensures that your content is well-optimized for search engines and social media platforms right from the start.

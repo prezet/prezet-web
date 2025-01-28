@@ -4,6 +4,7 @@ date: 2024-05-06
 category: Features
 excerpt: Prezet uses typed front matter for robust content management and validation.
 image: /prezet/img/ogimages/features-frontmatter.webp
+legacy: true
 ---
 
 Front matter is the YAML metadata at the top of a markdown file enclosed by triple dashes (`---`). Prezet converts front matter into a strongly typed data transfer object (DTO) to ensure consistency and reliability.

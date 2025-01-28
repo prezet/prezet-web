@@ -5,6 +5,7 @@ slug: analytics
 date: 2024-08-30
 category: Deployment
 image: /prezet/img/ogimages/deployment-analytics.webp
+legacy: true
 ---
 
 Maintaining search engine rankings is often crucial for content-rich applications. Prezet provides excellent on-page SEO by adding [meta tags](/features/seo) to the header and responsively [optimizing images](/features/images).

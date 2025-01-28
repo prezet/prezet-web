@@ -4,6 +4,7 @@ date: 2024-05-06
 category: Features
 excerpt: Learn about Prezet's powerful image features including automatic optimization and interactive zoom capabilities.
 image: /prezet/img/ogimages/features-images.webp
+legacy: true
 ---
 
 Prezet offers comprehensive image handling capabilities out of the box, enhancing your markdown-based blog with both responsive, efficiently-loaded images and interactive viewing features.
