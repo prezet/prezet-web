@@ -8,7 +8,7 @@ image: /prezet/img/ogimages/customize-frontmatter.webp
 
 Prezet makes it easy to customize the front matter of your markdown files. To learn more about how front matter works in general, check out the [Typed Front Matter documentation](/features/frontmatter).
 
-This guide walks you through extending Prezet’s default `FrontmatterData` class and updating `config/prezet.php` so that Prezet recognizes your new front matter fields.
+This guide walks you through extending Prezet’s default `FrontmatterData` class so that Prezet recognizes your custom front matter fields.
 
 ## The Default FrontmatterData Class
 
@@ -27,13 +27,11 @@ Key properties include:
 
 Prezet uses the [laravel-validated-dto](https://wendell-adriel.gitbook.io/laravel-validated-dto) package to ensure the fields in your YAML front matter are strictly typed.
 
-## Customizing the FrontmatterData Class
+## Adding Custom Fields
 
-If you want to add new metadata fields—like `reading_time`, `difficulty_level`, or any other custom property—you can do so by following these steps:
+### 1. Create a Custom Class
 
-### 1. Create a New Class
-
-Create a class in your application that extends `FrontmatterData`. For example: `app/Data/CustomFrontmatterData.php`:
+In `app/Data/CustomFrontmatterData.php`, you might add a `legacy` field to identify older docs you’d like to handle differently:
 
 ```php
 <?php
@@ -45,54 +43,49 @@ use WendellAdriel\ValidatedDTO\Attributes\Rules;
 
 class CustomFrontmatterData extends FrontmatterData
 {
-    // Add new properties
-    #[Rules(['required', 'integer', 'min:1'])]
-    public int $reading_time;
+    // Mark docs as "legacy: true" in the front matter if they should be excluded from certain features
+    #[Rules(['nullable', 'bool'])]
+    public ?bool $legacy;
 }
 ```
 
-Here, we added a new field, `reading_time`, representing the estimated time (in minutes) it takes to read an article.
-
-### 2. Update Your Configuration
-
-In `config/prezet.php`, tell Prezet to use your new class instead of the default:
-
-```php
-return [
-    // ... other settings ...
-
-    'data' => [
-        'frontmatter' => App\Data\CustomFrontmatterData::class,
-    ],
-
-    // ... rest of config ...
-];
-```
-
-### 3. Refresh the Prezet Index
-
-Any time you change your front matter schema, run:
-
-```bash
-php artisan prezet:index --fresh
-```
-
-This command ensures the SQLite index is aware of your updated front matter. If any markdown files fail validation (for example, missing a `reading_time` value), Prezet will display an error message to help you pinpoint and fix the issue.
-
-## Using Your Custom Fields
-
-Once you’ve extended `FrontmatterData`, you can reference the new fields in your markdown files:
+Then your markdown front matter might look like:
 
 ```yaml
 ---
-title: My Custom Post
-date: 2024-05-10
-reading_time: 5
-category: Technology
-tags: [php, laravel, prezet]
-excerpt: A quick introduction to customizing front matter in Prezet.
+title: "My Old Docs"
+date: 2023-01-01
+legacy: true
 draft: false
 ---
 ```
 
-You can then use `{{ $document->frontmatter->reading_time }}` (or whatever property you’ve introduced) in your Blade templates. For more details on updating Blade templates, see [Customizing Blade Views](/customize/blade-views).
+### 2. Override the Default in the Service Container
+
+In a service provider (e.g., `AppServiceProvider`), bind Prezet’s default `FrontmatterData` to your custom class:
+
+```php
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use BenBjurstrom\Prezet\Data\FrontmatterData;
+use App\Data\CustomFrontmatterData;
+
+class AppServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        // Swap out the default front matter data for your custom class
+        $this->app->bind(FrontmatterData::class, CustomFrontmatterData::class);
+    }
+
+    public function boot(): void
+    {
+        //
+    }
+}
+```
+
+This ensures that any time Prezet processes front matter, it uses your `CustomFrontmatterData`.

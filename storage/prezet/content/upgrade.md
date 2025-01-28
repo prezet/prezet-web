@@ -77,6 +77,7 @@ This update simplifies custom overrides by letting you bind your own action clas
 - **$date** is now required in `FrontmatterData`, representing the published date of a post or page.
 - **$author** is a nullable property for referencing your site authors. You can define multiple authors in the `prezet.authors` array in `config/prezet.php`.
 - **DocumentData** is introduced to unify front matter metadata with system fields like `slug`, `hash`, `createdAt`, and `updatedAt`. It wraps `FrontmatterData` in the `$document->frontmatter` property.
+- The FrontmatterData class has been removed from the config. If you need to override the default class you can do so by binding your custom `FrontmatterData` class in the service container.
 
 ## 7. PostCSS & Tailwind
 
@@ -84,6 +85,7 @@ This update simplifies custom overrides by letting you bind your own action clas
 - If you previously installed Tailwind 3.x, you’re not forced to upgrade. However, the new defaults rely on [@tailwindcss/vite](https://www.npmjs.com/package/@tailwindcss/vite) instead of separate PostCSS plugins.
 - See [Tailwind's official upgrade guide](https://tailwindcss.com/docs/upgrade-guide) for more details on transitioning from older versions if you wish to align with Prezet’s new stubs.
 
-## 8. Additional Command Options
+## 8. Additional Command Changes
 - `prezet:install` command now checks for a clean Git repository unless you use `--force`.
 - `prezet:index` replaced `--force` with `--fresh`.
+- `prezet:bref` was removed.

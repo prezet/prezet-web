@@ -35,22 +35,6 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Data Classes
-    |--------------------------------------------------------------------------
-    |
-    | These classes store and validate markdown metadata. "document" references
-    | the DocumentData class, while "frontmatter" references the FrontmatterData
-    | class. You can create your own classes and override them here.
-    |
-    */
-
-    'data' => [
-        'document' => BenBjurstrom\Prezet\Data\DocumentData::class,
-        'frontmatter' => BenBjurstrom\Prezet\Data\FrontmatterData::class,
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
     | CommonMark
     |--------------------------------------------------------------------------
     |
@@ -167,18 +151,6 @@ return [
 ## Filesystem Configuration
 
 By default, Prezet uses the `'prezet'` disk for reading and storing markdown files. You can change this by updating the `PREZET_FILESYSTEM_DISK` environment variable or directly editing the `filesystem` array above.
-
-## Data Classes
-
-Prezet uses two primary [Validated DTOs](https://wendell-adriel.gitbook.io/laravel-validated-dto) to represent your content:
-
-1. **`DocumentData`**  
-   A typed representation of the entire document record, including system fields like `slug`, `draft`, `hash`, and the nested `frontmatter`.
-
-2. **`FrontmatterData`**  
-   Focuses on the YAML metadata in your markdown (e.g., `title`, `excerpt`, `category`). It’s nested within `DocumentData->frontmatter`.
-
-To swap in your own classes, simply override the `'document'` or `'frontmatter'` keys with your custom class references in `config/prezet.php`.
 
 ## CommonMark Configuration
 

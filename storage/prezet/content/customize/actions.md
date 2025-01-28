@@ -21,91 +21,6 @@ By default, Prezet ships with a number of action classes, including:
 
 Each one is responsible for a single, discrete operation. You can find them in the `vendor/benbjurstrom/prezet/src/Actions` directory.
 
-## Overriding an Action
-
-To override a Prezet action:
-
-1. **Create a Custom Action Class**  
-   In your Laravel application, create a new class that extends (or replicates) the original Prezet action you want to modify. For example, to override `ParseMarkdown`:
-
-   ```php
-   <?php
-
-   namespace App\Actions;
-
-   use BenBjurstrom\Prezet\Actions\ParseMarkdown as BaseParseMarkdown;
-   use League\CommonMark\Output\RenderedContentInterface;
-
-   class CustomParseMarkdown extends BaseParseMarkdown
-   {
-       public function handle(string $md): RenderedContentInterface
-       {
-           // Your custom logic here, for example:
-           // 1. Pre-process the markdown string
-           $md = $this->addCustomSyntax($md);
-
-           // 2. Call the parent class to do the main parsing
-           $result = parent::handle($md);
-
-           // 3. Post-process the HTML if needed
-           return $result;
-       }
-
-       private function addCustomSyntax(string $md): string
-       {
-           // ... custom syntax manipulations
-           return $md;
-       }
-   }
-   ```
-
-2. **Register Your Action in a Service Provider**  
-   Next, bind your new action into the container so that Prezet (and your application) uses it instead of the default one. You can do this in your app’s `AppServiceProvider` or any custom provider:
-
-   ```php
-   <?php
-
-   namespace App\Providers;
-
-   use Illuminate\Support\ServiceProvider;
-   use BenBjurstrom\Prezet\Actions\ParseMarkdown;
-   use App\Actions\CustomParseMarkdown;
-
-   class AppServiceProvider extends ServiceProvider
-   {
-       public function register(): void
-       {
-           // Whenever ParseMarkdown::class is requested,
-           // return an instance of CustomParseMarkdown::class
-           $this->app->bind(ParseMarkdown::class, CustomParseMarkdown::class);
-       }
-
-       public function boot(): void
-       {
-           //
-       }
-   }
-   ```
-
-3. **Test the Override**  
-   Now, whenever Prezet internally resolves `ParseMarkdown::class`, your custom class will be used instead. That includes calls made via the `Prezet` facade, such as:
-
-   ```php
-   // Prezet::parseMarkdown(...) eventually resolves ParseMarkdown::class
-   // which your service container now points to CustomParseMarkdown::class
-   $parsed = Prezet::parseMarkdown('# Hello');
-   ```
-
-   You can confirm that your custom logic is being invoked by adding a simple `dd()` or logging statement in your custom action.
-
-## Example Use Cases
-
-1. **Adding Additional Parsing Steps**: If you need more advanced processing (e.g., injecting custom shortcodes or applying transformations before converting to HTML), you can add those to `CustomParseMarkdown`.
-
-2. **Custom Image Handling**: If you want to handle images differently, you might override `GetImage` to apply a watermark, change the compression settings, or load images from an external service.
-
-3. **Tweak the Search Index**: By overriding `UpdateIndex`, you can modify how documents are processed and stored, or add additional indexing logic for advanced features.
-
 ## Using a Helper Method or Facade
 
 Prezet provides a [facade](/getting-started/facade) with static methods for calling these actions. If you override an action in your application service provider, the facade automatically respects your binding. This means that:
@@ -115,6 +30,104 @@ Prezet::updateIndex();
 ```
 
 now calls **your** custom logic when it resolves `UpdateIndex::class`—no code changes required anywhere else.
+
+## Example: Skipping Certain Documents From Indexing
+
+This example demonstrates:
+
+1. **Extending the front matter** with a custom property named `legacy`.
+2. **Overriding the `UpdateIndex` action** to skip indexing headings for documents marked as legacy.
+
+### 1. Create A Custom `FrontmatterData` Class
+
+In `app/Data/CustomFrontmatterData.php`:
+
+```php
+<?php
+
+namespace App\Data;
+
+use BenBjurstrom\Prezet\Data\FrontmatterData;
+use WendellAdriel\ValidatedDTO\Attributes\Rules;
+
+class CustomFrontmatterData extends FrontmatterData
+{
+    // We'll use "legacy: true" in the front matter to mark older docs
+    #[Rules(['nullable', 'bool'])]
+    public ?bool $legacy;
+}
+```
+
+You might now have front matter like:
+
+```yaml
+---
+title: "My Old Docs"
+date: 2023-01-01
+legacy: true
+draft: false
+---
+```
+
+### 2. Bind Your Custom Front Matter Class
+
+In your `AppServiceProvider`, swap the default `FrontmatterData` binding with your own `CustomFrontmatterData`:
+
+```php
+use BenBjurstrom\Prezet\Data\FrontmatterData;
+use App\Data\CustomFrontmatterData;
+
+public function register(): void
+{
+    $this->app->bind(FrontmatterData::class, CustomFrontmatterData::class);
+}
+```
+
+This ensures that any time Prezet resolves the front matter DTO, it uses your version instead.
+
+### 3. Override The `UpdateIndex` Action
+
+Now, let’s say you only want to skip building headings for “legacy” documents so they aren’t searchable. You can override `UpdateIndex` and modify how headings are processed:
+
+```php
+<?php
+
+namespace App\Actions;
+
+use BenBjurstrom\Prezet\Actions\UpdateIndex;
+use BenBjurstrom\Prezet\Models\Document;
+
+class CustomUpdateIndex extends UpdateIndex
+{
+    protected function updateHeadings(Document $document, ?string $content): void
+    {
+        // If the document has "legacy" front matter, skip heading creation
+        if ($document->frontmatter->legacy) {
+            return;
+        }
+
+        // Otherwise, run the normal logic
+        parent::updateHeadings($document, $content);
+    }
+}
+```
+
+### 4. Register Your Custom Action
+
+Finally, in your `AppServiceProvider`:
+
+```php
+use BenBjurstrom\Prezet\Actions\UpdateIndex;
+use App\Actions\CustomUpdateIndex;
+
+public function register(): void
+{
+    // ...
+    $this->app->bind(UpdateIndex::class, CustomUpdateIndex::class);
+}
+```
+
+Now, whenever `Prezet::updateIndex()` is called, your `CustomUpdateIndex` logic runs. Documents flagged with `legacy: true` in front matter will **not** have their headings processed or indexed, effectively removing them from search queries that rely on headings.
 
 For additional customization ideas, check out:
 

@@ -5,7 +5,6 @@
 - [Upgrade Guide](content/upgrade)
 
 ## 🚀 Deployment
-- [Serverless with Bref](deployment/bref)
 - [Cloudflare Cache](deployment/cloudflare)
 - [Google Analytics](deployment/analytics)
 
