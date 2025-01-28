@@ -13,7 +13,7 @@ This guide covers upgrading your Prezet installation from **v0.21.1** to **v1.0.
 Run the following command to require **v1.0.0-rc1** (or the stable v1.0.0 version, once available):
 
 ```bash
-composer require benbjurstrom/prezet:1.0.0-rc1 --with-all-dependencies
+composer require benbjurstrom/prezet:1.0.0-rc2 --with-all-dependencies
 ```
 
 ## 2. Re-Publish The Prezet Configuration File

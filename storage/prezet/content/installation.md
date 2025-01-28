@@ -14,7 +14,7 @@ This guide will walk you through the process of installing Prezet, a powerful ma
 You can install the Prezet package using Composer:
 
 ```bash
-composer require benbjurstrom/prezet
+composer require benbjurstrom/prezet:1.0.0-rc2
 ```
 
 ## Step 2: Run the Package Installer
@@ -62,7 +62,7 @@ You should now see your new markdown blog powered by Prezet!
 After installing Prezet and setting up your initial content, it's important to generate the SQLite index. Run the following Artisan command to create and populate the index:
 
 ```bash
-php artisan prezet:index
+php artisan prezet:index --fresh
 ```
 
 For more information about the SQLite index and its purposes, refer to the [Prezet SQLite Index](/index) documentation.
