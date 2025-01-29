@@ -5,6 +5,7 @@
         ->description($document->frontmatter->excerpt)
         ->url('https://prezet.com' . route('prezet.show', ['slug' => $document->slug], false))
         ->image(url($document->frontmatter->image))
+        ->twitter()
         ->tag('robots', str_contains(request()->path(), 'v0.x') ? 'none' : 'all');
     @endphp
 

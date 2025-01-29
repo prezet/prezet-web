@@ -4,7 +4,7 @@ excerpt: Learn about the SQLite index used by Prezet to manage and query markdow
 slug: index
 date: 2024-06-27
 category: Getting Started
-image: /prezet/img/ogimages/index.webp
+image: /prezet/img/ogimages/index.png
 ---
 
 Prezet uses an SQLite index file to more efficiently query information about your markdown content. This index is crucial for features like pagination, sorting, and filtering of your blog posts or documentation pages.
