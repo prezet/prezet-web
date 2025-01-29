@@ -4,7 +4,7 @@
         ->title($document->frontmatter->title)
         ->description($document->frontmatter->excerpt)
         ->url('https://prezet.com' . route('prezet.show', ['slug' => $document->slug], false))
-        ->image('https://prezet.com' . $document->frontmatter->image)
+        ->image(url($document->frontmatter->image))
         ->tag('robots', str_contains(request()->path(), 'v0.x') ? 'none' : 'all');
     @endphp
 
