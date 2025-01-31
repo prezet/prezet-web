@@ -1,7 +1,6 @@
 ---
 title: Efficiently Adding Google Analytics
 excerpt: Learn how to add Google Analytics to your Prezet site without impacting page speed using Cloudflare Zaraz.
-slug: analytics
 date: 2024-08-30
 category: Deployment
 image: /prezet/img/ogimages/deployment-analytics.webp

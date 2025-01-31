@@ -6,7 +6,7 @@ category: Getting Started
 image: /prezet/img/ogimages/upgrade.webp
 ---
 
-This guide covers upgrading your Prezet installation from **v0.21.1** to **v1.0.0**. Below you’ll find all of the breaking changes, added features, and best practices for adopting the new release.
+This guide covers upgrading your Prezet installation from **v0.21.1** to **v1.0.0**. Below you'll find all of the breaking changes, added features, and best practices for adopting the new release.
 
 ## 1. Update Your Composer Dependency
 
@@ -34,7 +34,11 @@ Run the upgraded index command with the new `--fresh` flag to ensure your databa
 php artisan prezet:index --fresh
 ```
 
-This regenerates the `prezet.sqlite` file, runs the Prezet migrations, and reindexes your markdown files using the updated schema.
+This regenerates the `prezet.sqlite` file with an updated schema that includes:
+- New `key` field for optional unique identifiers
+- Unique constraints on `slug`, `filepath`, and `hash` fields
+- Optimized indexes for better query performance
+- Updated timestamp fields to use timestampTz
 
 ## 4. Update Blade Templates
 
@@ -73,19 +77,30 @@ This update simplifies custom overrides by letting you bind your own action clas
 
 ## 6. FrontmatterData & DocumentData Changes
 
-- **FrontmatterData** no longer includes `$slug`, `$hash`, `$createdAt`, or `$updatedAt`. Those fields now reside in the new **DocumentData** class for improved indexing and organization.
-- **$date** is now required in `FrontmatterData`, representing the published date of a post or page.
-- **$author** is a nullable property for referencing your site authors. You can define multiple authors in the `prezet.authors` array in `config/prezet.php`.
-- **DocumentData** is introduced to unify front matter metadata with system fields like `slug`, `hash`, `createdAt`, and `updatedAt`. It wraps `FrontmatterData` in the `$document->frontmatter` property.
+- **FrontmatterData** changes:
+  - No longer includes `$hash`, `$createdAt`, or `$updatedAt`
+  - Added `$slug` and `$key` as nullable properties
+  - `$date` is now required, representing the published date
+  - `$author` is nullable for referencing site authors
+  - `$tags` is now an array property
+
+- **DocumentData** is introduced to handle:
+  - System fields: `id`, `filepath`, `hash`, `createdAt`, `updatedAt`
+  - URL fields: `slug`, `key`
+  - Content flags: `category`, `draft`
+  - Wraps `FrontmatterData` in the `$document->frontmatter` property
+
 - The FrontmatterData class has been removed from the config. If you need to override the default class you can do so by binding your custom `FrontmatterData` class in the service container.
 
 ## 7. PostCSS & Tailwind
 
-- The stubbed `postcss.config.js` file was removed, and a simpler approach using Tailwind 4’s “just-in-time” features is now favored.
-- If you previously installed Tailwind 3.x, you’re not forced to upgrade. However, the new defaults rely on [@tailwindcss/vite](https://www.npmjs.com/package/@tailwindcss/vite) instead of separate PostCSS plugins.
-- See [Tailwind's official upgrade guide](https://tailwindcss.com/docs/upgrade-guide) for more details on transitioning from older versions if you wish to align with Prezet’s new stubs.
+- The stubbed `postcss.config.js` file was removed, and a simpler approach using Tailwind 4's "just-in-time" features is now favored.
+- If you previously installed Tailwind 3.x, you're not forced to upgrade. However, the new defaults rely on [@tailwindcss/vite](https://www.npmjs.com/package/@tailwindcss/vite) instead of separate PostCSS plugins.
+- See [Tailwind's official upgrade guide](https://tailwindcss.com/docs/upgrade-guide) for more details on transitioning from older versions if you wish to align with Prezet's new stubs.
 
 ## 8. Additional Command Changes
 - `prezet:install` command now checks for a clean Git repository unless you use `--force`.
+- `prezet:install` prezet will be configured for tailwind v3.x if you use `--tailwind3`.
 - `prezet:index` replaced `--force` with `--fresh`.
 - `prezet:bref` was removed.
+- `prezet:ogimage` now accepts a slug for example `prezet:ogimage my-blog-post`

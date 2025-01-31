@@ -25,7 +25,7 @@ tags: [markdown, content]
 
 ## How Prezet Uses Front Matter
 
-1. **Content Display**: Your blog’s title, excerpt, and related metadata are rendered in the views.
+1. **Content Display**: Your blog's title, excerpt, and related metadata are rendered in the views.
 2. **SEO Optimization**: The front matter drives SEO tags, including page title, description, and Open Graph image.
 3. **Content Organization**: Fields like `category`, `tags`, and `draft` help categorize, filter, or hide content.
 
@@ -57,6 +57,12 @@ class FrontmatterData extends ValidatedDTO
     #[Rules(['nullable', 'string'])]
     public ?string $author;
 
+    #[Rules(['nullable', 'string'])]
+    public ?string $slug;
+
+    #[Rules(['nullable', 'string'])]
+    public ?string $key;
+
     #[Rules(['array'])]
     public array $tags; // e.g. ['markdown', 'content']
 }
@@ -72,7 +78,7 @@ Whenever you run:
 php artisan prezet:index
 ```
 
-Prezet scans all markdown files in your content folder and validates their front matter against the `FrontmatterData` rules. If a file fails validation, you’ll see a clear error message detailing what went wrong.
+Prezet scans all markdown files in your content folder and validates their front matter against the `FrontmatterData` rules. If a file fails validation, you'll see a clear error message detailing what went wrong.
 
 ## DocumentData vs FrontmatterData
 
@@ -86,14 +92,14 @@ Prezet actually makes use of two data classes:
 
 In short:
 
-- **FrontmatterData** = typed representation of your file’s YAML front matter.
+- **FrontmatterData** = typed representation of your file's YAML front matter.
 - **DocumentData** = typed representation of the entire document record, combining front matter with system-level details for indexing, versioning, and retrieval.
 
-By splitting these responsibilities, Prezet provides both strong validation for your front matter **and** seamless integration with Laravel’s database features. It keeps your markdown’s metadata flexible while maintaining fast lookups and advanced query capabilities in the SQLite index.
+By splitting these responsibilities, Prezet provides both strong validation for your front matter **and** seamless integration with Laravel's database features. It keeps your markdown's metadata flexible while maintaining fast lookups and advanced query capabilities in the SQLite index.
 
 ### Property Duplication
 
-You may notice some properties appear in both `FrontmatterData` and as top-level properties in `DocumentData` (like `category` and `draft`). This duplication is intentional:
+You may notice some properties appear in both `FrontmatterData` and as top-level properties in `DocumentData` (like `category`, `draft`, `slug`, and `key`). This duplication is intentional:
 
 -   `FrontmatterData` maintains a complete and accurate representation of your markdown front matter
 -   `DocumentData` represents the database record, where certain properties are elevated to columns for efficient filtering and searching

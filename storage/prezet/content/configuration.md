@@ -1,7 +1,6 @@
 ---
 title: Understanding Prezet's Configuration File
 excerpt: Learn how to install and customize the configuration file that powers Prezet's markdown blogging capabilities.
-slug: configuration
 date: 2024-06-27
 category: Getting Started
 image: /prezet/img/ogimages/configuration.webp
@@ -31,6 +30,23 @@ return [
 
     'filesystem' => [
         'disk' => env('PREZET_FILESYSTEM_DISK', 'prezet'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Slug Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configure how document slugs are generated. The source can be 'filepath'
+    | or 'title'. Note that a slug defined in front matter will take precedence
+    | over the generated slug. When 'keyed' is true, the key present in the
+    | front matter key will be appended to the slug (e.g., my-post-123).
+    |
+    */
+
+    'slug' => [
+        'source' => 'filepath', // 'filepath' or 'title'
+        'keyed' => false, // 'true' or 'false'
     ],
 
     /*
@@ -127,6 +143,17 @@ return [
     |
     */
 
+    /*
+    |--------------------------------------------------------------------------
+    | Structured Data
+    |--------------------------------------------------------------------------
+    |
+    | Prezet uses these values for JSON-LD structured data. 'authors' defines
+    | named authors you can reference in front matter, and 'publisher' is used
+    | as the default publisher for all content.
+    |
+    */
+
     // https://schema.org/author
     'authors' => [
         'prezet' => [
@@ -151,6 +178,17 @@ return [
 ## Filesystem Configuration
 
 By default, Prezet uses the `'prezet'` disk for reading and storing markdown files. You can change this by updating the `PREZET_FILESYSTEM_DISK` environment variable or directly editing the `filesystem` array above.
+
+## Slug Configuration
+
+The `'slug'` array controls how document URLs are generated:
+
+- **`source`**: Determines how the base slug is generated
+  - `'filepath'`: Uses the markdown file's path (default)
+  - `'title'`: Uses the document's title from front matter
+- **`keyed`**: When `true`, appends the front matter `key` to the slug (e.g., `my-post-123`)
+
+Note that a `slug` defined in front matter will always take precedence over these generated slugs.
 
 ## CommonMark Configuration
 

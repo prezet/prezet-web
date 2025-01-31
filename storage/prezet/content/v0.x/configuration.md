@@ -1,7 +1,6 @@
 ---
 title: Understanding Prezet's Configuration File
 excerpt: Learn how to install the package's configration file
-slug: configuration
 date: 2024-06-27
 category: Getting Started
 image: /prezet/img/ogimages/configuration.webp

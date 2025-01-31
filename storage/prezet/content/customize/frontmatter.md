@@ -8,7 +8,7 @@ image: /prezet/img/ogimages/customize-frontmatter.webp
 
 Prezet makes it easy to customize the front matter of your markdown files. To learn more about how front matter works in general, check out the [Typed Front Matter documentation](/features/frontmatter).
 
-This guide walks you through extending Prezet’s default `FrontmatterData` class so that Prezet recognizes your custom front matter fields.
+This guide walks you through extending Prezet's default `FrontmatterData` class so that Prezet recognizes your custom front matter fields.
 
 ## The Default FrontmatterData Class
 
@@ -23,6 +23,8 @@ Key properties include:
 - **draft** *(boolean)*  
 - **date** *(Carbon instance)*  
 - **author** *(nullable string)*  
+- **slug** *(nullable string)*  
+- **key** *(nullable string)*  
 - **tags** *(array)*  
 
 Prezet uses the [laravel-validated-dto](https://wendell-adriel.gitbook.io/laravel-validated-dto) package to ensure the fields in your YAML front matter are strictly typed.
@@ -31,7 +33,7 @@ Prezet uses the [laravel-validated-dto](https://wendell-adriel.gitbook.io/larave
 
 ### 1. Create a Custom Class
 
-In `app/Data/CustomFrontmatterData.php`, you might add a `legacy` field to identify older docs you’d like to handle differently:
+In `app/Data/CustomFrontmatterData.php`, you might add a `legacy` field to identify older docs you'd like to handle differently:
 
 ```php
 <?php
@@ -62,7 +64,7 @@ draft: false
 
 ### 2. Override the Default in the Service Container
 
-In a service provider (e.g., `AppServiceProvider`), bind Prezet’s default `FrontmatterData` to your custom class:
+In a service provider (e.g., `AppServiceProvider`), bind Prezet's default `FrontmatterData` to your custom class:
 
 ```php
 <?php

@@ -1,7 +1,6 @@
 ---
 title: Optimize Your Laravel Blog with Cloudflare Cache
 excerpt: Learn how to use Cloudflare to cache your Prezet-generated HTML pages for improved performance.
-slug: cloudflare
 date: 2024-07-01
 category: Deployment
 image: /prezet/img/ogimages/deployment-cloudflare.webp

@@ -1,7 +1,6 @@
 ---
 title: Prezet + Bref + AWS Lambda for Lean Laravel Deployments
 excerpt: Learn how to deploy a Laravel application with Prezet on AWS Lambda using Bref.sh, addressing common challenges and optimizations.
-slug: bref
 date: 2024-08-12
 category: Deployment
 image: /prezet/img/ogimages/deployment-bref.webp
