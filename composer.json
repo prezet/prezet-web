@@ -17,7 +17,7 @@
     "require": {
         "php": "^8.2",
         "archtechx/laravel-seo": "dev-with-url-origin as v0.10.1",
-        "benbjurstrom/prezet": "1.0.0-rc2",
+        "benbjurstrom/prezet": "1.0.0-rc4",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "league/flysystem-aws-s3-v3": "^3.28",
