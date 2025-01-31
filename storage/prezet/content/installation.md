@@ -14,7 +14,7 @@ This guide will walk you through the process of installing Prezet, a powerful ma
 You can install the Prezet package using Composer:
 
 ```bash
-composer require benbjurstrom/prezet:1.0.0-rc2
+composer require benbjurstrom/prezet:1.0.0-rc4
 ```
 
 ## Step 2: Run the Package Installer
@@ -30,9 +30,14 @@ composer require benbjurstrom/prezet:1.0.0-rc2
 
 To run the Prezet installer, execute the following Artisan command:
 
-
 ```bash
 php artisan prezet:install
+```
+
+or if you prefer Tailwind v3
+
+```bash
+artisan prezet:install --tailwind3
 ```
 
 This command will:
