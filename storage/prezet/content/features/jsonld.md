@@ -6,7 +6,7 @@ excerpt: Learn how to add JSON-LD structured data to your Prezet blog for improv
 image: /prezet/img/ogimages/features-jsonld.webp
 ---
 
-Prezet automatically generates [JSON-LD](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) to enhance your site's structured data, improving visibility on search engines and social media. By default, Prezet includes metadata such as your article's headline, publishing date, and author information following the [Google Article Guide](https://developers.google.com/search/docs/appearance/structured-data/article).
+Prezet automatically generates [JSON-LD](https://json-ld.org/) to enhance your site's structured data, improving visibility on search engines and social media. By default, Prezet includes metadata such as your article's headline, publishing date, and author information following the [Google Article Guide](https://developers.google.com/search/docs/appearance/structured-data/article).
 
 ## How It Works
 

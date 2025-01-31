@@ -9,6 +9,10 @@
         ->tag('robots', str_contains(request()->path(), 'v0.x') ? 'none' : 'all');
     @endphp
 
+    @push('jsonld')
+        <script type="application/ld+json">{!! $linkedData !!}</script>
+    @endpush
+
     {{-- Right Sidebar --}}
     <x-slot name="left">
         <x-prezet::sidebar :nav="$nav" />
