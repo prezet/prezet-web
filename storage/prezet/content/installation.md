@@ -13,7 +13,7 @@ This guide will walk you through the process of installing Prezet, a powerful ma
 You can install the Prezet package using Composer:
 
 ```bash
-composer require benbjurstrom/prezet:1.0.0-rc4
+composer require benbjurstrom/prezet:1.0.0-rc5
 ```
 
 ## Step 2: Run the Package Installer
