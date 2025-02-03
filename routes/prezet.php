@@ -1,6 +1,6 @@
 <?php
 
-use BenBjurstrom\Prezet\Http\Controllers\ImageController;
+use App\Http\Controllers\ImageController;
 use BenBjurstrom\Prezet\Http\Controllers\IndexController;
 use BenBjurstrom\Prezet\Http\Controllers\OgimageController;
 use BenBjurstrom\Prezet\Http\Controllers\SearchController;
