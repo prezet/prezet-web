@@ -15,6 +15,7 @@ Route::withoutMiddleware([
         StartSession::class,
         ValidateCsrfToken::class,
     ])
+    ->middleware('cache.headers:public')
     ->group(function () {
         Route::get('prezet/search', SearchController::class)->name('prezet.search');
 
