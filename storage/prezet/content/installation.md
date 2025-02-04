@@ -4,6 +4,7 @@ excerpt: Learn how to install and set up Prezet, a powerful markdown blogging pa
 date: 2024-06-28
 category: Getting Started
 image: /prezet/img/ogimages/installation.jpg
+author: benbjurstrom
 ---
 
 This guide will walk you through the process of installing Prezet, a powerful markdown blogging package for Laravel. Follow these steps to set up your project and start creating SEO-friendly blogs, articles, and documentation.

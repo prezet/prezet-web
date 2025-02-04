@@ -5,6 +5,7 @@ date: 2024-06-27
 category: Getting Started
 image: /prezet/img/ogimages/configuration.webp
 legacy: true
+author: benbjurstrom
 ---
 
 The configuration file is published as part of the package's installation command, but it can be manually published by running the following command:

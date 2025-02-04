@@ -4,6 +4,7 @@ excerpt: Update your Prezet installation from v0.x to v1.0.0, and review importa
 date: 2025-01-26
 category: Getting Started
 image: /prezet/img/ogimages/upgrade.webp
+author: benbjurstrom
 ---
 
 This guide covers upgrading your Prezet installation from **v0.21.1** to **v1.0.0**. Below you'll find all of the breaking changes, added features, and best practices for adopting the new release.

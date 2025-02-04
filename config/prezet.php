@@ -130,7 +130,7 @@ return [
 
     // https://schema.org/author
     'authors' => [
-        'prezet' => [
+        'benbjurstrom' => [
             '@type' => 'Person',
             'name' => 'Ben Bjurstrom',
             'url' => 'https://benbjurstrom.com',

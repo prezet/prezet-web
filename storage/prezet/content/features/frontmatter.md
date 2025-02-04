@@ -4,6 +4,7 @@ date: 2024-05-06
 category: Features
 excerpt: Prezet uses typed front matter for robust content management and validation.
 image: /prezet/img/ogimages/features-frontmatter.webp
+author: benbjurstrom
 ---
 
 Front matter is the YAML metadata at the top of a markdown file, surrounded by triple-dash lines (`---`). Prezet parses and validates this metadata into a strongly typed object to ensure consistent, reliable content management.

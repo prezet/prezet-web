@@ -4,6 +4,7 @@ excerpt: Learn how to install and customize the configuration file that powers P
 date: 2024-06-27
 category: Getting Started
 image: /prezet/img/ogimages/configuration.webp
+author: benbjurstrom
 ---
 
 The configuration file is published as part of the package's installation command, but you can manually publish or re-publish it at any time by running:

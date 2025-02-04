@@ -4,6 +4,7 @@ date: 2024-05-09
 category: Customization
 excerpt: This post explains how to customize the front matter in Prezet.
 image: /prezet/img/ogimages/customize-frontmatter.webp
+author: benbjurstrom
 ---
 
 Prezet makes it easy to customize the front matter of your markdown files. To learn more about how front matter works in general, check out the [Typed Front Matter documentation](/features/frontmatter).

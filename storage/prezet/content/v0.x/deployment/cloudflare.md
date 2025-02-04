@@ -5,6 +5,7 @@ date: 2024-07-01
 category: Deployment
 image: /prezet/img/ogimages/deployment-cloudflare.webp
 legacy: true
+author: benbjurstrom
 ---
 
 Prezet integrates seamlessly with services like Cloudflare to provide powerful caching capabilities, allowing you to achieve static-site-like performance with the flexibility of a dynamic Laravel application. This guide will walk you through setting up and optimizing Cloudflare caching for your Prezet-powered site.

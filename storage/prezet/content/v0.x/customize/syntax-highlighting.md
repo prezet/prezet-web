@@ -5,6 +5,7 @@ category: Customization
 excerpt: Learn how to enhance your Prezet blog with syntax highlighting using Torchlight, a powerful and easy-to-use solution.
 image: /prezet/img/ogimages/customize-syntax-highlighting.webp
 legacy: true
+author: benbjurstrom
 ---
 
 This guide will walk you through adding syntax highlighting to your Prezet blog using [Torchlight](https://torchlight.dev), a fast and versatile syntax highlighter supporting over 100 languages and themes.

@@ -4,6 +4,7 @@ date: 2025-01-26
 category: Customization
 excerpt: Learn how to override and extend Prezet's action classes to modify or replace the default functionality.
 image: /prezet/img/ogimages/customize-actions.webp
+author: benbjurstrom
 ---
 
 Prezet uses action classes to handle all of it's internal tasks—such as parsing markdown, fetching images, or updating the search index. These classes live in the `\BenBjurstrom\Prezet\Actions` namespace and are resolved from the Laravel service container. If you'd like to modify or replace one of these actions, you can do so by overriding the underlying class. This guide will walk you through the process of customizing Prezet's actions to fit your needs.
