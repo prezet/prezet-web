@@ -12,10 +12,12 @@ class RssDocument extends DocumentModel implements Feedable
 
     public static function getAllFeedItems()
     {
-        return self::query()
-            ->whereNotLike('slug', '%v0.x%')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        return cache()->remember('rss-feed-items', now()->addHours(1), function () {
+            return self::query()
+                ->whereNotLike('slug', '%v0.x%')
+                ->orderBy('created_at', 'desc')
+                ->get();
+        });
     }
 
     public function toFeedItem(): FeedItem

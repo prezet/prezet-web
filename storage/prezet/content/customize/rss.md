@@ -57,7 +57,6 @@ class RssDocument extends DocumentModel implements Feedable
     public static function getAllFeedItems()
     {
         return self::query()
-            ->whereNotLike('slug', '%v0.x%')
             ->orderBy('created_at', 'desc')
             ->get();
     }
@@ -89,4 +88,4 @@ Let your visitors know that an RSS feed is available by adding an alternate link
 
 ## Conclusion
 
-By following these steps, you've successfully integrated an RSS (Atom) feed into your Prezet blog. Now your visitors and feed readers can subscribe to stay updated with your latest documentation!
+By following these steps, you've successfully integrated an RSS (Atom) feed into your Prezet powered blog. Now your visitors and feed readers can subscribe to stay updated with your latest documentation!
