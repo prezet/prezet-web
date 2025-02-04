@@ -23,6 +23,7 @@
         "league/flysystem-aws-s3-v3": "^3.28",
         "league/flysystem-read-only": "^3.28",
         "mallardduck/blade-lucide-icons": "^1.21",
+        "spatie/laravel-feed": "^4.4",
         "torchlight/torchlight-commonmark": "dev-main"
     },
     "require-dev": {

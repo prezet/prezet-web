@@ -21,6 +21,7 @@
             type="image/svg+xml"
             sizes="any"
         />
+        <link rel="alternate" type="application/atom+xml" title="News" href="/feed">
 
         <!-- Scripts -->
         <!-- Zoomable Plugin (example version) -->
