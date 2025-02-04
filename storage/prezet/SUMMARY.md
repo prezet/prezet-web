@@ -27,3 +27,4 @@
 -   [Controllers](content/customize/controllers)
 -   [Syntax Highlighting](content/customize/syntax-highlighting)
 -   [Action Classes](content/customize/actions)
+-   [RSS Feed](content/customize/rss)
