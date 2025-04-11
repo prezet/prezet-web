@@ -7,49 +7,49 @@ image: /prezet/img/ogimages/installation.jpg
 author: benbjurstrom
 ---
 
-This guide will walk you through the process of installing Prezet, a powerful markdown blogging package for Laravel. Follow these steps to set up your project and start creating SEO-friendly blogs, articles, and documentation.
+This guide will walk you through the process of installing Prezet, a powerful markdown blogging framework for Laravel. Follow these steps to set up your project and start creating SEO-friendly blogs, articles, and documentation.
 
-## Step 1: Install the Prezet Package
+## Step 1: Install the Prezet Framework
 
-You can install the Prezet package using Composer:
+Install the core Prezet framework package using Composer:
 
 ```bash
-composer require benbjurstrom/prezet:1.0.0-rc5
+composer require prezet/prezet:^1.0.0@rc
 ```
 
-## Step 2: Run the Package Installer
+## Step 2: Run the Framework Installer
 
-```html +parse
-<x-prezet::alert
-    type="warning"
-    title="Existing Applications"
-    body="The installation command will overwrite existing vite.config.js and postcss.config.js files. Be sure they're backed up before proceeding."
-/>
-```
-
-
-To run the Prezet installer, execute the following Artisan command:
+Run the Prezet framework installer using the following Artisan command:
 
 ```bash
 php artisan prezet:install
 ```
 
-or if you prefer Tailwind v3
+This command sets up the core Prezet functionality, including configuration and necessary service providers.
+
+## Step 3: Install a Frontend Template
+
+The Prezet framework provides the backend engine. You'll need to install a separate template package to provide the frontend (routes, controllers, views, CSS).
+
+Here's an example using the Official Docs Template ([github.com/prezet/docs-template](https://github.com/prezet/docs-template)):
 
 ```bash
-artisan prezet:install --tailwind3
+# Install the template package
+composer require prezet/docs-template --dev
+
+# Run the template's installer
+php artisan docs-template:install
 ```
 
-This command will:
+```html +parse
+<x-prezet::alert
+    type="warning"
+    title="Existing Configuration Files"
+    body="The template installer might overwrite existing files like vite.config.js and postcss.config.js. Ensure you have backups before proceeding if you have customized these files."
+/>
+```
 
-- Copy the package configuration file to `config/prezet.php`
-- Add the Prezet storage disk to your `config/filesystems.php`
-- Copy content stubs to your project's root directory
-- Publish the vendor blade files
-- Copy Tailwind configuration files
-- Install necessary Node.js dependencies
-
-## Step 3: Start Your Server
+## Step 4: Start Your Server
 
 Once the installation is complete, you can start your Laravel development server:
 
@@ -63,7 +63,7 @@ After starting your server, you can verify the installation by visiting:
 
 You should now see your new markdown blog powered by Prezet!
 
-## Step 4: Generate the SQLite Index
+## Step 5: Generate the SQLite Index
 After installing Prezet and setting up your initial content, it's important to generate the SQLite index. Run the following Artisan command to create and populate the index:
 
 ```bash
