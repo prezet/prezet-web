@@ -14,7 +14,7 @@ This guide will walk you through the process of installing Prezet, a powerful ma
 Install the core Prezet framework package using Composer:
 
 ```bash
-composer require prezet/prezet:^1.0.0@rc
+composer require prezet/prezet
 ```
 
 ## Step 2: Run the Framework Installer
