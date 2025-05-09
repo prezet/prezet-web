@@ -15,7 +15,7 @@ Route::withoutMiddleware([
         StartSession::class,
         ValidateCsrfToken::class,
     ])
-    ->middleware('cache.headers:public;s_maxage=2592000;stale-while-revalidate=604800;proxy-revalidate;immutable')
+    ->middleware('cache.headers:public;s_maxage=2592000;immutable')
     ->group(function () {
         Route::get('prezet/search', SearchController::class)->name('prezet.search');
 
