@@ -8,17 +8,6 @@ image: /prezet/img/ogimages/features-syntax-highlighting.webp
 
 Starting with Prezet v1.1, syntax highlighting is provided out of the box using [phikiphp/phiki](https://github.com/phikiphp/phiki), a modern PHP-based syntax highlighter that's fully integrated with the CommonMark ecosystem. This guide explains how to configure and use this feature to make your code blocks visually appealing and readable.
 
-```html +parse
-<x-prezet::alert
-    type="info"
-    body="Previous versions of our documentation recommended using Torchlight for syntax highlighting. However, due to compatibility issues with newer Laravel versions we now recommend using the built-in Phiki highlighter."
-    :link="[
-      'url'=>'https://torchlight.dev/',
-      'text'=>'torchlight.dev'
-    ]"
-/>
-```
-
 ## How It Works
 
 Phiki is automatically included and configured in Prezet v1.1+. When you write code blocks in your markdown files using triple backticks (```), Phiki will apply syntax highlighting based on the language you specify.
@@ -75,6 +64,8 @@ You can customize Phiki's behavior through the `phiki` key in the `config` secti
 - **`with_gutter`**: When set to `true`, line numbers will be displayed alongside your code.
 - **`with_wrapper`**: When set to `true`, wraps the code block in a container with additional styling.
 
+You can read more about each configuration option here: [github.com/phikiphp/phiki](https://github.com/phikiphp/phiki?tab=readme-ov-file#commonmark-integration)
+
 ## Available Themes
 
 Phiki provides several built-in themes that you can use for your code blocks. To change the theme, update the `theme` option in your `config/prezet.php` file:
@@ -86,15 +77,4 @@ Phiki provides several built-in themes that you can use for your code blocks. To
 ],
 ```
 
-Available themes include:
-
-- `\Phiki\Theme\Theme::NightOwl` (default)
-- `\Phiki\Theme\Theme::GitHub`
-- `\Phiki\Theme\Theme::Dracula`
-- `\Phiki\Theme\Theme::OneDark`
-- `\Phiki\Theme\Theme::OneLight`
-- `\Phiki\Theme\Theme::SolarizedDark`
-- `\Phiki\Theme\Theme::SolarizedLight`
-- `\Phiki\Theme\Theme::TokyoNight`
-- `\Phiki\Theme\Theme::TokyoNightLight`
-- `\Phiki\Theme\Theme::VSCode`
+You can find a list of available themes here: [github.com/phikiphp/../Theme.php](https://github.com/phikiphp/phiki/blob/1.x/src/Theme/Theme.php)
