@@ -10,9 +10,9 @@ Starting with Prezet v1.1, syntax highlighting is provided out of the box using 
 
 ## How It Works
 
-Phiki is automatically included and configured in Prezet v1.1+. When you write code blocks in your markdown files using triple backticks (```), Phiki will apply syntax highlighting based on the language you specify.
+Phiki is automatically included and configured in Prezet v1.1+. When you write code blocks in your markdown files Phiki will apply syntax highlighting based on the language you specify. This happens when the markdown file is parsed and rendered into HTML.
 
-For example, here's a PHP code block:
+For example, here's a PHP code block rendered with Phiki using MaterialTheme:
 
 ```php
 public function handle(): int

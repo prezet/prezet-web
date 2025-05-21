@@ -50,9 +50,9 @@ return [
             League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension::class,
             League\CommonMark\Extension\ExternalLink\ExternalLinkExtension::class,
             League\CommonMark\Extension\FrontMatter\FrontMatterExtension::class,
-            BenBjurstrom\Prezet\Extensions\MarkdownBladeExtension::class,
-            BenBjurstrom\Prezet\Extensions\MarkdownImageExtension::class,
-            Torchlight\Commonmark\V2\TorchlightExtension::class,
+            Prezet\Prezet\Extensions\MarkdownBladeExtension::class,
+            Prezet\Prezet\Extensions\MarkdownImageExtension::class,
+            Phiki\CommonMark\PhikiExtension::class,
         ],
 
         'config' => [
@@ -77,6 +77,11 @@ return [
                 'noopener' => 'external',
                 'noreferrer' => 'external',
             ],
+            'phiki' => [
+                'theme' => \Phiki\Theme\Theme::MaterialTheme,
+                'with_gutter' => false,
+                'with_wrapper' => true
+            ]
         ],
     ],
 

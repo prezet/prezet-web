@@ -2,8 +2,8 @@
 
 namespace App\Actions;
 
-use BenBjurstrom\Prezet\Actions\UpdateIndex;
-use BenBjurstrom\Prezet\Models\Document;
+use Prezet\Prezet\Actions\UpdateIndex;
+use Prezet\Prezet\Models\Document;
 
 class CustomUpdateIndex extends UpdateIndex
 {

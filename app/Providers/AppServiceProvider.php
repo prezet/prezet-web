@@ -5,9 +5,9 @@ namespace App\Providers;
 use App\Actions\CustomGetSummary;
 use App\Actions\CustomUpdateIndex;
 use App\Data\CustomFrontmatterData;
-use BenBjurstrom\Prezet\Actions\GetSummary;
-use BenBjurstrom\Prezet\Actions\UpdateIndex;
-use BenBjurstrom\Prezet\Data\FrontmatterData;
+use Prezet\Prezet\Actions\GetSummary;
+use Prezet\Prezet\Actions\UpdateIndex;
+use Prezet\Prezet\Data\FrontmatterData;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

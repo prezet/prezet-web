@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\ImageController;
-use BenBjurstrom\Prezet\Http\Controllers\IndexController;
-use BenBjurstrom\Prezet\Http\Controllers\OgimageController;
-use BenBjurstrom\Prezet\Http\Controllers\SearchController;
-use BenBjurstrom\Prezet\Http\Controllers\ShowController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\OgimageController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ShowController;
 use Illuminate\Foundation\Http\Middleware\ValidateCsrfToken;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;

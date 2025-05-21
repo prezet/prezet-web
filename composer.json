@@ -16,15 +16,13 @@
     ],
     "require": {
         "php": "^8.2",
-        "archtechx/laravel-seo": "dev-with-url-origin as v0.10.1",
-        "benbjurstrom/prezet": "1.0.0-rc4",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
         "league/flysystem-aws-s3-v3": "^3.28",
         "league/flysystem-read-only": "^3.28",
         "mallardduck/blade-lucide-icons": "^1.21",
-        "spatie/laravel-feed": "^4.4",
-        "torchlight/torchlight-commonmark": "dev-main"
+        "prezet/prezet": "^1.1",
+        "spatie/laravel-feed": "^4.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

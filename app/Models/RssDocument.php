@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use BenBjurstrom\Prezet\Models\Document as DocumentModel;
+use Prezet\Prezet\Models\Document as DocumentModel;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 

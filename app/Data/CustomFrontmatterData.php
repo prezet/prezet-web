@@ -2,7 +2,7 @@
 
 namespace App\Data;
 
-use BenBjurstrom\Prezet\Data\FrontmatterData;
+use Prezet\Prezet\Data\FrontmatterData;
 use WendellAdriel\ValidatedDTO\Attributes\Rules;
 
 class CustomFrontmatterData extends FrontmatterData

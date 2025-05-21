@@ -2,7 +2,7 @@
 
 namespace App\Actions;
 
-use BenBjurstrom\Prezet\Actions\GetSummary;
+use Prezet\Prezet\Actions\GetSummary;
 use Illuminate\Support\Collection;
 
 class CustomGetSummary extends GetSummary
