@@ -3,7 +3,7 @@ title: Syntax Highlighting with Phiki
 date: 2025-05-21
 category: Customization
 excerpt: Learn how to enhance your Prezet blog with syntax highlighting using Phiki, a powerful and easy-to-use solution built into Prezet 1.1+.
-image: /prezet/img/ogimages/customize-syntax-highlighting.webp
+image: /prezet/img/ogimages/features-syntax-highlighting.webp
 ---
 
 Starting with Prezet v1.1, syntax highlighting is provided out of the box using [phikiphp/phiki](https://github.com/phikiphp/phiki), a modern PHP-based syntax highlighter that's fully integrated with the CommonMark ecosystem. This guide explains how to configure and use this feature to make your code blocks visually appealing and readable.
