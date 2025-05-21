@@ -2,6 +2,7 @@
     'type' => 'info',
     'title' => null,
     'body',
+    'link' => null
 ])
 
 @php
@@ -45,6 +46,17 @@
             <div class="text-{{ $color }}-700 text-sm">
                 <p>{{ $body }}</p>
             </div>
+
+            @if ($link)
+                <div class="text-end">
+                    <a href="{{ $link['url'] }}" class="text-blue-700 hover:text-blue-800 text-xs font-medium mt-1 external-link"
+                       rel="noopener noreferrer"
+                       target="_blank"
+                    >
+                        {{ $link['text'] }}
+                    </a>
+                </div>
+            @endif
         </div>
     </div>
 </div>

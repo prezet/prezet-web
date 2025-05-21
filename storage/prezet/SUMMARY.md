@@ -18,6 +18,7 @@
 -  [JSON-LD](content/features/jsonld)
 -  [Ogimage Generation](content/features/ogimage)
 -  [Sitemap Generation](content/features/sitemap)
+-  [Syntax Highlighting](content/features/syntax-highlighting)
 
 ## 🎨 Customize
 
@@ -25,6 +26,5 @@
 -   [Front Matter](content/customize/frontmatter)
 -   [Blade Views](content/customize/blade-views)
 -   [Controllers](content/customize/controllers)
--   [Syntax Highlighting](content/customize/syntax-highlighting)
 -   [Action Classes](content/customize/actions)
 -   [RSS Feed](content/customize/rss)
