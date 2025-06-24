@@ -31,14 +31,16 @@ This command sets up the core Prezet functionality, including configuration and 
 
 The Prezet framework provides the backend engine. You'll need to install a separate template package to provide the frontend (routes, controllers, views, CSS).
 
-Here's an example using the Official Docs Template ([github.com/prezet/docs-template](https://github.com/prezet/docs-template)):
+Check out our official template packages:*
+- [prezet/docs-template](https://github.com/prezet/docs-template)
+- [prezet/blog-template](https://github.com/prezet/blog-template)
 
 ```bash
 # Install the template package
-composer require prezet/docs-template --dev
+composer require prezet/blog-template --dev
 
 # Run the template's installer
-php artisan docs-template:install
+php artisan blog-template:install
 ```
 
 ```html +parse
