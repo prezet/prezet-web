@@ -1,56 +1,54 @@
 ---
-title: Optimize Your Laravel Blog with Cloudflare Cache
-excerpt: Learn how to use Cloudflare to cache your Prezet-generated HTML pages for improved performance.
+title: Caching with Cloudflare
+excerpt: Learn how to use Cloudflare to cache your Prezet content for improved performance.
 date: 2024-07-01
 category: Deployment
 image: /prezet/img/ogimages/deployment-cloudflare.webp
 author: benbjurstrom
 ---
 
-Prezet integrates seamlessly with services like Cloudflare to provide powerful caching capabilities, allowing you to achieve static-site-like performance with the flexibility of a dynamic Laravel application. This guide will walk you through setting up and optimizing Cloudflare caching for your Prezet-powered site.
+Prezet works seamlessly with Cloudflare to provide powerful caching capabilities, allowing you to achieve static-site-like performance while maintaining the flexibility of a dynamic Laravel application.
 
-## Client-Side Caching Issues
+## Why Edge-Only Caching
 
-Previously, we recommended adding cache control middleware to your routes to signal to Cloudflare which routes in your application should be cached. 
+We rely on Cloudflare's Edge TTL instead of cache control headers to avoid client-side caching issues. When browsers cache pages, they might reference CSS or JavaScript files that no longer exist after deployment. Since there's no way to invalidate browser caches on demand, this can break your site until the cache expires.
 
-However, this approach enables client-side caching which can lead to unexpected issues. For example, a page that's cached in the user's browser might reference a css file that no longer exists. Since there's no way to invalidate the browser's cache on demand the only option would be to change the page's url or wait until the cache expires.
+By using Edge TTL only, you maintain total control over cache invalidation through Cloudflare's API.
 
-To prevent this, we'll forgo the cache control middleware and rely on Cloudflare's Edge TTL only, giving us total control over cache invalidation.
+## Setup
 
-## Setting Up Cloudflare for Caching
+Configure Cloudflare to cache your content:
 
-To configure Cloudflare to cache your Prezet site's content:
+1. Log into your Cloudflare dashboard and select your domain
+2. Navigate to "Caching" > "Cache Rules" and click "Create cache rule"
+3. Configure the rule:
 
-1. Log into your Cloudflare dashboard and select your domain.
-2. Navigate to "Caching" > "Cache Rules" and click "Create cache rule".
-3. Configure the rule with these settings:
-    - **Rule name:** 
-      - "Cache Prezet Content"
-    - **When incoming requests match…**
-      - Choose either "All incoming requests" if your entire site is semi-static or "Custom filter expression" if you're serving dynamic content alongside Prezet. If you choose the latter, you can specify a path or URL pattern to match the Prezet content.
-    - **Cache eligibility:**
-      - "Eligible for cache"
-    - **Edge TTL:**
-      - "Ignore cache-control header and use this TTL". Feel free to set the TTL to a longer duration since you can always manually purge the cache when needed.
-4. Click "Save" to activate the rule.
+**Rule name:** Cache Prezet Content
 
-With these settings, Cloudflare will cache your Prezet content for the specified duration. You can always purge the cache manually from the Cloudflare dashboard or use the built-in Prezet command to invalidate the cache when you make updates.
+**When incoming requests match:**
+- "All incoming requests" if your entire site is static
+- "Custom filter expression" if serving dynamic content alongside Prezet
 
-## Purging the Cache
+**Cache eligibility:** Eligible for cache
 
-When you deploy new content or make significant changes to your site, you'll want to purge the Cloudflare cache to ensure visitors can see the latest version. Prezet provides a built-in command for this purpose. You can integrate this into your deployment process to ensure the cache is purged whenever you push new content.
+**Edge TTL:** Ignore cache-control header and use this TTL
+- Set a longer duration (you can purge anytime)
 
-Note that you can also manually purge the cache through the Cloudflare dashboard.
+4. Click "Save" to activate the rule
 
-### Prezet Purge Command
+You can purge the cache manually from the Cloudflare dashboard or use the built-in Prezet command.
+
+## Cache Purging
+
+Prezet provides a command to purge your Cloudflare cache when deploying new content:
 
 ```bash
 php artisan prezet:purge
 ```
 
-This command will clear your entire Cloudflare cache for the specified zone. To use it, follow these steps:
+### Configuration
 
-1. Add the following to your `config/services.php` file:
+Add to `config/services.php`:
 
 ```php
 'cloudflare' => [
@@ -59,45 +57,40 @@ This command will clear your entire Cloudflare cache for the specified zone. To 
 ],
 ```
 
-2. Add these environment variables to your `.env` file:
+Add to `.env`:
 
 ```bash
 CLOUDFLARE_TOKEN=your_cloudflare_api_token
 CLOUDFLARE_ZONE_ID=your_cloudflare_zone_id
 ```
 
-Note: The `CLOUDFLARE_ZONE_ID` is an MD5 hash, not your domain name. You can find it in the Cloudflare dashboard.
+The `CLOUDFLARE_ZONE_ID` is an MD5 hash found in the Cloudflare dashboard, not your domain name.
 
+### Creating an API Token
 
-### Creating a Cloudflare API Token
+1. Log into your Cloudflare dashboard
+2. Go to "My Profile" > "API Tokens"
+3. Click "Create Token"
+4. Click "Get Started" next to Custom Token
+5. Configure:
+   - **Token name:** Purge cache for [your domain]
+   - **Permissions:** Zone - Cache Purge - Purge
+   - **Zone Resources:** Include - Specific zone - [Your domain]
+6. Complete creation and copy the token
 
-To use the Prezet purge command, you need to create a Cloudflare API token with the correct permissions. Here's how:
+Use this token as `CLOUDFLARE_TOKEN` in your `.env` file.
 
-1. Log into your Cloudflare dashboard.
-2. Go to "My Profile" > "API Tokens".
-3. Click "Create Token".
-4. Click the Get Started located next to Custom Token
-5. Use the following settings:
-    - Token name: "Purge cache for (your domain name)"
-    - Permissions:
-        - Zone - Cache Purge - Purge
-    - Zone Resources:
-        - Include - Specific zone - Your domain
-6. Complete the token creation process and copy the generated token.
+## Automated Purging
 
-This token should be used as the `CLOUDFLARE_TOKEN` in your `.env` file.
+Integrate `prezet:purge` into your deployment process to automatically clear the cache when deploying new content.
 
-### Automated Purging
-With the `prezet:purge` command configured you can automate cache purging by integrating the command into your deployment process. This ensures the cache is purged whenever you push new content. 
+### GitHub Actions
 
-Alternatively, if you're using GitHub actions you can make use of this pre-made action to achieve the same result [jakejarvis/cloudflare-purge-action](https://github.com/jakejarvis/cloudflare-purge-action). 
+If using GitHub Actions, you can use [jakejarvis/cloudflare-purge-action](https://github.com/jakejarvis/cloudflare-purge-action). This documentation site uses that action in its deployment pipeline - see our [GitHub workflow](https://github.com/prezet/prezet-web/blob/main/.github/workflows/main.yml#L57).
 
-We're using that action as part of the deployment pipeline for this documentation. You can check out our full GitHub action: [here](https://github.com/prezet/prezet-web/blob/main/.github/workflows/main.yml#L57). 
+## Credits
 
-To learn more about deploying Prezet powered sites check out our [deployment guide](/deployment/bref).
-
-## Attribution
-The idea for this feature came from the video below by Aaron Francis. Be sure to check out that video for more information on how to use Cloudflare to serve static content with Laravel.
+This feature was inspired by Aaron Francis's video on serving static content with Laravel:
 
 ```html +parse
 <x-prezet::youtube videoid="QiocnnlcXIU" title="SSG is dead. Long live cache." date="2023-11-08T12:00:00+08:00">

@@ -5,6 +5,7 @@ excerpt: This post is still in draft mode
 draft: true
 image: /prezet/img/ogimages/draft.webp
 author: benbjurstrom
+legacy: true
 ---
 
 ## This post is still in draft mode

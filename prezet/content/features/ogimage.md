@@ -1,5 +1,5 @@
 ---
-title: Automating OG Images with Prezet
+title: Open Graph Image Generation
 date: 2024-05-07
 category: Features
 excerpt: Prezet automates the creation of Open Graph images for your blog posts.
@@ -7,9 +7,7 @@ image: /prezet/img/ogimages/features-ogimage.webp
 author: benbjurstrom
 ---
 
-Open Graph (OG) images are visual previews of your web pages that appear when content is shared on social media platforms. These images can significantly boost engagement and click-through rates.
-
-Here's how this page appears when posted on Threads:
+Open Graph images are visual previews that appear when your content is shared on social media platforms. Here's how this page appears when shared on Threads:
 
 ```html +parse
 <x-prezet::threads
@@ -18,82 +16,92 @@ Here's how this page appears when posted on Threads:
 />
 ```
 
-## Adding OG Images Manually
+## Manual Configuration
 
-You can easily specify an OG image for any blog post by adding the `image` key to your frontmatter:
+Specify an OG image for any post by adding the `image` field to your frontmatter:
 
 ```yaml
 ---
 title: My Amazing Blog Post
 date: 2024-05-07
 category: Blog
-excerpt: 'This is an excerpt of my amazing blog post.'
-image: '/prezet/img/ogimages/custom-ogimage.png'
+excerpt: This is an excerpt of my amazing blog post.
+image: /prezet/img/ogimages/custom-ogimage.png
 ---
 ```
 
-The `image` field should contain the URL path to your image. For more details on using frontmatter in Prezet refer to the [frontmatter documentation](/features/frontmatter).
+The `image` field should contain the URL path to your image.
 
-## Automatic OG Image Generation
+## Automatic Generation
 
-While manually specifying ogimages gives you full control, Prezet's automatic OG image generation saves time and ensures consistency across your blog.
+Prezet can automatically generate OG images for your posts, saving time and ensuring visual consistency. For installation requirements, see the [Browsershot documentation](https://spatie.be/docs/browsershot/v4/requirements).
 
 ```html +parse
 <x-prezet::alert
     type="info"
     title="Puppeteer Requirement"
-    body="OG image generation relies on the Spatie Browsershot package which in turn requires the Puppeteer Node library."
+    body="OG image generation uses Spatie Browsershot, which requires the Puppeteer Node library. See the Browsershot documentation for installation details."
 />
 ```
 
-For more information about the requirements refer to the [Browsershot documentation](https://spatie.be/docs/browsershot/v4/requirements).
+### Using the Command
 
-### The OgimageCommand
+Generate OG images using the `prezet:ogimage` artisan command:
 
-Prezet provides an artisan command to generate OG images for your blog posts. You can use it in two ways:
+**For a specific file:**
+```bash
+php artisan prezet:ogimage
+```
 
-1. For a specific markdown file:
-   ```
-   php artisan prezet:ogimage
-   ```
-   This will prompts you to enter the name of the markdown file.
+This prompts you to enter the markdown filename.
 
-2. For all markdown files:
-   ```
-   php artisan prezet:ogimage --all
-   ```
-   This generates OG images for all markdown files in your `content` directory.
+**For all files:**
+```bash
+php artisan prezet:ogimage --all
+```
 
-Regardless of the method you choose, the command automatically updates the frontmatter of your markdown files with the URL of the generated OG image.
+This generates OG images for all markdown files in your content directory.
+
+The command automatically updates your frontmatter with the generated image URL.
 
 ```html +parse
 <x-prezet::alert
-    type="warning"
-    title="Troubleshooting Tip"
-    body="If you're generating OG Images in a local environment, make sure to set the `APP_URL` in your `.env` file to your local development URL."
+    type="info"
+    title="Local Development"
+    body="When generating OG images locally, set APP_URL in your .env file to your local development URL."
 />
 ```
 
-## Customizing the OG Image Template
+## Customization
 
-Prezet allows you to customize the appearance of your OG images by simply editing a package provided Blade template.
+You can customize the appearance of your OG images by editing the template blade file published during installation.
 
 ### Preview the Template
-You can preview the template by navigating to the ogimage route in your browser. The route follows this pattern:
 
-   ```
-   /prezet/ogimage/{slug}
-   ```
+Preview the OG image template by navigating to:
 
-   Replace `{slug}` with the slug of your markdown file. For example here's a link to the ogimage template for this post: ['/prezet/ogimage/features/ogimage'](/prezet/ogimage/features/ogimage).
+```
+/prezet/ogimage/{slug}
+```
+
+Replace `{slug}` with your markdown file's slug. For example, here's the template for this page: [/prezet/ogimage/features/ogimage](/prezet/ogimage/features/ogimage).
 
 ### Modify the Template
-The ogimage template was added to your application as part of the installation process. The blade file is located in `resources/views/vendor/prezet/ogimage.blade.php`.
 
-   You can modify this template to change colors, fonts, layout, or add additional elements like logos or images.
+The OG image template is published to `resources/views/vendor/prezet/ogimage.blade.php` when you install a Prezet template. You can modify this file to change:
 
-4. **Adding More Data**: If you want to include more data from your markdown file in the ogimage, you can modify the `OgimageController` to pass additional variables to the view, and then use these variables in your `ogimage.blade.php` template.
+- Colors and fonts
+- Layout and spacing
+- Logos or background images
+- Any visual elements
 
-Remember, the ogimage should be visually appealing and representative of your content while being readable at small sizes.
+### Adding Custom Data
 
-For more information about customizing Prezet's views, including the ogimage template, please refer to the documentation at `/customize/blade-views`.
+To include additional frontmatter fields in your OG image:
+
+1. Modify the `OgimageController` to pass additional variables to the view
+2. Use these variables in your `ogimage.blade.php` template
+
+OG images should be visually appealing and representative of your content while remaining readable at small sizes.
+
+For more details, see the [Custom Templates](/customize/templates) guide.

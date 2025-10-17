@@ -29,7 +29,7 @@
             class="relative flex flex-col h-full w-full justify-between bg-stone-900 p-16"
         >
             <div></div>
-            <h1 class="font-bold inline bg-gradient-to-r from-orange-400 via-orange-500 to-red-600 bg-clip-text text-8xl tracking-tight text-transparent py-4 px-12">
+            <h1 class="font-bold inline bg-linear-to-r from-orange-400 via-orange-500 to-red-600 bg-clip-text text-8xl tracking-tight text-transparent py-4 px-12">
                 {{ $fm->title }}
             </h1>
 {{--            <div class="h-36 w-36">--}}

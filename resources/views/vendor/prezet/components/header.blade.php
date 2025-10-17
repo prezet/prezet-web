@@ -5,7 +5,7 @@
             'bg-white' => route('prezet.index') !== url()->current(),
         ])
 >
-    <div class="relative flex flex-grow basis-0 items-center">
+    <div class="relative flex grow basis-0 items-center">
         @if(route('prezet.index') !== url()->current())
         <button
             aria-label="Menu"
@@ -51,7 +51,7 @@
         </a>
     </div>
     <div
-        class="relative flex basis-0 items-center justify-end gap-3 sm:gap-8 md:flex-grow lg:gap-6"
+        class="relative flex basis-0 items-center justify-end gap-3 sm:gap-8 md:grow lg:gap-6"
     >
         @if(!request()->route()->named('prezet.index'))
             <x-version-select />

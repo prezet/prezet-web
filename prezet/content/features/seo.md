@@ -9,23 +9,13 @@ author: benbjurstrom
 
 Prezet comes with built-in Search Engine Optimization (SEO) features, automatically generating meta tags for your pages based on the front matter of your markdown files. This ensures that your content is well-optimized for search engines and social media platforms right from the start.
 
-## SEO meta tags
+## How It Works
 
-Prezet uses the front matter of your markdown files as the source for key SEO elements. The following front matter fields are used to generate SEO meta tags:
+Prezet includes a built-in SEO service that generates comprehensive meta tags from your markdown frontmatter. When you install a Prezet template, the published views automatically configure SEO tags for each page.
 
-1. `title`: Used for the page title and og:title tags
-2. `excerpt`: Used for the meta description and og:description tags
-3. `image`: Used for the og:image tag
-
-For more information on how Prezet uses front matter, please refer to the [Front Matter](frontmatter) documentation.
-
-## How it works
-
-Under the hood, Prezet uses the [archtechx/laravel-seo](https://github.com/archtechx/laravel-seo) package to generate and manage SEO tags. When rendering your markdown articles, the front matter data is passed to the SEO package at the top of the `show.blade.php` file. This template is published to your project, giving you the flexibility to customize the SEO tags as needed:
+The template's `show.blade.php` view sets SEO values using frontmatter data:
 
 ```php
-// resources/views/vendor/prezet/show.blade.php
-
 @seo([
     'title' => $frontmatter->title,
     'description' => $frontmatter->excerpt,
@@ -34,25 +24,64 @@ Under the hood, Prezet uses the [archtechx/laravel-seo](https://github.com/archt
 ])
 ```
 
-For advanced customization, you can create your own FrontmatterData class to include additional article-specific information. See the [Customizing Front Matter](/customize/frontmatter) guide for more infomration. Data added to your custom class can then be easily passed to the SEO package via the blade template.
+The template then includes a meta component that renders all the SEO tags:
+
+```blade
+<x-prezet::meta />
+```
+
+This component generates:
+- Standard meta tags (title, description, keywords)
+- Open Graph tags for social media sharing
+- Twitter Card tags
+- Canonical URL links
+
+## Frontmatter Fields
+
+The following frontmatter fields are used to generate SEO meta tags:
+
+- `title`: Page title and og:title tags
+- `excerpt`: Meta description and og:description tags
+- `image`: og:image and Twitter card image tags
+
+For more information on frontmatter, see the [Front Matter](/features/frontmatter) documentation.
+
+## Customization
+
+You can customize SEO tags by modifying the published template views in your project. The `show.blade.php` template is published when you install a Prezet template, giving you full control over which frontmatter fields are used for SEO.
+
+For advanced customization, you can create your own FrontmatterData class to include additional fields. See the [Customizing Front Matter](/customize/frontmatter) guide for details. Any data added to your custom class can be passed to the SEO service via the blade template.
+
+You can also add custom meta tags or modify existing ones by using the SEO service methods:
+
+```php
+@seo([
+    'title' => $frontmatter->title,
+    'description' => $frontmatter->excerpt,
+    'url' => route('prezet.show', ['slug' => $frontmatter->slug]),
+    'image' => $frontmatter->image,
+    'keywords' => 'laravel, markdown, blog',
+    'twitter.creator' => '@yourhandle',
+])
+```
 
 ## Open Graph Images
 
-An Open Graph (OG) image is a visual representation of a webpage that appears when the page is shared on social media platforms or messaging apps. It helps enhance the visibility and engagement of shared links.
+Open Graph images appear when your pages are shared on social media platforms or messaging apps, enhancing visibility and engagement.
 
-Prezet comes with a command to automatically generate an ogimage for your posts. For more information on how to create and customize Open Graph images for your Prezet site, please refer to the [Ogimage Generation](ogimage) documentation.
+Prezet includes a command to automatically generate OG images for your posts. See the [OG Image Generation](/features/ogimage) documentation for details.
 
 ## SEO Metadata Preview
 
-To help you visualize the SEO metadata for your pages, Prezet includes a blade component that uses JavaScript to preview the title, description, and og:image tags of the current page, allowing you to easily verify that the correct information is being displayed.
+Prezet includes a blade component that uses JavaScript to preview the title, description, and og:image tags of the current page, helping you verify that the correct information is being displayed.
 
-You can use this component in your templates as follows:
+You can use this component in your templates:
 
     ```html +parse
     <x-prezet::meta></x-prezet::meta>
     ```
 
-Here's what it looks like rendered on this page:
+Here's what it looks like on this page:
 
 ```html +parse
 <x-prezet::meta></x-prezet::meta>

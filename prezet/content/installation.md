@@ -1,15 +1,17 @@
 ---
 title: Prezet Installation Guide
 excerpt: Learn how to install and set up Prezet, a powerful markdown blogging package for Laravel.
-date: 2024-06-28
+date: 2025-10-17
 category: Getting Started
 image: /prezet/img/ogimages/installation.jpg
 author: benbjurstrom
 ---
 
-This guide will walk you through the process of installing Prezet, a powerful markdown blogging framework for Laravel. Follow these steps to set up your project and start creating SEO-friendly blogs, articles, and documentation.
+This guide will walk you through the process of installing Prezet, a powerful markdown blogging framework for Laravel.
 
-## Step 1: Install the Prezet Framework
+## Installation Steps
+
+### 1: Install the Prezet Framework
 
 Install the core Prezet framework package using Composer:
 
@@ -17,7 +19,7 @@ Install the core Prezet framework package using Composer:
 composer require prezet/prezet
 ```
 
-## Step 2: Run the Framework Installer
+### 2: Run the Framework Installer
 
 Run the Prezet framework installer using the following Artisan command:
 
@@ -25,13 +27,25 @@ Run the Prezet framework installer using the following Artisan command:
 php artisan prezet:install
 ```
 
-This command sets up the core Prezet functionality, including configuration and necessary service providers.
+This command sets up the core Prezet functionality by:
 
-## Step 3: Install a Frontend Template
+1. Adding the `prezet` SQLite database connection to `config/database.php`
+2. Creating the `prezet` storage disk in `config/filesystems.php`
+3. Publishing the Prezet configuration file
+4. Building the initial search index from your markdown content
 
-The Prezet framework provides the backend engine. You'll need to install a separate template package to provide the frontend (routes, controllers, views, CSS).
+```html +parse
+<x-prezet::alert
+    type="info"
+    body="Note that the installer will not proceed if your git directory is not clean. Use `prezet:install --force` to bypass this restriciton."
+/>
+```
 
-Check out our official template packages:*
+### 3: Install a Frontend Template
+
+The Prezet framework provides the backend engine. You'll need to install a separate template package to provide the frontend (routes, controllers, views, CSS). These templates also provide some sample content to work with while setting things up.
+
+Check out our official template packages:
 - [prezet/docs-template](https://github.com/prezet/docs-template)
 - [prezet/blog-template](https://github.com/prezet/blog-template)
 
@@ -51,7 +65,7 @@ php artisan blog-template:install
 />
 ```
 
-## Step 4: Start Your Server
+### 4: Start Your Server
 
 Once the installation is complete, you can start your Laravel development server:
 
@@ -65,22 +79,25 @@ After starting your server, you can verify the installation by visiting:
 
 You should now see your new markdown blog powered by Prezet!
 
-## Step 5: Generate the SQLite Index
-After installing Prezet and setting up your initial content, it's important to generate the SQLite index. Run the following Artisan command to create and populate the index:
+## Refreshing the SQLite Index
+After installing Prezet and setting up your initial content, it's important to refresh the SQLite index by running the following command:
 
 ```bash
 php artisan prezet:index --fresh
 ```
 
-For more information about the SQLite index and its purposes, refer to the [Prezet SQLite Index](/index) documentation.
+For more information about the SQLite index see the [Prezet Index](/index) documentation.
 
 ## Next Steps
 
-With Prezet installed, you're ready to start creating content and customizing your blog. Check out the other documentation pages to learn more about:
+Now that Prezet is installed, explore these topics:
 
-- [Writing markdown content](features/markdown)
-- [Using Blade components in your markdown](features/blade)
-- [Optimizing images](features/images)
-- [Customizing routes](customize/routes), [front matter](customize/frontmatter), and more
+**Content Creation:**
+- [Markdown Features](/features/markdown) - Writing and formatting content
+- [Blade Components](/features/blade) - Using Laravel components in markdown
+- [Image Optimization](/features/images) - Responsive image handling
 
-Hope you enjoy blogging with Prezet!
+**Customization:**
+- [Configuration](/configuration) - Adjust Prezet's behavior
+- [Routes](/customize/routes) - Define custom URL patterns
+- [Front Matter](/customize/frontmatter) - Add custom metadata fields

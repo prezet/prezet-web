@@ -1,19 +1,23 @@
 ---
-title: Understanding Prezet's Configuration File
-excerpt: Learn how to install and customize the configuration file that powers Prezet's markdown blogging capabilities.
-date: 2024-06-27
+title: Prezet Configuration File
+excerpt: Learn how to customize the Prezet configuration file to control markdown parsing, slug generation, image optimization, and more.
+date: 2025-10-17
 category: Getting Started
 image: /prezet/img/ogimages/configuration.webp
 author: benbjurstrom
 ---
 
-The configuration file is published as part of the package's installation command, but you can manually publish or re-publish it at any time by running:
+Prezet's configuration file controls how your markdown content is parsed, displayed, and optimized. This guide walks you through each configuration section and shows you how to customize Prezet to fit your needs.
+
+## Publishing the Config File
+
+The configuration file is published automatically during installation, but you can manually publish it instead by running:
 
 ```bash
-php artisan vendor:publish --provider="BenBjurstrom\Prezet\PrezetServiceProvider" --tag=prezet-config
+php artisan vendor:publish --provider="Prezet\Prezet\PrezetServiceProvider" --tag=prezet-config
 ```
 
-After installation or re-publication, the `config/prezet.php` file will look like this:
+This creates `config/prezet.php` in your project with the following structure:
 
 ```php
 <?php
@@ -68,8 +72,9 @@ return [
             League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension::class,
             League\CommonMark\Extension\ExternalLink\ExternalLinkExtension::class,
             League\CommonMark\Extension\FrontMatter\FrontMatterExtension::class,
-            BenBjurstrom\Prezet\Extensions\MarkdownBladeExtension::class,
-            BenBjurstrom\Prezet\Extensions\MarkdownImageExtension::class,
+            Prezet\Prezet\Extensions\MarkdownBladeExtension::class,
+            Prezet\Prezet\Extensions\MarkdownImageExtension::class,
+            Phiki\CommonMark\PhikiExtension::class,
         ],
 
         'config' => [
@@ -94,6 +99,11 @@ return [
                 'noopener' => 'external',
                 'noreferrer' => 'external',
             ],
+            'phiki' => [
+                'theme' => \Phiki\Theme\Theme::NightOwl,
+                'with_wrapper' => false,
+                'with_gutter' => true,
+            ],
         ],
     ],
 
@@ -103,9 +113,10 @@ return [
     |--------------------------------------------------------------------------
     |
     | Configure how image tags are handled when converting from markdown.
-    | 'widths' defines the various widths for responsive images,
-    | while 'sizes' indicates the sizes attribute.
-    | Set 'zoomable' to true to enable Alpine-driven zoom on click.
+    |
+    | 'widths' defines the various widths for responsive images.
+    | 'sizes' indicates the sizes attribute for responsive images.
+    | 'zoomable' determines if images are zoomable.
     */
 
     'image' => [
@@ -123,26 +134,14 @@ return [
     |--------------------------------------------------------------------------
     | Sitemap
     |--------------------------------------------------------------------------
-    | The sitemap origin is used to generate absolute URLs in your sitemap.
+    | The sitemap origin is used to generate absolute URLs for the sitemap.
     | An origin consists of a scheme/host/port combination, but no path.
-    | (e.g., https://example.com:8000)
-    |
+    | (e.g., https://example.com:8000) https://www.rfc-editor.org/rfc/rfc6454
     */
 
     'sitemap' => [
         'origin' => env('PREZET_SITEMAP_ORIGIN', env('APP_URL')),
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Metadata
-    |--------------------------------------------------------------------------
-    |
-    | Prezet uses these values for JSON-LD structured data. 'authors' defines
-    | named authors you can reference in front matter, and 'publisher' is used
-    | as the default publisher for all content.
-    |
-    */
 
     /*
     |--------------------------------------------------------------------------
@@ -176,76 +175,66 @@ return [
 ];
 ```
 
-## Filesystem Configuration
+## Configuration Sections
 
-By default, Prezet uses the `'prezet'` disk for reading and storing markdown files. You can change this by updating the `PREZET_FILESYSTEM_DISK` environment variable or directly editing the `filesystem` array above.
+### Filesystem
 
-## Slug Configuration
+By default, Prezet uses the `prezet` disk for locating markdown files and images. You can change this by editing the `filesystem.disk` value in the config file
 
-The `'slug'` array controls how document URLs are generated:
+Note that the disk configuration itself lives in `config/filesystems.php`, where you can specify whether to use local storage, S3, or another driver.
 
-- **`source`**: Determines how the base slug is generated
-  - `'filepath'`: Uses the markdown file's path (default)
-  - `'title'`: Uses the document's title from front matter
-- **`keyed`**: When `true`, appends the front matter `key` to the slug (e.g., `my-post-123`)
+### Slug Generation
 
-Note that a `slug` defined in front matter will always take precedence over these generated slugs.
+Control how document URLs are automatically generated. Note that a `slug` defined in a file's frontmatter will always override the generated slug.
 
-## CommonMark Configuration
+**Source**:
+Choose how the base slug is generated:
+- `filepath` - Uses the markdown file's path (default)
+- `title` - Uses the document's title from frontmatter
 
-Prezet uses [league/commonmark](https://commonmark.thephpleague.com/) for markdown parsing. In the `'commonmark'` array, you can:
+**Keyed**:
+When `true`, enables self-healing links. Static key values will be added to your frontmatter and appended to slugs (e.g., `my-post-a1b2c3d4`). See [Self-Healing Links](/features/self-healing-links) for details.
 
-- Define the **extensions** array to add or remove functionality (e.g., `HeadingPermalinkExtension`, `ExternalLinkExtension`, etc.).
-- Provide a `'config'` array with per-extension options, like the `heading_permalink` or `external_link` keys shown above.
+### Markdown Parsing
 
-### HeadingPermalinkExtension Options
+Prezet uses [league/commonmark](https://commonmark.thephpleague.com/) for markdown parsing. In the `commonmark` array, you can define the **extensions** array to add or remove functionality or provide a `config` array with per-extension options.
 
-For example, if you enable the `HeadingPermalinkExtension`:
+#### Heading Permalinks
 
-```php
-'heading_permalink' => [
-    'html_class' => 'mr-2 scroll-mt-12',
-    'id_prefix' => 'content',
-    'apply_id_to_heading' => false,
-    'heading_class' => '',
-    'fragment_prefix' => 'content',
-    'insert' => 'before',
-    'min_heading_level' => 2,
-    'max_heading_level' => 3,
-    'title' => 'Permalink',
-    'symbol' => '#',
-    'aria_hidden' => true,
-],
-```
+The [`HeadingPermalinkExtension`](https://commonmark.thephpleague.com/2.7/extensions/heading-permalinks/) automatically generates anchor links for headings. Configure the heading levels, permalink symbol, CSS classes, and link placement.
 
-the extension will automatically insert permalink anchors for headings in your rendered HTML.
+#### External Links
 
-## Image Optimization
+The [`ExternalLinkExtension`](https://commonmark.thephpleague.com/2.7/extensions/external-links/) adds attributes like `target="_blank"` and `rel="noopener"` to external links. Set `internal_hosts` to your domain so Prezet can distinguish internal from external links.
 
-The `'image'` array controls how inline markdown images are transformed:
+#### Syntax Highlighting
 
-- **`widths`**: Defines the widths used in `srcset`.
-- **`sizes`**: Specifies the sizes attribute for responsive images.
-- **`zoomable`**: Enables an Alpine-based zoom feature on click.
+The `PhikiExtension` provides server-side syntax highlighting with configurable themes and line number gutters. See [Syntax Highlighting](/features/syntax-highlighting) for details.
 
-See [Optimized Images](features/images) for details on how Prezet automatically generates multiple responsive image URLs and updates your markdown output to reference them.
+### Images
 
-## Metadata (JSON-LD)
+Control how markdown images are transformed for responsive delivery:
 
-Prezet automatically includes [JSON-LD](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) metadata for each document, enhancing its visibility in search engines and social media. This is driven by two arrays:
+- **`widths`** - Array of widths for generating `srcset` attributes
+- **`sizes`** - The `sizes` attribute for responsive images
+- **`zoomable`** - Enable click-to-zoom functionality with Alpine.js
 
-- **`authors`**: An associative array mapping from an `author` key in your front matter to a fully-defined schema.org object.
-- **`publisher`**: The fallback publisher metadata used when the document has no specific publisher or image.
+See [Optimized Images](/features/images) for more details on responsive image generation.
 
-For more on how this is injected into your templates, see the [JSON-LD documentation](/features/jsonld).
+### Structured Data
 
-## Additional Customizations
+Prezet automatically includes [JSON-LD](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data) metadata for better search engine and social media visibility:
 
-Prezet offers various customization options beyond the configuration file. Here are some additional resources for customizing different aspects of Prezet:
+- **`authors`** - Map author keys from frontmatter to schema.org Person objects
+- **`publisher`** - Default publisher metadata for all content
 
-- [Customizing Routes](customize/routes)
-- [Customizing Blade Views](customize/blade-views)
-- [Customizing Controllers](customize/controllers)
-- [Customizing Front Matter](customize/frontmatter)
+See [JSON-LD documentation](/features/jsonld) for implementation details.
 
-These articles will guide you through tailoring Prezet to your specific needs.
+## Further Customization
+
+Beyond the configuration file, you can customize:
+
+- [Routes](/customize/routes) - Define custom URL patterns
+- [Blade Views](/customize/blade-views) - Customize templates and layouts
+- [Controllers](/customize/controllers) - Override default behavior
+- [Front Matter](/customize/frontmatter) - Add custom metadata fields

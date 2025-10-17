@@ -11,12 +11,12 @@
             "id": "c94c462f1e9ec259",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "content/features/sitemap.md",
-                "mode": "source",
-                "source": false
-              }
+                "file": "images/images-20240509210223449.webp"
+              },
+              "icon": "lucide-image",
+              "title": "images-20240509210223449"
             }
           }
         ]
@@ -38,8 +38,11 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -54,7 +57,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -62,7 +67,9 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
@@ -93,7 +100,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for sitemap"
             }
           },
           {
@@ -105,7 +114,9 @@
                 "file": "content/features/sitemap.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from sitemap"
             }
           },
           {
@@ -115,8 +126,12 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
-              }
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -125,8 +140,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "content/features/sitemap.md"
-              }
+                "file": "content/features/sitemap.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of sitemap"
             }
           }
         ]
@@ -138,33 +158,57 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "janitor:Janitor: scan vault": false,
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "janitor:Janitor: scan vault": false
     }
   },
   "active": "c94c462f1e9ec259",
   "lastOpenFiles": [
+    "images/laravel-cloud-20251017161847794.webp",
+    "images/images-20251017113241420.webp",
+    "content/upgrade.md",
+    "content/installation.md",
+    "content/index.md",
+    "content/features/zoomable-images.md",
+    "content/features/syntax-highlighting.md",
+    "content/features/sitemap.md",
     "content/features/seo.md",
+    "content/features/self-healing-links.md",
     "content/features/ogimage.md",
-    "content/features/markdown.md",
+    "content/features/jsonld.md",
     "content/features/images.md",
     "content/features/frontmatter.md",
     "content/features/blade.md",
-    "content/deployment/bref.md",
+    "content/features",
+    "content/deployment/laravel-cloud.md",
     "content/deployment/cloudflare.md",
-    "content/deployment/analytics.md",
-    "content/customize/syntax-highlighting.md",
-    "content/customize/routes.md",
+    "content/deployment",
+    "content/customize/templates.md",
+    "content/customize/rss.md",
     "content/customize/frontmatter.md",
-    "content/customize/controllers.md",
-    "content/customize/blade-views.md",
+    "content/customize/actions.md",
+    "content/customize",
+    "content/content.md",
+    "content/configuration.md",
+    "upgrade.md",
+    "upgrading.md",
+    "content/getting-started/upgrading.md",
+    "content/getting-started",
+    "content/deployment/cloudflare.md.tmp.49767.1760743510615",
+    "images/images-20240509210223449.webp",
+    "content/customize/templates.md.tmp.49767.1760742698286",
+    "content/deployment/analytics.md",
+    "content/customize/frontmatter.md.tmp.49767.1760741949750",
+    "content/features/jsonld.md.tmp.49767.1760740671392",
+    "content/markdown.md.tmp.49767.1760735546425",
+    "content/markdown.md.tmp.49767.1760729553477",
     "images/analytics-20240830104656710.webp",
-    "SUMMARY.md",
     "images/cloudflare-20240731172637050.webp"
   ]
 }

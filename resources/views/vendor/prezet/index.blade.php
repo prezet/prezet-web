@@ -14,7 +14,7 @@
                     <div class="relative z-10 md:text-center lg:text-left">
                         <div class="relative">
                             <h1
-                                class="font-display inline bg-gradient-to-r from-red-200 via-orange-400 to-red-200 bg-clip-text text-5xl tracking-tight text-transparent"
+                                class="font-display inline bg-linear-to-r from-red-200 via-orange-400 to-red-200 bg-clip-text text-5xl tracking-tight text-transparent"
                             >
                                 Markdown Blogging for Laravel
                             </h1>
@@ -25,13 +25,13 @@
                                 class="mt-8 flex gap-4 md:justify-center lg:justify-start"
                             >
                                 <a
-                                    class="rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-stone-900 hover:bg-orange-500 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300/50 active:bg-orange-500"
+                                    class="rounded-full bg-orange-600 px-4 py-2 text-sm font-semibold text-stone-900 hover:bg-orange-500 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-orange-300/50 active:bg-orange-500"
                                     href="{{route('prezet.show', 'installation')}}"
                                 >
                                     Get started
                                 </a>
                                 <a
-                                    class="rounded-full bg-stone-800 px-4 py-2 text-sm font-medium text-white hover:bg-stone-700 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:text-stone-400"
+                                    class="rounded-full bg-stone-800 px-4 py-2 text-sm font-medium text-white hover:bg-stone-700 focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/50 active:text-stone-400"
                                     href="https://github.com/prezet/prezet"
                                     target="_blank"
                                 >
@@ -42,7 +42,7 @@
                     </div>
                     <div class="relative lg:static xl:pl-10">
                         <div
-                            class="absolute inset-x-[-50vw] -bottom-48 -top-32 [mask-image:linear-gradient(transparent,white,white)] lg:-bottom-32 lg:-top-32 lg:left-[calc(50%+14rem)] lg:right-0 lg:[mask-image:none]"
+                            class="absolute inset-x-[-50vw] -bottom-48 -top-32 mask-[linear-gradient(transparent,white,white)] lg:-bottom-32 lg:-top-32 lg:left-[calc(50%+14rem)] lg:right-0 lg:mask-none"
                         >
                             <svg
                                 aria-hidden="true"
@@ -231,19 +231,19 @@
                         </div>
                         <div class="relative">
                             <div
-                                class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-orange-300 via-orange-300/70 to-amber-300 opacity-10 blur-lg"
+                                class="absolute inset-0 rounded-2xl bg-linear-to-tr from-orange-300 via-orange-300/70 to-amber-300 opacity-10 blur-lg"
                             ></div>
                             <div
-                                class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-orange-300 via-orange-300/70 to-amber-300 opacity-10"
+                                class="absolute inset-0 rounded-2xl bg-linear-to-tr from-orange-300 via-orange-300/70 to-amber-300 opacity-10"
                             ></div>
                             <div
-                                class="relative rounded-2xl bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur"
+                                class="relative rounded-2xl bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur-sm"
                             >
                                 <div
-                                    class="absolute -top-px left-20 right-11 h-px bg-gradient-to-r from-orange-300/0 via-orange-300/70 to-orange-300/0"
+                                    class="absolute -top-px left-20 right-11 h-px bg-linear-to-r from-orange-300/0 via-orange-300/70 to-orange-300/0"
                                 ></div>
                                 <div
-                                    class="absolute -bottom-px left-11 right-20 h-px bg-gradient-to-r from-amber-400/0 via-amber-400 to-amber-400/0"
+                                    class="absolute -bottom-px left-11 right-20 h-px bg-linear-to-r from-amber-400/0 via-amber-400 to-amber-400/0"
                                 ></div>
                                 <div class="pl-4 pt-4">
                                     <svg
@@ -258,7 +258,7 @@
                                     </svg>
                                     <div class="mt-4 flex space-x-2 text-xs">
                                         <div
-                                            class="flex h-6 rounded-full bg-gradient-to-r from-orange-400/30 via-orange-400 to-orange-400/30 p-px font-medium text-orange-300"
+                                            class="flex h-6 rounded-full bg-linear-to-r from-orange-400/30 via-orange-400 to-orange-400/30 p-px font-medium text-orange-300"
                                         >
                                             <div
                                                 class="flex items-center rounded-full bg-stone-800 px-2.5"

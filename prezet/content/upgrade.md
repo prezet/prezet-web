@@ -1,107 +1,97 @@
 ---
-title: Prezet Upgrade Guide
-excerpt: Update your Prezet installation from v0.x to v1.0.0, and review important configuration changes, new classes, and updated Blade templates.
-date: 2025-01-26
+title: Upgrading to 1.x
+date: 2025-10-17
 category: Getting Started
-image: /prezet/img/ogimages/upgrade.webp
+excerpt: Guide for upgrading from 1.0.0-rc releases to the stable 1.x version.
+image: /prezet/img/ogimages/getting-started-upgrading.webp
 author: benbjurstrom
 ---
 
-This guide covers upgrading your Prezet installation from **v0.21.1** to **v1.0.0**. Below you'll find all of the breaking changes, added features, and best practices for adopting the new release.
+This guide covers the main breaking changes when upgrading from release candidate versions (1.0.0-rcx) to the stable 1.x release. For a complete list of changes, see the [v1.0.0 release notes](https://github.com/prezet/prezet/releases/tag/v1.0.0).
 
-## 1. Update Your Composer Dependency
+## Major Changes
 
-Run the following command to require **v1.0.0-rc1** (or the stable v1.0.0 version, once available):
+The 1.0.0 release includes several significant improvements:
 
-```bash
-composer require benbjurstrom/prezet:1.0.0-rc2 --with-all-dependencies
-```
+- **Controllers moved to userspace** - Full customization control (#184)
+- **Template packages separated** - Frontend now lives in template packages (#189)
+- **SEO package removed** - Built-in SEO service replaces dependency (#180)
+- **Service container integration** - Actions, models, and data classes resolved via container (#141, #146, #165)
+- **Laravel 12 support** - Compatible with the latest Laravel version (#182)
+- **Namespace update** - Package namespace changed from `BenBjurstrom\Prezet` to `Prezet\Prezet` (#191)
+- **Command flag renamed** - `--force` flag changed to `--fresh` (#130)
 
-## 2. Re-Publish The Prezet Configuration File
+## Update Composer
 
-Significant changes were introduced in the `prezet.php` config file:
-
-```bash
-php artisan vendor:publish --tag="prezet-config"
-```
-
-Compare any local modifications (like a custom filesystem disk or front matter classes) with the newly published file. In particular, notice that `document` was added to the `data` array, referencing the newly introduced `DocumentData` class. The `'authors'` and `'publisher'` arrays were also added to handle JSON-LD metadata. You can find the complete config here: [github.com/benbjurstrom/prezet/../config/prezet.php](https://github.com/benbjurstrom/prezet/blob/main/config/prezet.php)
-
-## 3. Refresh the SQLite Index
-
-Run the upgraded index command with the new `--fresh` flag to ensure your database is recreated and migrations are applied before repopulating:
+Update the Prezet package:
 
 ```bash
-php artisan prezet:index --fresh
+composer require prezet/prezet:^1.0
 ```
 
-This regenerates the `prezet.sqlite` file with an updated schema that includes:
-- New `key` field for optional unique identifiers
-- Unique constraints on `slug`, `filepath`, and `hash` fields
-- Optimized indexes for better query performance
-- Updated timestamp fields to use timestampTz
+## Update Namespace References
 
-## 4. Update Blade Templates
-
-During installation, Prezet published Blade templates to your `resources/views/vendor/prezet` directory. Version **v1.0.0** changes how data is passed to these views:
-
-1. **`article.blade.php`**
-    - The `$article` variable is now a `DocumentData` object instead of a `FrontmatterData` object.
-    - Access properties like `$article->frontmatter->title` instead of `$article->title`.
-
-2. **`show.blade.php`**
-    - Front matter is now accessed via `$document->frontmatter` (an instance of `FrontmatterData`) rather than `$frontmatter`.
-    - A new stack named `jsonld` was added to include JSON-LD. You can see this in the updated file as:
-      ```php
-      @push('jsonld')
-          <script type="application/ld+json">{!! $linkedData !!}</script>
-      @endpush
-      ```
-3. **`template.blade.php`**
-    - Includes the new `@stack('jsonld')` for injecting structured data from `show.blade.php`.
-
-You can review the latest versions of these templates in [the Prezet repository](https://github.com/benbjurstrom/prezet/blob/main/resources/views/components/).
-
-## 5. Changes To Action Classes
-
-All action classes (e.g., `ParseMarkdown`, `GetImage`, `UpdateIndex`) are now non-static and are resolved through the **Prezet facade**. If you were directly invoking static methods on action classes in your app, please update them to the new approach:
+The package namespace changed from `BenBjurstrom\Prezet` to `Prezet\Prezet`. Update any references in your application:
 
 ```php
-// Old
-$parsed = ParseMarkdown::handle($md);
+// Before
+use BenBjurstrom\Prezet\Data\FrontmatterData;
+use BenBjurstrom\Prezet\Actions\UpdateIndex;
 
-// New
-$parsed = Prezet::parseMarkdown($md);
+// After
+use Prezet\Prezet\Data\FrontmatterData;
+use Prezet\Prezet\Actions\UpdateIndex;
 ```
 
-This update simplifies custom overrides by letting you bind your own action classes in the service container.
+## Move Controllers to Userspace
 
-## 6. FrontmatterData & DocumentData Changes
+Controllers are no longer provided by the package. Copy them from a template package to your application:
 
-- **FrontmatterData** changes:
-  - No longer includes `$hash`, `$createdAt`, or `$updatedAt`
-  - Added `$slug` and `$key` as nullable properties
-  - `$date` is now required, representing the published date
-  - `$author` is nullable for referencing site authors
-  - `$tags` is now an array property
+- [Blog Template Controllers](https://github.com/prezet/blog-template/tree/main/app/Http/Controllers/Prezet)
+- [Docs Template Controllers](https://github.com/prezet/docs-template/tree/main/app/Http/Controllers/Prezet)
 
-- **DocumentData** is introduced to handle:
-  - System fields: `id`, `filepath`, `hash`, `createdAt`, `updatedAt`
-  - URL fields: `slug`, `key`
-  - Content flags: `category`, `draft`
-  - Wraps `FrontmatterData` in the `$document->frontmatter` property
+Place them in: `app/Http/Controllers/Prezet/`
 
-- The FrontmatterData class has been removed from the config. If you need to override the default class you can do so by binding your custom `FrontmatterData` class in the service container.
+Then update `routes/prezet.php` to reference your controllers:
 
-## 7. PostCSS & Tailwind
+```php
+// Before
+use Prezet\Prezet\Http\Controllers\ShowController;
 
-- The stubbed `postcss.config.js` file was removed, and a simpler approach using Tailwind 4's "just-in-time" features is now favored.
-- If you previously installed Tailwind 3.x, you're not forced to upgrade. However, the new defaults rely on [@tailwindcss/vite](https://www.npmjs.com/package/@tailwindcss/vite) instead of separate PostCSS plugins.
-- See [Tailwind's official upgrade guide](https://tailwindcss.com/docs/upgrade-guide) for more details on transitioning from older versions if you wish to align with Prezet's new stubs.
+// After
+use App\Http\Controllers\Prezet\ShowController;
 
-## 8. Additional Command Changes
-- `prezet:install` command now checks for a clean Git repository unless you use `--force`.
-- `prezet:install` prezet will be configured for tailwind v3.x if you use `--tailwind3`.
-- `prezet:index` replaced `--force` with `--fresh`.
-- `prezet:bref` was removed.
-- `prezet:ogimage` now accepts a slug for example `prezet:ogimage my-blog-post`
+Route::get('/{slug}', ShowController::class)->name('prezet.show');
+```
+
+## Update Meta Component
+
+The SEO package dependency was removed. You'll need to add the meta component from a template package.
+
+Copy `resources/views/components/prezet/meta.blade.php` from either:
+- [Blog Template](https://github.com/prezet/blog-template/tree/main/resources/views/components/prezet)
+- [Docs Template](https://github.com/prezet/docs-template/tree/main/resources/views/components/prezet)
+
+Place it in: `resources/views/components/prezet/meta.blade.php`
+
+## General Troubleshooting
+
+If you encounter missing files or components:
+
+1. Compare your application with the latest template packages:
+   - [prezet/blog-template](https://github.com/prezet/blog-template)
+   - [prezet/docs-template](https://github.com/prezet/docs-template)
+
+2. Copy any missing files from the templates to your application
+
+3. If you encounter issues not covered here, please [open an issue](https://github.com/prezet/prezet/issues) with details about your upgrade path
+
+## Need Help?
+
+This guide covers the most common upgrade issues. Since every installation may have customizations, your experience may vary. If you run into problems:
+
+- Check the template packages for reference implementations
+- Open an issue on GitHub with your specific error
+- Join the discussion on the Prezet repository
+
+The template packages represent the canonical setup and are the best reference when troubleshooting upgrade issues.

@@ -1,94 +1,63 @@
 ---
-title: Customizing Prezet Front Matter
+title: Customizing Frontmatter
 date: 2024-05-09
 category: Customization
-excerpt: This post explains how to customize the front matter in Prezet.
+excerpt: Learn how to extend Prezet's frontmatter with custom fields.
 image: /prezet/img/ogimages/customize-frontmatter.webp
 author: benbjurstrom
 ---
 
-Prezet makes it easy to customize the front matter of your markdown files. To learn more about how front matter works in general, check out the [Typed Front Matter documentation](/features/frontmatter).
+Prezet makes it easy to add custom fields to your markdown frontmatter. This guide shows you how to extend Prezet's `FrontmatterData` class to add your own typed fields.
 
-This guide walks you through extending Prezet's default `FrontmatterData` class so that Prezet recognizes your custom front matter fields.
-
-## The Default FrontmatterData Class
-
-Prezet includes a default `FrontmatterData` class that validates essential fields like `title`, `excerpt`, `category`, `draft`, and more. You can review the source code here: [FrontmatterData.php](https://github.com/benbjurstrom/prezet/blob/main/src/Data/FrontmatterData.php).
-
-Key properties include:
-
-- **title** *(string)*  
-- **excerpt** *(string)*  
-- **category** *(nullable string)*  
-- **image** *(nullable string)*  
-- **draft** *(boolean)*  
-- **date** *(Carbon instance)*  
-- **author** *(nullable string)*  
-- **slug** *(nullable string)*  
-- **key** *(nullable string)*  
-- **tags** *(array)*  
-
-Prezet uses the [laravel-validated-dto](https://wendell-adriel.gitbook.io/laravel-validated-dto) package to ensure the fields in your YAML front matter are strictly typed.
+Prezet's default frontmatter includes fields like `title`, `excerpt`, `date`, `category`, `image`, `author`, and more. For a complete list, see [FrontmatterData.php](https://github.com/benbjurstrom/prezet/blob/main/src/Data/FrontmatterData.php). For more on how frontmatter works in Prezet, see the [Frontmatter documentation](/features/frontmatter).
 
 ## Adding Custom Fields
 
-### 1. Create a Custom Class
+You can extend the default frontmatter class to add your own fields. This documentation site uses a custom `legacy` field to power the version selector dropdown menu, allowing users to switch between current and legacy documentation.
 
-In `app/Data/CustomFrontmatterData.php`, you might add a `legacy` field to identify older docs you'd like to handle differently:
+### 1. Create Your Custom Class
+
+Create a new class that extends `FrontmatterData`:
 
 ```php
 <?php
 
 namespace App\Data;
 
-use BenBjurstrom\Prezet\Data\FrontmatterData;
+use Prezet\Prezet\Data\FrontmatterData;
 use WendellAdriel\ValidatedDTO\Attributes\Rules;
 
 class CustomFrontmatterData extends FrontmatterData
 {
-    // Mark docs as "legacy: true" in the front matter if they should be excluded from certain features
     #[Rules(['nullable', 'bool'])]
     public ?bool $legacy;
 }
 ```
 
-Then your markdown front matter might look like:
+### 2. Use in Your Frontmatter
+
+Add the custom field to your markdown files:
 
 ```yaml
 ---
-title: "My Old Docs"
+title: My Old Docs
 date: 2023-01-01
 legacy: true
-draft: false
 ---
 ```
 
-### 2. Override the Default in the Service Container
+### 3. Register Your Class
 
-In a service provider (e.g., `AppServiceProvider`), bind Prezet's default `FrontmatterData` to your custom class:
+Bind your custom class in `app/Providers/AppServiceProvider.php`:
 
 ```php
-<?php
-
-namespace App\Providers;
-
-use Illuminate\Support\ServiceProvider;
-use BenBjurstrom\Prezet\Data\FrontmatterData;
+use Prezet\Prezet\Data\FrontmatterData;
 use App\Data\CustomFrontmatterData;
 
-class AppServiceProvider extends ServiceProvider
+public function register(): void
 {
-    public function register(): void
-    {
-        // Swap out the default front matter data for your custom class
-        $this->app->bind(FrontmatterData::class, CustomFrontmatterData::class);
-    }
-
-    public function boot(): void
-    {
-        //
-    }
+    $this->app->bind(FrontmatterData::class, CustomFrontmatterData::class);
 }
 ```
 
-This ensures that any time Prezet processes front matter, it uses your `CustomFrontmatterData`.
+Now Prezet will use your `CustomFrontmatterData` class whenever it processes frontmatter, making your custom fields available throughout the application.

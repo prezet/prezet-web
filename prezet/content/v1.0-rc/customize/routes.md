@@ -5,6 +5,7 @@ category: Customization
 excerpt: This post explains how to customize Prezet's default routes.
 image: /prezet/img/ogimages/customize-routes.webp
 author: benbjurstrom
+legacy: true
 ---
 
 When you run the `prezet:install` command the `routes/prezet.php` file is copied to your application. This file contains all the routes used by Prezet. The installer also appends a line to your `routes/web.php` file to include these routes.

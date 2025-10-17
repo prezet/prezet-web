@@ -1,18 +1,18 @@
 ---
 title: Syntax Highlighting with Phiki
-date: 2025-05-21
+date: 2025-10-17
 category: Customization
 excerpt: Learn how to enhance your Prezet blog with syntax highlighting using Phiki, a powerful and easy-to-use solution built into Prezet 1.1+.
 image: /prezet/img/ogimages/features-syntax-highlighting.webp
 ---
 
-Starting with Prezet v1.1, syntax highlighting is provided out of the box using [phikiphp/phiki](https://github.com/phikiphp/phiki), a modern PHP-based syntax highlighter that's fully integrated with the CommonMark ecosystem. This guide explains how to configure and use this feature to make your code blocks visually appealing and readable.
+Prezet v1.1+ includes syntax highlighting out of the box via [phikiphp/phiki](https://github.com/phikiphp/phiki), a modern PHP-based highlighter fully integrated with CommonMark.
 
 ## How It Works
 
-Phiki is automatically included and configured in Prezet v1.1+. When you write code blocks in your markdown files Phiki will apply syntax highlighting based on the language you specify. This happens when the markdown file is parsed and rendered into HTML.
+Phiki automatically highlights code blocks based on the language you specify. Highlighting happens during markdown parsing when the file is rendered to HTML.
 
-For example, here's a PHP code block rendered with Phiki using MaterialTheme:
+Here's an example of some php code using the MaterialTheme:
 
 ```php
 public function handle(): int
@@ -28,28 +28,21 @@ public function handle(): int
 }
 ```
 
-## Available Configuration Options
+## Configuration
 
-The Phiki extension is pre-configured in Prezet v1.1+. You can find it in your `config/prezet.php` file among the CommonMark extensions:
+Phiki is pre-configured in `config/prezet.php` among the CommonMark extensions:
 
 ```php
 'extensions' => [
-    League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension::class,
-    League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension::class,
-    League\CommonMark\Extension\ExternalLink\ExternalLinkExtension::class,
-    League\CommonMark\Extension\FrontMatter\FrontMatterExtension::class,
-    Prezet\Prezet\Extensions\MarkdownBladeExtension::class,
-    Prezet\Prezet\Extensions\MarkdownImageExtension::class,
+    // ...
     Phiki\CommonMark\PhikiExtension::class,
 ],
 ```
 
-You can customize Phiki's behavior through the `phiki` key in the `config` section:
+Customize Phiki through the `phiki` key in the `config` section:
 
 ```php
 'config' => [
-    // Other config settings...
-    
     'phiki' => [
         'theme' => \Phiki\Theme\Theme::NightOwl,
         'with_gutter' => false,
@@ -58,23 +51,24 @@ You can customize Phiki's behavior through the `phiki` key in the `config` secti
 ],
 ```
 
-### Configuration Options
+### Options
 
-- **`theme`**: Determines the color scheme used for syntax highlighting. Phiki comes with several built-in themes (see below).
-- **`with_gutter`**: When set to `true`, line numbers will be displayed alongside your code.
-- **`with_wrapper`**: When set to `true`, wraps the code block in a container with additional styling.
+| Option | Description |
+|--------|-------------|
+| `theme` | Color scheme for syntax highlighting (see available themes below) |
+| `with_gutter` | Show line numbers when `true` |
+| `with_wrapper` | Wrap code block in a styled container when `true` |
 
-You can read more about each configuration option here: [github.com/phikiphp/phiki](https://github.com/phikiphp/phiki?tab=readme-ov-file#commonmark-integration)
+For more details, see the [Phiki CommonMark integration docs](https://github.com/phikiphp/phiki?tab=readme-ov-file#commonmark-integration).
 
-## Available Themes
+## Themes
 
-Phiki provides several built-in themes that you can use for your code blocks. To change the theme, update the `theme` option in your `config/prezet.php` file:
+Change the theme by updating the `theme` option in `config/prezet.php`:
 
 ```php
 'phiki' => [
-    'theme' => \Phiki\Theme\Theme::GitHub,  // Change to your preferred theme
-    // other options...
+    'theme' => \Phiki\Theme\Theme::GitHub,
 ],
 ```
 
-You can find a list of available themes here: [github.com/phikiphp/../Theme.php](https://github.com/phikiphp/phiki/blob/1.x/src/Theme/Theme.php)
+View all available themes in [Theme.php](https://github.com/phikiphp/phiki/blob/1.x/src/Theme/Theme.php).

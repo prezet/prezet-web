@@ -1,140 +1,202 @@
 ---
 title: Prezet SQLite Index
 excerpt: Learn about the SQLite index used by Prezet to manage and query markdown content.
-date: 2024-06-27
+date: 2025-10-17
 category: Getting Started
 image: /prezet/img/ogimages/index-image.png
 author: benbjurstrom
 ---
 
-Prezet uses an SQLite index file to more efficiently query information about your markdown content. This index is crucial for features like pagination, sorting, and filtering of your blog posts or documentation pages.
+Prezet maintains an SQLite index to efficiently query your markdown content, powering features like pagination, sorting, and filtering.
+
+## How It Works
+
+When you run `php artisan prezet:index`, Prezet:
+
+1. **Checks for deleted files**: Compares filepaths in the database against your filesystem and removes any documents that no longer exist
+2. **Processes each document**: For each markdown file, it checks if the content has changed by comparing MD5 hashes
+3. **Updates changed documents**: If the hash differs, updates the document record, regenerates headings, and syncs tags
+4. **Cleans up tags**: Removes any orphaned tags that aren't associated with any documents
+5. **Generates sitemap**: Updates your sitemap to reflect the current content
+
+Documents with unchanged content (same hash) are skipped entirely, making updates fast even for large content collections.
+
+## Database Location
+
+Prezet uses the `prezet` database connection to store its index. By default this is set to use an SQLite database located at `database/prezet.sqlite`. You can change the database location or driver by modifying the `prezet` connection in `config/database.php`.
+
+```php
+'connections' => [
+    'prezet' => [
+        'driver' => 'sqlite',
+        'database' => database_path('prezet.sqlite'),
+        'prefix' => '',
+        'foreign_key_constraints' => true,
+    ],
+],
+```
 
 ## Managing the Index
 
-To keep the index up-to-date with your markdown content, Prezet provides a command:
+### Manual Updates
+
+Keep the index synchronized with your markdown content using the `prezet:index` command:
 
 ```bash
 php artisan prezet:index
 ```
 
-You should run this command whenever you:
+Run this command whenever you:
 
 1. Add a new markdown file
-2. Change a markdown file's slug
-3. Modify frontmatter and want to see those changes reflected on index pages
+2. Delete a markdown file
+3. Change a markdown file's slug
+4. Modify frontmatter and want those changes reflected on index pages
+5. Update tags on your documents
 
-Note that changes to the main content of your markdown files don't require updating the index, as this content is read directly from the file when displaying a single post.
+The index uses MD5 hashes to detect file changes. If a document's content hasn't changed (same hash), the index skips the update for efficiency. When you delete files from your filesystem, the index automatically removes the corresponding database records.
+
+### Fresh Index Rebuild
+
+The `--fresh` option drops the existing database, runs migrations, and rebuilds the index from scratch:
 
 ```bash
 php artisan prezet:index --fresh
 ```
 
-Prezet index also has a `--fresh` option that will create a new sqlite database and run the prezet migrations before inserting your markdown data. You should run this command whenever you:
+Use this command when you:
 
 1. Update to a new version of Prezet
-2. Are creating an index in a CI/CD pipeline
-3. Deploy your application to an environment where the index sqlite file is not already present
+2. Build the index in a CI/CD pipeline
+3. Deploy to an environment where the index sqlite file doesn't exist
 
-### Automatically Updating the Index
+### Automatic Updates with Vite
 
-You can also use [Vite](https://vite.dev/) to watch for changes to your markdown files and automatically update the index. To start the watcher, run:
+During development, you can watch for changes to your markdown files and media assets, automatically updating the index whenever changes are detected.
+
+Install the `vite-plugin-watch-and-run` package:
+
+```bash
+npm install -D vite-plugin-watch-and-run
+```
+
+Add the plugin to your `vite.config.js`:
+
+```js
+//..
+import { watchAndRun } from 'vite-plugin-watch-and-run'
+
+export default defineConfig({
+    plugins: [
+        //..
+        watchAndRun([
+            {
+                name: 'prezet:index',
+                watch: path.resolve('prezet/**/*.(md|jpg|png|webp)'),
+                run: 'php artisan prezet:index',
+                delay: 1000,
+            },
+        ]),
+    ],
+})
+```
+
+Start the watcher:
 
 ```bash
 npm run dev
 ```
 
-Note that if you change the folder name or location, make sure to update the relevant paths in your vite.config.js file so that Vite continues to monitor your files properly.
+The plugin watches your `prezet` directory for any changes to markdown files or images. When a file is added, modified, or deleted, it automatically runs `php artisan prezet:index` after a 1-second delay. Adjust the `delay` value if you're making rapid changes to multiple files. Customize the `watch` pattern if you've changed your content directory location or want to monitor different file types.
 
 ## Sitemap Generation
-As part of the index update process, Prezet automatically generates a sitemap for your website. This feature ensures that your sitemap always reflects the most current state of your content.
 
-For more information on sitemap generation, refer to the [Sitemap Generation](/features/sitemap) guide.
+Prezet automatically generates a sitemap for your website whenever the index updates. This ensures your sitemap always reflects the current state of your content.
 
-## Purpose of the Index
+For more details, see the [Sitemap Generation](/features/sitemap) guide.
 
-The Prezet index serves several key purposes:
+## Querying the Index
 
-1. **Performance**: By storing key information in a database, Prezet can quickly retrieve and display lists of posts without having to parse all markdown files for every request.
-
-2. **Advanced Querying**: The index allows for efficient sorting, filtering, and pagination of your content based on various attributes like date, category, or tags.
-
-3. **Separation of Concerns**: While the full markdown content remains in files (allowing for easy editing and version control), the index stores only the essential metadata needed for listing and organizing your content.
-
-## Structure of the Index Database
-
-The Prezet index is stored in an SQLite database and consists of several tables:
-
-### Documents Table
-
-This table stores the core information about each markdown document:
-
-- `id`: Auto-incrementing primary key
-- `key`: Optional unique identifier that can be used in front matter
-- `slug`: The URL-friendly identifier for the document (unique)
-- `filepath`: The path to the markdown file relative to the content root (unique)
-- `category`: The category of the document (if applicable)
-- `draft`: A boolean indicating whether the document is a draft
-- `hash`: MD5 hash of the file contents for change detection (unique)
-- `frontmatter`: JSON-encoded frontmatter data
-- `created_at`: Timestamp of when the document was created
-- `updated_at`: Timestamp of when the document was last updated
-
-The table includes indexes on all key fields to optimize query performance, including:
-- Single column indexes on: `key`, `slug`, `filepath`, `category`, `draft`, `hash`, `created_at`, `updated_at`
-- A composite index on `filepath` and `hash`
-
-### Tags Table
-
-This table stores unique tags used across all documents:
-
-- `id`: Unique identifier for the tag
-- `name`: The name of the tag
-
-### Document_Tags Table
-
-This table manages the many-to-many relationship between documents and tags:
-
-- `document_id`: ID of the document
-- `tag_id`: ID of the tag
-
-## Using the Document Model
-
-The Prezet index is accessible via the Document model. You can use this model in your custom controllers to create advanced features and functionality.
+Access the Prezet index through the Document model in your custom controllers:
 
 ```php
-use BenBjurstrom\Prezet\Models\Document;
+use Prezet\Prezet\Models\Document;
+
+// Get all published documents
+$publishedDocs = Document::where('draft', false)->get();
+
+// Find a document by slug
+$doc = Document::where('slug', $slug)->firstOrFail();
+
+// Find a document by key
+$doc = Document::where('key', $key)->firstOrFail();
+
+// Filter by category
+$categoryDocs = Document::where('category', 'tutorials')->get();
+
+// Sort by date
+$sortedDocs = Document::orderBy('created_at', 'desc')->get();
+
+// Query with tags (eager load the relationship)
+$docsWithTags = Document::with('tags')->get();
+
+// Query with headings
+$docWithHeadings = Document::with('headings')->where('slug', $slug)->first();
 ```
 
-### Common Query Patterns
+## Database Structure
 
-Here are some common ways you might use the Document model in your controllers:
+The Prezet index uses an SQLite database with four main tables:
 
-1. **Retrieving all published documents:**
+### Documents
 
-   ```php
-   $publishedDocs = Document::where('draft', false)->get();
-   ```
+Stores core information about each markdown document:
 
-2. **Finding a document by slug:**
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | Integer | Auto-incrementing primary key |
+| `key` | String | Optional unique identifier from frontmatter (nullable, unique) |
+| `slug` | String | URL-friendly identifier (unique, indexed) |
+| `filepath` | String | Path to markdown file relative to content root (unique, indexed) |
+| `category` | String | Document category (nullable, indexed) |
+| `content_type` | String | Content type identifier (indexed) |
+| `draft` | Boolean | Draft status (default: false, indexed) |
+| `hash` | String | MD5 hash of file contents for change detection (32 chars, unique, indexed) |
+| `frontmatter` | JSONB | Frontmatter metadata |
+| `created_at` | Timestamp | Creation timestamp with timezone (indexed) |
+| `updated_at` | Timestamp | Last update timestamp with timezone (indexed) |
 
-   ```php
-   $doc = Document::where('slug', $slug)->firstOrFail();
-   ```
+Includes a composite index on `filepath` and `hash` for efficient change detection.
 
-3. **Finding a document by key:**
+### Tags
 
-   ```php
-   $doc = Document::where('key', $key)->firstOrFail();
-   ```
+Stores unique tags across all documents:
 
-4. **Filtering by category:**
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | Integer | Auto-incrementing primary key |
+| `name` | String | Tag name (unique) |
 
-   ```php
-   $categoryDocs = Document::where('category', 'your-category')->get();
-   ```
+### Document_Tags
 
-5. **Sorting by date:**
+Pivot table managing the many-to-many relationship between documents and tags:
 
-   ```php
-   $sortedDocs = Document::orderBy('created_at', 'desc')->get();
-   ```
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | Integer | Auto-incrementing primary key |
+| `document_id` | Integer | Foreign key to documents (indexed) |
+| `tag_id` | Integer | Foreign key to tags (indexed) |
+
+### Headings
+
+Stores extracted headings from markdown documents for navigation and search:
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | Integer | Auto-incrementing primary key |
+| `document_id` | Integer | Foreign key to documents (cascade delete) |
+| `text` | String | Heading text content |
+| `level` | Integer | Heading level 1-6 (unsigned tiny integer) |
+| `section` | String | URL fragment/anchor for the heading |
+
+The headings table is automatically populated during indexing. Prezet parses the markdown content, extracts all headings, and adds the document's title as a level 1 heading at the top. Headings are regenerated whenever the document's content changes.

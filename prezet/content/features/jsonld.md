@@ -1,41 +1,42 @@
 ---
-title: JSON-LD in Prezet
+title: JSON-LD Structured Data
 date: 2025-01-26
 category: Features
-excerpt: Learn how to add JSON-LD structured data to your Prezet blog for improved SEO and accessibility.
+excerpt: Learn how Prezet generates JSON-LD structured data for improved SEO and search visibility.
 image: /prezet/img/ogimages/features-jsonld.webp
 author: benbjurstrom
 ---
 
-Prezet automatically generates [JSON-LD](https://json-ld.org/) to enhance your site's structured data, improving visibility on search engines and social media. By default, Prezet includes metadata such as your article's headline, publishing date, and author information following the [Google Article Guide](https://developers.google.com/search/docs/appearance/structured-data/article).
+Prezet automatically generates [JSON-LD](https://json-ld.org/) structured data for your content, improving visibility on search engines and social media. The generated metadata follows the [Google Article Guide](https://developers.google.com/search/docs/appearance/structured-data/article) and includes your article's headline, publishing date, and author information.
 
 ## How It Works
 
-1. **Front Matter**: Prezet extracts key information—like `title`, `date`, `excerpt`, `image`, and `author`—from your front matter.  
-2. **Linked Data Action**: This data is then passed through the `GetLinkedData` action, which compiles your post’s structured data in a JSON-LD format.  
-3. **Blade Template**: The JSON-LD is injected into the `<head>` section in `resources/views/vendor/prezet/show.blade.php` via a simple script tag.
+Prezet generates JSON-LD structured data through a simple three-step process:
 
-Below is a snippet from the default `show.blade.php` that demonstrates how the JSON-LD is loaded:
+1. **Extract frontmatter** - Key fields like `title`, `date`, `excerpt`, `image`, and `author` are read from your markdown files
+2. **Build structured data** - The `GetLinkedData` action compiles this information into JSON-LD format
+3. **Inject into template** - The JSON-LD is added to the page `<head>` via the template
+
+When you install a Prezet template, the `show.blade.php` view includes the JSON-LD via the following snippet:
 
 ```php
-{{-- show.blade.php --}}
 @push('jsonld')
     <script type="application/ld+json">{!! $linkedData !!}</script>
 @endpush
 ```
 
-## Default JSON-LD Output
+## Generated Fields
 
-Out of the box, the JSON-LD includes:
+Prezet automatically includes the following structured data fields:
 
-- **Article Title** (`headline`): Pulled from the `title` in front matter.
-- **Publication Date** (`datePublished`): Derived from the front matter `date` or file modification date.
-- **Modified Date** (`dateModified`): Reflects when the document was last updated.
-- **Author** (`author`): Controlled by your [front matter](/customize/frontmatter) and the `'authors'` array in `config/prezet.php`.
-- **Publisher** (`publisher`): Defined in the `'publisher'` array of `config/prezet.php`.
-- **Image** (`image`): Uses the front matter `image` field if set; otherwise defaults to your publisher's `image`.
+- `headline` - Article title from frontmatter `title`
+- `datePublished` - Publication date from frontmatter `date` or file modification date
+- `dateModified` - When the document was last updated
+- `author` - Author profile from the `authors` array in `config/prezet.php`
+- `publisher` - Publisher information from `config/prezet.php`
+- `image` - Article image from frontmatter, or publisher default if not set
 
-Here is an example of what the JSON-LD might look like in your rendered HTML:
+Example output:
 
 ```json
 {
@@ -61,11 +62,11 @@ Here is an example of what the JSON-LD might look like in your rendered HTML:
 }
 ```
 
-## Customizing Your JSON-LD
+## Configuration
 
-### Front Matter & Author Fields
+### Author Profiles
 
-Prezet uses the front matter’s `author` field to decide which author profile to link. If you’d like to store multiple author definitions (e.g., for a multi-author blog), add them to the `'authors'` array in `config/prezet.php`:
+Configure author information in `config/prezet.php`. The frontmatter `author` field references these profiles by key:
 
 ```php
 'authors' => [
@@ -84,7 +85,7 @@ Prezet uses the front matter’s `author` field to decide which author profile t
 ],
 ```
 
-Then, in your markdown:
+Reference the author in your markdown frontmatter:
 
 ```yaml
 ---
@@ -92,13 +93,12 @@ title: My Awesome Blog Post
 author: jane_doe
 date: 2024-06-30
 image: /blog-images/featured.webp
-excerpt: This is a summary of my awesome blog post.
 ---
 ```
 
-### Publisher Settings
+### Publisher Information
 
-If you’d like to change your site or company details, update the `'publisher'` array in `config/prezet.php`:
+Update your site or organization details in `config/prezet.php`:
 
 ```php
 'publisher' => [
@@ -110,62 +110,52 @@ If you’d like to change your site or company details, update the `'publisher'`
 ],
 ```
 
-### Overriding the `GetLinkedData` Action
+## Advanced Customization
 
-For advanced changes—like adding custom properties or adjusting how fields are merged—you can override the `GetLinkedData` action:
+For advanced changes like adding custom properties or modifying how fields are generated, you can override the `GetLinkedData` action.
 
-1. **Create Your Action**
-   ```php
-   // app/Actions/CustomGetLinkedData.php
-   namespace App\Actions;
+### 1. Create Your Custom Action
 
-   use BenBjurstrom\Prezet\Actions\GetLinkedData;
-   use BenBjurstrom\Prezet\Data\DocumentData;
+```php
+// app/Actions/CustomGetLinkedData.php
+namespace App\Actions;
 
-   class CustomGetLinkedData extends GetLinkedData
-   {
-       public function handle(DocumentData $document): array
-       {
-           $jsonLd = parent::handle($document);
+use Prezet\Prezet\Actions\GetLinkedData;
+use Prezet\Prezet\Data\DocumentData;
 
-           // Add your own fields or logic
-           $jsonLd['isPartOf'] = [
-               '@type' => 'Blog',
-               'name'  => 'My Custom Blog',
-           ];
+class CustomGetLinkedData extends GetLinkedData
+{
+    public function handle(DocumentData $document): array
+    {
+        $jsonLd = parent::handle($document);
 
-           return $jsonLd;
-       }
-   }
-   ```
+        // Add custom fields
+        $jsonLd['isPartOf'] = [
+            '@type' => 'Blog',
+            'name'  => 'My Custom Blog',
+        ];
 
-2. **Bind Your Action**
-   ```php
-   // app/Providers/AppServiceProvider.php
-   namespace App\Providers;
+        return $jsonLd;
+    }
+}
+```
 
-   use Illuminate\Support\ServiceProvider;
-   use BenBjurstrom\Prezet\Actions\GetLinkedData;
-   use App\Actions\CustomGetLinkedData;
+### 2. Register Your Action
 
-   class AppServiceProvider extends ServiceProvider
-   {
-       public function register(): void
-       {
-           $this->app->bind(GetLinkedData::class, CustomGetLinkedData::class);
-       }
-   }
-   ```
+In `app/Providers/AppServiceProvider.php`:
 
-Prezet will now resolve your custom version of the action whenever structured data is generated.
+```php
+use Prezet\Prezet\Actions\GetLinkedData;
+use App\Actions\CustomGetLinkedData;
 
-## Verifying Your Structured Data
+public function register(): void
+{
+    $this->app->bind(GetLinkedData::class, CustomGetLinkedData::class);
+}
+```
 
-Once your page is live, you can use Google’s [Rich Results Test](https://search.google.com/test/rich-results) or other structured data testing tools to confirm that your JSON-LD is recognized and valid. Properly formed structured data can improve your site’s appearance in search results and increase user engagement.
+Prezet will now use your custom action whenever structured data is generated.
 
----
+## Validation
 
-**Next Steps**
-- To learn more about customizing other aspects of Prezet, see the [Controllers](/customize/controllers) or [Actions](/customize/actions) documentation.
-- Explore additional ways to add or modify metadata via the [Front Matter](/customize/frontmatter) guide.
-- For more details on how Prezet handles SEO and meta tags, head over to the [SEO Features](/features/seo) page.
+Use Google's [Rich Results Test](https://search.google.com/test/rich-results) to validate your JSON-LD structured data. Properly formed structured data can improve your site's appearance in search results and increase user engagement.

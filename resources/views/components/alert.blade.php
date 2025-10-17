@@ -22,9 +22,9 @@
     $safelist = ['bg-red-50', 'text-red-700', 'text-red-800', 'text-red-400', 'bg-green-50', 'text-green-700', 'text-green-800', 'text-green-400', 'bg-blue-50', 'text-blue-700', 'text-blue-800', 'text-blue-400', 'bg-yellow-50', 'text-yellow-700', 'text-yellow-800', 'text-yellow-400'];
 @endphp
 
-<div class="bg-{{ $color }}-50 not-prose rounded-lg p-4">
+<div class="bg-{{ $color }}-50 not-prose rounded-lg p-4 mt-4">
     <div class="flex">
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
             <svg
                 class="text-{{ $color }}-400 h-5 w-5"
                 viewBox="0 0 20 20"
