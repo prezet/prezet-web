@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff16e589b22535fd0bf37fe61e2b9987",
+    "content-hash": "4855bb79cc11b56945051bb3852e8b8c",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -3171,16 +3171,16 @@
         },
         {
             "name": "prezet/prezet",
-            "version": "v1.1.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/prezet/prezet.git",
-                "reference": "03fc154b1f4581fa5a1756fa9911bf4e6d212ab5"
+                "reference": "02bf31f6c870a1cb3257df15e93c670f82b5449f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prezet/prezet/zipball/03fc154b1f4581fa5a1756fa9911bf4e6d212ab5",
-                "reference": "03fc154b1f4581fa5a1756fa9911bf4e6d212ab5",
+                "url": "https://api.github.com/repos/prezet/prezet/zipball/02bf31f6c870a1cb3257df15e93c670f82b5449f",
+                "reference": "02bf31f6c870a1cb3257df15e93c670f82b5449f",
                 "shasum": ""
             },
             "require": {
@@ -3249,7 +3249,7 @@
             ],
             "support": {
                 "issues": "https://github.com/prezet/prezet/issues",
-                "source": "https://github.com/prezet/prezet/tree/v1.1.0"
+                "source": "https://github.com/prezet/prezet/tree/v1.3.0"
             },
             "funding": [
                 {
@@ -3257,7 +3257,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-21T17:57:16+00:00"
+            "time": "2025-07-11T14:35:35+00:00"
         },
         {
             "name": "psr/clock",
