@@ -44,6 +44,21 @@
         ></script>
         @vite(['resources/css/prezet.css'])
         @stack('jsonld')
+
+        <script>
+            ;(function () {
+                const stored = localStorage.getItem('theme')
+                const prefersDark = window.matchMedia(
+                    '(prefers-color-scheme: dark)'
+                ).matches
+                const useDark =
+                    stored === 'dark' || (stored === null && prefersDark)
+
+                if (useDark) {
+                    document.documentElement.classList.add('dark')
+                }
+            })()
+        </script>
     </head>
     <body class="dark:bg-background-dark font-sans antialiased">
         <div class="min-h-screen">
