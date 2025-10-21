@@ -29,8 +29,8 @@ Route::get('{slug}', ShowController::class)
 
 
 
-Route::redirect('/features/markdown', '/content', 301);
-Route::redirect('/customize/routes', '/customize/templates', 301);
-Route::redirect('/customize/blade-views', '/customize/templates', 301);
-Route::redirect('/customize/controllers', '/customize/templates', 301);
-Route::redirect('/deployment/analytics', '/deployment/laravel-cloud', 301);
+Route::redirect('/features/markdown', '/content', 308);
+Route::redirect('/customize/routes', '/customize/templates', 308);
+Route::redirect('/customize/blade-views', '/customize/templates', 308);
+Route::redirect('/customize/controllers', '/customize/templates', 308);
+Route::redirect('/deployment/analytics', '/deployment/laravel-cloud', 308);
