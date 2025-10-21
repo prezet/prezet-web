@@ -12,33 +12,20 @@ class IndexController
 {
     public function __invoke(Request $request): View
     {
-        $category = $request->input('category');
-        $tag = $request->input('tag');
-
-        $query = app(Document::class)::where('draft', false);
-
-        if ($category) {
-            $query->where('category', $category);
-        }
-
-        if ($tag) {
-            $query->whereHas('tags', function ($q) use ($tag) {
-                $q->where('name', $tag);
-            });
-        }
-
+        $doc = Prezet::getDocumentModelFromSlug('introduction');
         $nav = Prezet::getSummary();
-        $docs = $query->orderBy('date', 'desc')
-            ->paginate(4);
+        $md = Prezet::getMarkdown($doc->filepath);
+        $html = Prezet::parseMarkdown($md)->getContent();
+        $headings = Prezet::getHeadings($html);
+        $docData = Prezet::getDocumentDataFromFile($doc->filepath);
+        $linkedData = json_encode(Prezet::getLinkedData($docData), JSON_UNESCAPED_SLASHES);
 
-        $docsData = $docs->map(fn (Document $doc) => app(DocumentData::class)::fromModel($doc));
-
-        return view('prezet::index', [
+        return view('pages.index', [
+            'document' => $docData,
+            'linkedData' => $linkedData,
+            'headings' => $headings,
+            'body' => $html,
             'nav' => $nav,
-            'articles' => $docsData,
-            'paginator' => $docs,
-            'currentTag' => request()->query('tag'),
-            'currentCategory' => request()->query('category'),
         ]);
     }
 }

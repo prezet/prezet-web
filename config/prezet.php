@@ -61,7 +61,7 @@ return [
                 'html_class' => 'prezet-heading',
                 'id_prefix' => 'content',
                 'apply_id_to_heading' => false,
-                'heading_class' => '',
+                'heading_class' => 'group',
                 'fragment_prefix' => 'content',
                 'insert' => 'before',
                 'min_heading_level' => 2,
@@ -79,9 +79,9 @@ return [
                 'noreferrer' => 'external',
             ],
             'phiki' => [
-                'theme' => \Phiki\Theme\Theme::MaterialTheme,
+                'theme' => \Phiki\Theme\Theme::Synthwave84,
                 'with_gutter' => false,
-                'with_wrapper' => true
+                'with_wrapper' => false
             ]
         ],
     ],

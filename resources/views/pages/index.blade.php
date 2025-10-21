@@ -18,24 +18,24 @@
 
             <div class="overflow-hidden">
                 <div class="sm:px-2 lg:relative lg:px-0">
-                    <div class="mx-auto grid max-w-2xl grid-cols-1 items-center gap-x-8 gap-y-16 px-4 lg:max-w-6xl lg:grid-cols-1 lg:px-8 xl:gap-x-16 xl:px-12">
-                        <div class="relative z-10 md:text-center lg:text-left">
+                    <div class="space-y-12">
+                        <div class="relative z-10">
                             <div class="relative">
-                                <h1 class="font-display inline bg-linear-to-r from-red-200 via-orange-400 to-red-200 bg-clip-text text-5xl tracking-tight text-transparent dark:from-red-200 dark:via-orange-400 dark:to-red-200">
+                                <h1 class="font-display font-semibold inline bg-linear-to-r from-red-600 via-orange-500 to-red-600 bg-clip-text text-5xl tracking-tight text-transparent dark:from-red-200 dark:via-orange-400 dark:to-red-200">
                                     Markdown Blogging for Laravel
                                 </h1>
-                                <h2 class="mt-3 text-2xl tracking-tight text-gray-600 dark:text-stone-400">
+                                <h2 class="mt-3 text-2xl tracking-tight text-gray-700 dark:text-stone-400">
                                     Transform your markdown files into SEO-friendly blogs, articles, and documentation!
                                 </h2>
                             </div>
                         </div>
                         <div class="relative lg:static">
                             <div class="relative">
-                                <div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-orange-300 via-orange-300/70 to-amber-300 opacity-10 blur-lg"></div>
-                                <div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-orange-300 via-orange-300/70 to-amber-300 opacity-10"></div>
-                                <div class="relative rounded-2xl bg-[#0A101F] dark:bg-[#0A101F]/80 ring-1 ring-white/10 backdrop-blur-sm">
-                                    <div class="absolute -top-px left-20 right-11 h-px bg-linear-to-r from-orange-300/0 via-orange-300/70 to-orange-300/0"></div>
-                                    <div class="absolute -bottom-px left-11 right-20 h-px bg-linear-to-r from-amber-400/0 via-amber-400 to-amber-400/0"></div>
+                                <div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-orange-400 via-orange-400/70 to-amber-400 opacity-25 blur-lg dark:from-orange-300 dark:via-orange-300/70 dark:to-amber-300 dark:opacity-10"></div>
+                                <div class="absolute inset-0 rounded-2xl bg-linear-to-tr from-orange-400 via-orange-400/70 to-amber-400 opacity-20 dark:from-orange-300 dark:via-orange-300/70 dark:to-amber-300 dark:opacity-10"></div>
+                                <div class="relative rounded-2xl bg-[#0A101F] dark:bg-[#0A101F]/80 ring-1 ring-slate-200/20 dark:ring-white/10 backdrop-blur-sm">
+                                    <div class="absolute -top-px left-20 right-11 h-px bg-linear-to-r from-orange-400/0 via-orange-500/60 to-orange-400/0 dark:from-orange-300/0 dark:via-orange-300/70 dark:to-orange-300/0"></div>
+                                    <div class="absolute -bottom-px left-11 right-20 h-px bg-linear-to-r from-amber-500/0 via-amber-500/80 to-amber-500/0 dark:from-amber-400/0 dark:via-amber-400 dark:to-amber-400/0"></div>
                                     <div class="pl-4 pt-4">
                                         <svg aria-hidden="true" viewBox="0 0 42 10" fill="none" class="h-2.5 w-auto stroke-stone-500/30">
                                             <circle cx="5" cy="5" r="4.5"></circle>

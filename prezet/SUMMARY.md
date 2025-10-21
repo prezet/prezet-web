@@ -1,4 +1,5 @@
 ## 🎉 Getting Started
+- [Introduction](/)
 - [Installation](content/installation)
 - [Configuration](content/configuration)
 - [Adding Content](content/content)
