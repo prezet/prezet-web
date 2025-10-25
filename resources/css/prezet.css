@@ -87,6 +87,17 @@
         margin-left: 1px;
     }
 
+    /* Enable smooth iOS momentum scrolling without scroll chaining */
+    .ios-scroll {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    @supports (-webkit-touch-callout: none) {
+        .ios-scroll {
+            -webkit-overflow-scrolling: touch;
+        }
+    }
+
     /*
 |--------------------------------------------------------------------------
 | Custom Scrollbars

@@ -85,7 +85,7 @@
                                 x-cloak
                                 x-show="showSidebar"
                                 x-trap.inert.noscroll="showSidebar"
-                                class="absolute inset-0 z-40 flex h-full items-start overflow-hidden lg:hidden"
+                                class="fixed inset-x-0 bottom-0 top-30 lg:top-16 z-40 flex overflow-hidden overscroll-none lg:hidden min-h-0"
                                 style="display: none"
                             >
                                 {{-- Overlay: scoped to main only (does NOT cover sticky header) --}}
@@ -104,7 +104,7 @@
                                 {{-- Drawer: slides in from left, beneath header --}}
                                 <aside
                                     x-show="showSidebar"
-                                    class="bg-background-light dark:bg-background-dark relative z-10 h-[100dvh] w-[85dvw] max-w-[22rem] min-w-[19rem] shadow-lg"
+                                    class="bg-background-light dark:bg-background-dark relative z-10 h-full w-[85dvw] max-w-[22rem] min-w-[19rem] shadow-lg overscroll-none min-h-0"
                                     x-transition:enter="transform transition duration-300 ease-out"
                                     x-transition:enter-start="-translate-x-full"
                                     x-transition:enter-end="translate-x-0"
@@ -114,7 +114,7 @@
                                     x-on:click.outside="showSidebar = false"
                                     aria-label="Primary navigation"
                                 >
-                                    <div class="h-full overflow-y-auto px-4 pt-4 pb-12">
+                                    <div class="h-full overflow-y-auto overscroll-contain touch-pan-y ios-scroll px-4 pt-4 pb-12">
                                         <div class="relative lg:text-sm lg:leading-6">
                                             <x-prezet.sidebar-left-content :nav="$nav" />
                                         </div>
