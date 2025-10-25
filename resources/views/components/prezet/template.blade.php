@@ -60,7 +60,7 @@
             })()
         </script>
     </head>
-    <body class="dark:bg-background-dark font-sans antialiased">
+    <body class="dark:bg-background-dark font-sans antialiased overscroll-none">
         <div class="min-h-screen">
             <x-prezet.alpine>
                 <div
@@ -104,7 +104,7 @@
                                 {{-- Drawer: slides in from left, beneath header --}}
                                 <aside
                                     x-show="showSidebar"
-                                    class="bg-background-light dark:bg-background-dark relative z-10 h-full w-[85dvw] max-w-[22rem] min-w-[19rem] shadow-lg overscroll-none min-h-0"
+                                    class="bg-background-light dark:bg-background-dark relative z-10 h-100dvh w-[85dvw] max-w-[22rem] min-w-[19rem] shadow-lg overscroll-none min-h-0"
                                     x-transition:enter="transform transition duration-300 ease-out"
                                     x-transition:enter-start="-translate-x-full"
                                     x-transition:enter-end="translate-x-0"
